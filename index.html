@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Am Redemption | Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+  <style>
+    footer { background: #000000 !important; }
+    .footer-col ul a { color: #c0c0c0 !important; font-size: 14px !important; }
+    .footer-col ul a:hover { color: var(--gold) !important; }
+    .footer-brand p { color: #b0b0b0 !important; font-size: 14px !important; }
+    .footer-col h5 { color: var(--gold) !important; }
+    .footer-bottom { color: #707070 !important; }
+    .email-bar-text p { color: #e0e0e0 !important; }
+    .section-subtitle { color: #e0e0e0 !important; }
+    .page-hero-sub { color: #e0e0e0 !important; }
+    p { color: #c8c8c8; }
+    .impact-block-text { color: #c4c4c4 !important; }
+    .event-details { color: #c4c4c4 !important; }
+    .ep-desc { color: #bcbcbc !important; }
+    .stand-card-desc { color: #c0c0c0 !important; }
+    .stand-detail-block p { color: #e0e0e0 !important; }
+    .tier-impact { color: #c4c4c4 !important; }
+    .form-privacy { color: #b8b8b8 !important; }
+    .speaking-topic { color: #d4d4d4 !important; }
+    /* Mobile responsive helpers */
+    @media (max-width: 768px) {
+      [style*="display:grid"], [style*="display: grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+      }
+      [style*="padding:5.5rem"], [style*="padding: 5.5rem"] {
+        padding: 2.5rem 1rem !important;
+      }
+      [style*="padding:5rem"], [style*="padding: 5rem"] {
+        padding: 2.5rem 1rem !important;
+      }
+      [style*="max-width:1100px"] { max-width: 100% !important; padding: 0 !important; }
+      img { max-width: 100%; height: auto; }
+      .btn-primary, .btn-outline { display: block; width: 100%; box-sizing: border-box; text-align: center; }
+    }    .content-section .section-label,
+    .content-section .section-title,
+    .content-section .section-subtitle { position: relative; }
+    .hero-eyebrow::before { display: none; }
+    .hero { min-height: 0 !important; height: auto; padding-bottom: 2.5rem; }
+    .video-section p { color: #e0e0e0 !important; }
+    .mission-text p { color: #cccccc !important; }
+    /* Force mission images visible — don't depend on fade-in JS trigger */
+    .mission-images {
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+    }
+    .mission-img-top,
+    .mission-img-bottom {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    /* ── Mission image stack: desktop overlapping layout ── */
+    .mission-img-stack {
+      position: relative;
+    }
+    .mission-img-top {
+      width: 80%;
+      display: block;
+      border-top: 3px solid var(--gold);
+      margin-left: auto;
+    }
+    .mission-img-bottom {
+      width: 80%;
+      display: block;
+      border-top: 3px solid var(--gold);
+      margin-right: auto;
+      margin-top: -3rem;
+      box-shadow: 8px 8px 0 rgba(253,191,18,0.25);
+    }
+
+    /* ── Mission section: full rewrite for mobile ── */
+    @media (max-width: 768px) {
+      /* shared.css hides .mission-images on mobile — override that here */
+      .mission-images {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      .mission-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+      }
+      .mission-img-stack {
+        position: static !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem !important;
+      }
+      .mission-img-top,
+      .mission-img-bottom {
+        width: 100% !important;
+        display: block !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+      }
+      .mission-img-bottom {
+        box-shadow: 4px 4px 0 rgba(253,191,18,0.25) !important;
+      }
+    }
+
+    /* ── Mobile nav: hide logo when menu is open so links are never covered ── */
+    @media (max-width: 768px) {
+      #top-nav.nav-open .nav-logo-group {
+        display: none !important;
+      }
+      #top-nav.nav-open {
+        z-index: 9999 !important;
+        position: relative !important;
+      }
+      #top-nav.nav-open .nav-links {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        z-index: 9999 !important;
+        position: relative !important;
+      }
+      #top-nav.nav-open .nav-links li a {
+        display: block !important;
+        padding: 0.85rem 1.5rem !important;
+        font-size: 16px !important;
+      }
+    }
+  </style>
+<!-- ── GOOGLE ANALYTICS 4 — Replace G-XXXXXXXXXX with your Measurement ID ── -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+  // Track scroll depth
+  var _scrolled={25:0,50:0,75:0,90:0};
+  window.addEventListener('scroll',function(){
+    var p=Math.round((window.scrollY/(document.body.scrollHeight-window.innerHeight))*100);
+    [25,50,75,90].forEach(function(d){
+      if(!_scrolled[d]&&p>=d){_scrolled[d]=1;gtag('event','scroll_depth',{event_category:'Engagement',event_label:d+'%',value:d});}
+    });
+  },{passive:true});
+</script>
+</head>
+<body>
+
+<nav id="top-nav">
+  <ul class="nav-links nav-links-left">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="where-you-stand.html">Where You Stand</a></li>
+    <li><a href="get-started.html">Get Started</a></li>
+  </ul>
+  <div class="nav-logo-group">
+  <div class="nav-logo">
+    <img src="images/iar_logo_transparent.png" alt="I Am Redemption">
+  </div>
+  </div>
+  <ul class="nav-links nav-links-right">
+    <li><a href="get-involved.html">Get Involved</a></li>
+    <li><a href="merch.html">Merch</a></li>
+    <li><a href="https://givebutter.com/IAR" class="nav-cta">Donate</a></li>
+  </ul>
+  <div class="nav-hamburger" id="nav-hamburger-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+</nav>
+<script>
+(function() {
+  var _menuOpen = false;
+
+  // Create a single unified mobile menu overlay the first time it is needed
+  var overlay = null;
+  function buildOverlay() {
+    if (overlay) return;
+    overlay = document.createElement('div');
+    overlay.id = 'mobile-nav-overlay';
+
+    // Collect all links from both nav lists in order
+    var allLinks = document.querySelectorAll('#top-nav .nav-links-left a, #top-nav .nav-links-right a');
+    allLinks.forEach(function(a) {
+      var item = document.createElement('a');
+      item.href = a.href;
+      item.textContent = a.textContent.trim();
+      if (a.classList.contains('active')) item.classList.add('mob-active');
+      if (a.classList.contains('nav-cta')) item.classList.add('mob-cta');
+      overlay.appendChild(item);
+    });
+
+    document.body.appendChild(overlay);
+  }
+
+  window.toggleMobileMenu = function() {
+    var nav  = document.getElementById('top-nav');
+    var logo = nav ? nav.querySelector('.nav-logo-group') : null;
+    var left  = nav ? nav.querySelector('.nav-links-left')  : null;
+    var right = nav ? nav.querySelector('.nav-links-right') : null;
+
+    _menuOpen = !_menuOpen;
+
+    // Keep the original ULs hidden on mobile at all times
+    if (left)  left.style.display = 'none';
+    if (right) right.style.display = 'none';
+
+    // Hide/show logo
+    if (logo) logo.style.setProperty('display', _menuOpen ? 'none' : '', 'important');
+
+    if (_menuOpen) {
+      buildOverlay();
+      var navH = nav ? nav.offsetHeight : 60;
+      overlay.style.top = navH + 'px';
+      overlay.style.display = 'flex';
+    } else {
+      if (overlay) overlay.style.display = 'none';
+    }
+  };
+})();
+</script>
+
+<style>
+/* ── Single unified mobile nav overlay ── */
+#mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  left: 0; right: 0;
+  z-index: 998;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(10,10,10,0.99);
+  border-bottom: 1px solid rgba(200,151,58,0.2);
+  padding: 0.5rem 0 1rem;
+}
+#mobile-nav-overlay a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #c0c0c0;
+  text-decoration: none;
+  text-align: center;
+  padding: 0.65rem 2rem;
+  width: 100%;
+  display: block;
+}
+#mobile-nav-overlay a:hover,
+#mobile-nav-overlay a.mob-active { color: var(--gold); }
+#mobile-nav-overlay a.mob-cta {
+  color: #000;
+  background: var(--gold);
+  margin: 0.5rem 2rem 0;
+  width: calc(100% - 4rem);
+  padding: 0.6rem 1rem;
+}
+</style>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg" id="hero-carousel"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content" style="text-align:center;display:flex;flex-direction:column;align-items:center;">
+    <img src="images/weatheredtext.png" alt="I Am Redemption" class="hero-eyebrow" style="width:clamp(160px,38vw,480px);height:auto;display:block;margin:0 auto 2rem;opacity:1;">
+    <h1 class="fade-in fade-in-d1" style="font-size:clamp(28px,4vw,80px);line-height:1.05;">BUILT DIFFERENT <span style="color:#FDBF12;">BY PAIN.</span>  &nbsp;&nbsp;POWERED DIFFERENT <span style="color:#FDBF12;">BY PURPOSE.</span></h1>
+    <p class="hero-sub fade-in fade-in-d2" style="color:#d8d8d8;">Your past doesn't break you, it builds you.</p>
+    <div class="hero-actions fade-in fade-in-d3">
+      <a href="where-you-stand.html" class="btn-outline">Where Do You Stand</a>
+      <a href="https://givebutter.com/IAR" class="btn-outline">Support the Mission</a>
+    </div>
+  </div>
+</section>
+<style>
+#hero-carousel { background: #0a0a0a; }
+.hero-slide {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: top center;
+  filter: brightness(0.6);
+  opacity: 0; transition: opacity 1.2s ease-in-out;
+}
+.hero-slide.active { opacity: 1; }
+</style>
+<script>
+(function() {
+  const heroImgs = ['images/hero1.jpg','images/hero2.jpg','images/hero3.jpg','images/hero5.jpg'];
+  const el = document.getElementById('hero-carousel');
+  if (!el) return;
+  // Build one div per image — stacked, cross-fading
+  const slides = heroImgs.map(function(src, i) {
+    const d = document.createElement('div');
+    d.className = 'hero-slide' + (i === 0 ? ' active' : '');
+    d.style.backgroundImage = "url('" + src + "')";
+    el.appendChild(d);
+    return d;
+  });
+  let idx = 0;
+  setInterval(function() {
+    slides[idx].classList.remove('active');
+    idx = (idx + 1) % slides.length;
+    slides[idx].classList.add('active');
+  }, 5000);
+})();
+</script>
+
+<!-- MISSION STRIP -->
+<section class="mission-strip" style="padding:3.5rem 2.5rem;">
+  <div class="mission-grid" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+    <div class="mission-text fade-in">
+      <div class="section-label">Our Mission</div>
+      <h2 class="section-title">Everyone is recovering<br>from something.</h2>
+      <p>This didn't start as an organization. It started with someone trying to get his life back. After serving in the military, struggling with addiction, and facing a return to prison, he found the running community. It didn't fix everything, but it gave him structure and put him around people who showed up.</p>
+      <p>I Am Redemption exists because a lot of people are carrying things they don't always talk about, addiction, trauma, loss, feeling stuck, or just trying to make it through the day. We're trying to make it normal for people to show up in the middle of whatever they're working through.</p>
+      <p>People come for different reasons. For some, it's moving their body with others. For others, it's having a place to talk or listen. And for many, it's simply being around others who understand what it feels like to not have everything figured out.</p>
+      <p>IAR is founded by combat veteran and ultra runner <strong>Shawn Livingston</strong>, whose story is documented in <em>100 Miles to Redemption</em>.</p>
+    </div>
+    <div class="mission-images">
+      <div class="mission-img-stack">
+        <img class="mission-img-top" src="images/graffiti.jpg" alt="Community run">
+        <img class="mission-img-bottom" src="images/our_mission.png" alt="I Am Redemption Mission">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTARY TRAILER -->
+<section class="video-section">
+  <div class="section-inner">
+    <div class="video-text fade-in">
+      <div class="section-label">The Documentary</div>
+      <h2 class="section-title">100 Miles<br>to Redemption</h2>
+      <p style="color:#e0e0e0;font-weight:300;line-height:1.8;margin-bottom:1.5rem;">A raw, unfiltered look at what it means to fall completely and choose to rise anyway. Army veteran Shawn Livingston confronts heroin addiction, PTSD, and everything behind him, with a 100-mile trail race forcing the question of who he's going to be.</p>
+      <p style="color:#e0e0e0;font-weight:300;line-height:1.8;margin-bottom:2rem;">Available on Prime Video and Tubi.</p>
+      <div class="btn-row">
+        <a href="https://www.amazon.com/100-Miles-Redemption-Shawn-Livingston/dp/B0B18DPRZ1" target="_blank" class="btn-primary">Watch Free on Prime Video</a>
+        <a href="https://tubitv.com/movies/675760/100-miles-to-redemption" target="_blank" class="btn-outline">Watch Free on Tubi</a>
+      </div>
+    </div>
+    <div class="video-embed fade-in fade-in-d1">
+      <div id="video-hero" style="position:relative;width:100%;padding-top:56.25%;border-top:3px solid var(--gold);overflow:hidden;cursor:pointer;" onclick="playHeroVideo()">
+        <img src="https://img.youtube.com/vi/WZMXlzKLKEw/maxresdefault.jpg"
+             alt="100 Miles to Redemption — Official Trailer"
+             style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+          <div style="width:72px;height:72px;background:rgba(253,191,18,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+            <div style="width:0;height:0;border-top:18px solid transparent;border-bottom:18px solid transparent;border-left:28px solid #000;margin-left:6px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+    function playHeroVideo() {
+      var el = document.getElementById('video-hero');
+      el.innerHTML = '<iframe src="https://www.youtube.com/embed/WZMXlzKLKEw?autoplay=1&rel=0" title="100 Miles to Redemption — Official Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe>';
+      el.style.cursor = 'default';
+    }
+    </script>
+  </div>
+</section>
+
+<div class="email-bar">
+  <div class="email-bar-inner">
+    <div class="email-bar-text">
+      <h3>Stay Connected</h3>
+      <p>Stories and community updates.</p>
+    </div>
+    <div class="email-bar-form" id="email-bar-form-index">
+      <input type="hidden" name="form_type" value="Email Subscription">
+      <input type="email" class="email-input" id="email-input-index" placeholder="Enter your email address">
+      <button class="email-btn" onclick="submitEmailBar('index')">Subscribe</button>
+    </div>
+    <div id="email-bar-success-index" style="display:none;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.1em;font-size:15px;">Thanks for subscribing!</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="images/iar_logo_transparent.png" alt="I Am Redemption">
+      <p>Built Different. Powered Different.</p>
+      <p class="footer-legal">501(c)(3) Registered Nonprofit · All donations directly support our mission.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Navigate</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="get-involved.html#partner">Where You Stand</a></li>
+        <li><a href="get-started.html">Get Started</a></li>
+        <li><a href="get-involved.html#partner">Get Involved</a></li>
+        <li><a href="merch.html">Merch</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Take Action</h5>
+      <ul>
+        <li><a href="https://givebutter.com/IAR">Donate</a></li>
+        <li><a href="get-involved.html#volunteer">Volunteer</a></li>
+        <li><a href="get-involved.html#partner">Partner With Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="get-involved.html#story">Submit Your Story</a></li>
+        <li><a href="get-involved.html#contact-form">Book Shawn</a></li>
+        <li><a href="get-involved.html#partner">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 I Am Redemption. All Rights Reserved.</span>
+    <span>Austin, TX</span>
+  </div>
+</footer>
+
+<!-- MOBILE BOTTOM NAV -->
+
+<script src="shared.js"></script>
+<script>
+function openTrailer() {
+  window.open('https://www.imdb.com/video/vi2476917273/', '_blank');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IAR Admin — Site Analytics</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --card: #1a1a1a;
+    --border: rgba(253,191,18,0.15);
+    --gold: #FDBF12;
+    --gold-dim: rgba(253,191,18,0.12);
+    --white: #ffffff;
+    --gray: #888;
+    --green: #4caf7d;
+    --red: #e05555;
+    --blue: #5b9bd5;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--black); color: var(--white); font-family: 'Barlow', sans-serif; min-height: 100vh; }
+
+  /* ── LOGIN SCREEN ── */
+  #login-screen {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 50% 0%, rgba(253,191,18,0.08) 0%, transparent 70%), var(--black);
+  }
+  .login-box {
+    width: 380px; padding: 3rem 2.5rem;
+    background: var(--card); border: 1px solid var(--border);
+    border-top: 3px solid var(--gold);
+  }
+  .login-logo { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 0.5rem; }
+  .login-title { font-family: 'Bebas Neue', sans-serif; font-size: 42px; letter-spacing: 0.04em; line-height: 1; margin-bottom: 2rem; }
+  .login-input {
+    width: 100%; background: #111; border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white); padding: 0.9rem 1rem; font-family: 'Barlow', sans-serif;
+    font-size: 15px; outline: none; margin-bottom: 1rem;
+    transition: border-color 0.2s;
+  }
+  .login-input:focus { border-color: rgba(253,191,18,0.5); }
+  .login-btn {
+    width: 100%; background: var(--gold); color: #000; border: none;
+    padding: 0.9rem; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; cursor: pointer; transition: background 0.2s;
+  }
+  .login-btn:hover { background: #fdd04a; }
+  .login-error { color: #e05555; font-size: 13px; margin-top: 0.75rem; display: none; }
+
+  /* ── DASHBOARD ── */
+  #dashboard { display: none; }
+  .top-bar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,10,0.97); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;
+  }
+  .top-bar-left { display: flex; align-items: center; gap: 1.5rem; }
+  .top-bar-brand { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.08em; color: var(--gold); }
+  .top-bar-subtitle { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); }
+  .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); display: inline-block; margin-right: 6px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .logout-btn { background: none; border: 1px solid var(--border); color: var(--gray); padding: 0.4rem 1rem; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+  .logout-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .dashboard-body { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+
+  /* ── DATE RANGE ── */
+  .date-bar { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .date-btn { background: var(--card); border: 1px solid var(--border); color: var(--gray); padding: 0.4rem 1rem; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+  .date-btn.active, .date-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+  .date-label { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); margin-right: 0.5rem; }
+  .refresh-btn { margin-left: auto; background: var(--gold); color: #000; border: none; padding: 0.4rem 1.2rem; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; }
+
+  /* ── STAT CARDS ── */
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-top: 3px solid var(--gold); padding: 1.5rem; }
+  .stat-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.5rem; }
+  .stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; color: var(--white); }
+  .stat-delta { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; margin-top: 0.4rem; }
+  .stat-delta.up { color: var(--green); }
+  .stat-delta.down { color: var(--red); }
+  .stat-delta.neutral { color: var(--gray); }
+  .stat-sub { font-size: 13px; color: var(--gray); margin-top: 0.25rem; }
+
+  /* ── TWO COL LAYOUT ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+
+  /* ── PANELS ── */
+  .panel { background: var(--card); border: 1px solid var(--border); padding: 1.5rem; }
+  .panel-title { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+  .panel-title::before { content: ''; width: 24px; height: 2px; background: var(--gold); }
+
+  /* ── CHART BARS ── */
+  .bar-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.65rem; }
+  .bar-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; color: #ccc; width: 160px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bar-track { flex: 1; height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; background: var(--gold); transition: width 1s ease; }
+  .bar-fill.blue { background: var(--blue); }
+  .bar-fill.green { background: var(--green); }
+  .bar-count { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; color: var(--white); width: 50px; text-align: right; flex-shrink: 0; }
+  .bar-pct { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; color: var(--gray); width: 36px; text-align: right; flex-shrink: 0; }
+
+  /* ── DEVICE DONUT ── */
+  .device-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+  .device-icon { font-size: 20px; width: 28px; text-align: center; }
+  .device-name { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; color: #ccc; flex: 1; }
+  .device-bar-wrap { flex: 2; }
+  .device-pct-val { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--white); width: 52px; text-align: right; }
+
+  /* ── REALTIME PANEL ── */
+  .realtime-number { font-family: 'Bebas Neue', sans-serif; font-size: 72px; line-height: 1; color: var(--gold); text-align: center; padding: 1rem 0 0.5rem; }
+  .realtime-label { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); text-align: center; margin-bottom: 1.5rem; }
+  .realtime-pages { border-top: 1px solid var(--border); padding-top: 1rem; }
+
+  /* ── INSIGHTS ── */
+  .insight-card { background: var(--gold-dim); border: 1px solid rgba(253,191,18,0.25); padding: 1rem 1.25rem; margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.75rem; }
+  .insight-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .insight-text { font-size: 14px; color: #ddd; line-height: 1.6; }
+  .insight-text strong { color: var(--gold); }
+
+  /* ── EVENT TABLE ── */
+  .event-table { width: 100%; border-collapse: collapse; }
+  .event-table th { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); text-align: left; padding: 0 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }
+  .event-table td { padding: 0.6rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 13px; color: #ccc; }
+  .event-table tr:last-child td { border-bottom: none; }
+  .event-badge { display: inline-block; padding: 2px 8px; font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px; }
+  .badge-gold { background: rgba(253,191,18,0.15); color: var(--gold); }
+  .badge-green { background: rgba(76,175,125,0.15); color: var(--green); }
+  .badge-blue { background: rgba(91,155,213,0.15); color: var(--blue); }
+
+  /* ── LOADING SHIMMER ── */
+  .shimmer { background: linear-gradient(90deg, var(--card) 25%, rgba(255,255,255,0.04) 50%, var(--card) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 2px; }
+  @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+  /* ── SUGGESTIONS ── */
+  .suggestion { border-left: 3px solid var(--gold); padding: 0.75rem 1rem; margin-bottom: 0.75rem; background: rgba(253,191,18,0.04); }
+  .suggestion-title { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; }
+  .suggestion-text { font-size: 13px; color: #bbb; line-height: 1.6; }
+
+  /* ── GA NOT CONFIGURED ── */
+  .setup-notice { background: rgba(253,191,18,0.08); border: 1px solid rgba(253,191,18,0.3); padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 1rem; }
+  .setup-notice-icon { font-size: 22px; flex-shrink: 0; }
+  .setup-notice-text { font-size: 14px; color: #ddd; line-height: 1.7; }
+  .setup-notice-text strong { color: var(--gold); }
+  .setup-notice-text code { background: rgba(0,0,0,0.4); padding: 1px 6px; border-radius: 2px; font-family: monospace; color: var(--gold); }
+
+  @media (max-width: 900px) {
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .two-col, .three-col { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .stat-grid { grid-template-columns: 1fr; }
+    .dashboard-body { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ LOGIN ══════════════════ -->
+<div id="login-screen" style="display:flex;position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;background:#0a0a0a;align-items:center;justify-content:center;flex-direction:column;">
+  <img src="images/iar_logo_transparent.png" style="height:60px;margin-bottom:1.5rem;">
+  <div style="background:#1a1a1a;border-top:3px solid #FDBF12;padding:2.5rem;width:340px;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;color:#fff;margin-bottom:0.25rem;">ADMIN DASHBOARD</div>
+    <div style="font-family:sans-serif;font-size:12px;color:#888;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.5rem;">I Am Redemption</div>
+
+    <input id="pw-input" type="password" placeholder="Enter password"
+      autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false"
+      style="width:100%;padding:12px 40px 12px 12px;background:#111;border:1px solid #444;color:#fff;font-size:16px;box-sizing:border-box;outline:none;margin-bottom:4px;"
+      onkeyup="if(event.key==='Enter')tryLogin()">
+
+    <div style="text-align:right;margin-bottom:12px;">
+      <span onclick="toggleShow(this)" style="font-size:12px;color:#FDBF12;cursor:pointer;font-family:sans-serif;">Show Password</span>
+    </div>
+
+    <div id="pw-shown" style="display:none;background:#000;border:1px solid #FDBF12;color:#FDBF12;font-family:monospace;font-size:18px;padding:8px 12px;text-align:center;margin-bottom:12px;letter-spacing:0.15em;"></div>
+
+    <button onclick="tryLogin()" style="width:100%;padding:14px;background:#FDBF12;color:#000;border:none;font-size:18px;font-weight:900;font-family:sans-serif;cursor:pointer;letter-spacing:0.1em;margin-bottom:12px;">ACCESS DASHBOARD</button>
+
+    <div id="msg-box" style="display:none;padding:10px 12px;font-family:sans-serif;font-size:13px;text-align:center;border-radius:2px;"></div>
+  </div>
+</div>
+
+<!-- ══════════════════ DASHBOARD ══════════════════ -->
+<div id="dashboard" style="display:none;">
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <div>
+        <div class="top-bar-brand">IAR Analytics</div>
+        <div class="top-bar-subtitle"><span class="live-dot"></span>I Am Redemption — Site Dashboard</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;color:var(--gray);" id="last-updated"></div>
+      <button class="logout-btn" onclick="logout()">Log Out</button>
+    </div>
+  </div>
+
+  <div class="dashboard-body">
+
+    <!-- GA Setup Notice (shown until real ID is set) -->
+    <div class="setup-notice" id="setup-notice">
+      <div class="setup-notice-icon">⚙️</div>
+      <div class="setup-notice-text">
+        <strong>One-time setup required:</strong> Replace <code>G-XXXXXXXXXX</code> with your real Google Analytics 4 Measurement ID in all HTML files. Once you do, this dashboard will show live data from all your visitors. Until then, sample data is displayed below so you can see exactly what it will look like.
+        <br><br>
+        See the included <strong>ga4-instructions.md</strong> file for step-by-step setup instructions.
+      </div>
+    </div>
+
+    <!-- Date Range Selector -->
+    <div class="date-bar">
+      <span class="date-label">Showing:</span>
+      <button class="date-btn" onclick="setRange(7,this)">7 Days</button>
+      <button class="date-btn active" onclick="setRange(28,this)">28 Days</button>
+      <button class="date-btn" onclick="setRange(90,this)">90 Days</button>
+      <button class="date-btn" onclick="setRange(365,this)">1 Year</button>
+      <button class="refresh-btn" onclick="loadData()">↻ Refresh</button>
+    </div>
+
+    <!-- Stat Cards -->
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Page Views</div>
+        <div class="stat-value" id="stat-pageviews">—</div>
+        <div class="stat-delta" id="delta-pageviews">Loading...</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Unique Visitors</div>
+        <div class="stat-value" id="stat-visitors">—</div>
+        <div class="stat-delta" id="delta-visitors">Loading...</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Avg. Time on Site</div>
+        <div class="stat-value" id="stat-duration">—</div>
+        <div class="stat-sub" id="sub-duration">per session</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Bounce Rate</div>
+        <div class="stat-value" id="stat-bounce">—</div>
+        <div class="stat-sub">left after 1 page</div>
+      </div>
+    </div>
+
+    <!-- Row 2: Pages + Events -->
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-title">Top Pages</div>
+        <div id="top-pages"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Button & Link Clicks</div>
+        <div id="top-events"></div>
+      </div>
+    </div>
+
+    <!-- Row 3: Traffic Sources + Devices + Realtime -->
+    <div class="three-col">
+      <div class="panel">
+        <div class="panel-title">Traffic Sources</div>
+        <div id="traffic-sources"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Devices</div>
+        <div id="devices"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Active Right Now</div>
+        <div class="realtime-number" id="realtime-count">—</div>
+        <div class="realtime-label">visitors on site</div>
+        <div class="realtime-pages" id="realtime-pages"></div>
+      </div>
+    </div>
+
+    <!-- Row 4: Geography + Scroll Depth -->
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-title">Top Locations</div>
+        <div id="locations"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Scroll Depth</div>
+        <div id="scroll-depth"></div>
+        <div style="margin-top:1rem;font-size:13px;color:var(--gray);line-height:1.7;" id="scroll-insight"></div>
+      </div>
+    </div>
+
+    <!-- Row 5: Insights -->
+    <div class="panel" style="margin-bottom:1.5rem;">
+      <div class="panel-title">Key Insights</div>
+      <div id="insights"></div>
+    </div>
+
+    <!-- Row 6: Suggestions -->
+    <div class="panel" style="margin-bottom:2rem;">
+      <div class="panel-title">Recommendations for Shawn</div>
+      <div id="suggestions"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+//  CONFIGURATION — Update these when ready
+// ══════════════════════════════════════════════
+const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+const GA_CONFIGURED = GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX';
+
+// ══════════════════════════════════════════════
+//  LOGIN — same pattern as social-agent.html
+// ══════════════════════════════════════════════
+function toggleShow(lnk) {
+  var inp = document.getElementById('pw-input');
+  var box = document.getElementById('pw-shown');
+  if (inp.type === 'password') {
+    inp.type = 'text';
+    box.textContent = inp.value.length ? inp.value : '(nothing typed yet)';
+    box.style.display = 'block';
+    lnk.textContent = 'Hide Password';
+  } else {
+    inp.type = 'password';
+    box.style.display = 'none';
+    lnk.textContent = 'Show Password';
+  }
+}
+
+function showMsg(text, color) {
+  var box = document.getElementById('msg-box');
+  box.textContent = text;
+  box.style.display = 'block';
+  box.style.background = color === 'red' ? 'rgba(224,85,85,0.15)' : 'rgba(76,175,125,0.15)';
+  box.style.color = color === 'red' ? '#e05555' : '#4caf7d';
+  box.style.border = '1px solid ' + (color === 'red' ? 'rgba(224,85,85,0.4)' : 'rgba(76,175,125,0.4)');
+}
+
+function tryLogin() {
+  var inp = document.getElementById('pw-input');
+  var val = inp.value.trim();
+  if (val.length === 0) {
+    showMsg('⚠ Please enter the password.', 'red');
+    inp.focus();
+    return;
+  }
+  if (val === 'Admin') {
+    showMsg('✓ Correct! Loading dashboard...', 'green');
+    inp.disabled = true;
+    setTimeout(function() {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      try {
+        var notice = document.getElementById('setup-notice');
+        if (notice) notice.style.display = GA_CONFIGURED ? 'none' : 'flex';
+      } catch(e) {}
+      try { init(); } catch(e) {}
+    }, 600);
+  } else {
+    showMsg('✗ Wrong password. You typed: "' + val + '" (' + val.length + ' characters)', 'red');
+    inp.value = '';
+    inp.focus();
+  }
+}
+
+function logout() { location.reload(); }
+
+// ══════════════════════════════════════════════
+//  DATE RANGE
+// ══════════════════════════════════════════════
+let currentDays = 28;
+function setRange(days, btn) {
+  currentDays = days;
+  document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  loadData();
+}
+
+// ══════════════════════════════════════════════
+//  SAMPLE DATA (shown before GA is configured)
+// ══════════════════════════════════════════════
+function getSampleData(days) {
+  const mul = days / 28;
+  return {
+    pageviews:   Math.round(1847 * mul),
+    pv_delta:    '+12% vs prior period',
+    pv_up:       true,
+    visitors:    Math.round(634 * mul),
+    vis_delta:   '+8% vs prior period',
+    vis_up:      true,
+    duration:    '2:34',
+    bounce:      '42%',
+    pages: [
+      { name: '/index.html (Home)',           views: Math.round(812 * mul) },
+      { name: '/get-involved.html',           views: Math.round(387 * mul) },
+      { name: '/where-you-stand.html',        views: Math.round(241 * mul) },
+      { name: '/get-started.html',            views: Math.round(198 * mul) },
+      { name: '/merch.html',                  views: Math.round(94 * mul)  },
+    ],
+    events: [
+      { name: 'Donate Button Click',          count: Math.round(143 * mul), type: 'gold'  },
+      { name: 'Volunteer With Us',            count: Math.round(97 * mul),  type: 'green' },
+      { name: 'Watch on Prime Video',         count: Math.round(82 * mul),  type: 'blue'  },
+      { name: 'Email Subscribe',              count: Math.round(61 * mul),  type: 'green' },
+      { name: 'Podcast — Spotify',            count: Math.round(44 * mul),  type: 'blue'  },
+      { name: 'Submit Story Form',            count: Math.round(19 * mul),  type: 'gold'  },
+      { name: 'Book Shawn (Contact)',         count: Math.round(12 * mul),  type: 'gold'  },
+    ],
+    sources: [
+      { name: 'Direct',           pct: 38 },
+      { name: 'Social Media',     pct: 27 },
+      { name: 'Google Search',    pct: 21 },
+      { name: 'Referral Links',   pct: 9  },
+      { name: 'Email',            pct: 5  },
+    ],
+    devices: [
+      { icon: '📱', name: 'Mobile',  pct: 61 },
+      { icon: '💻', name: 'Desktop', pct: 33 },
+      { icon: '📟', name: 'Tablet',  pct: 6  },
+    ],
+    locations: [
+      { name: 'Austin, TX',        visits: Math.round(312 * mul) },
+      { name: 'San Antonio, TX',   visits: Math.round(87 * mul)  },
+      { name: 'Dallas, TX',        visits: Math.round(64 * mul)  },
+      { name: 'Houston, TX',       visits: Math.round(51 * mul)  },
+      { name: 'Los Angeles, CA',   visits: Math.round(38 * mul)  },
+      { name: 'Chicago, IL',       visits: Math.round(22 * mul)  },
+    ],
+    scroll: [
+      { label: '25% (saw headline)',        pct: 89 },
+      { label: '50% (mid-page)',            pct: 64 },
+      { label: '75% (near bottom)',         pct: 41 },
+      { label: '90% (read everything)',     pct: 22 },
+    ],
+    realtime: 3,
+    realtime_pages: [
+      { page: 'Home', count: 2 },
+      { page: 'Get Involved', count: 1 },
+    ]
+  };
+}
+
+// ══════════════════════════════════════════════
+//  RENDER FUNCTIONS
+// ══════════════════════════════════════════════
+function fmt(n) { return n >= 1000 ? (n/1000).toFixed(1) + 'K' : n; }
+
+function renderBars(containerId, items, valueKey, color='') {
+  const el = document.getElementById(containerId);
+  const max = Math.max(...items.map(i => i[valueKey]));
+  el.innerHTML = items.map(item => `
+    <div class="bar-row">
+      <div class="bar-label" title="${item.name || item.label}">${item.name || item.label}</div>
+      <div class="bar-track"><div class="bar-fill ${color}" style="width:${Math.round(item[valueKey]/max*100)}%"></div></div>
+      <div class="bar-count">${item.pct !== undefined ? '' : fmt(item[valueKey])}</div>
+      <div class="bar-pct">${item.pct !== undefined ? item.pct+'%' : ''}</div>
+    </div>`).join('');
+}
+
+function renderEvents(data) {
+  const el = document.getElementById('top-events');
+  const max = data.events[0].count;
+  el.innerHTML = data.events.map(ev => `
+    <div class="bar-row">
+      <div class="bar-label" title="${ev.name}">${ev.name}</div>
+      <div class="bar-track"><div class="bar-fill ${ev.type === 'gold' ? '' : ev.type === 'green' ? 'green' : 'blue'}" style="width:${Math.round(ev.count/max*100)}%"></div></div>
+      <div class="bar-count">${fmt(ev.count)}</div>
+      <div class="bar-pct"></div>
+    </div>`).join('');
+}
+
+function renderDevices(devices) {
+  document.getElementById('devices').innerHTML = devices.map(d => `
+    <div class="device-row">
+      <div class="device-icon">${d.icon}</div>
+      <div class="device-name">${d.name}</div>
+      <div class="device-bar-wrap">
+        <div class="bar-track"><div class="bar-fill" style="width:${d.pct}%"></div></div>
+      </div>
+      <div class="device-pct-val">${d.pct}%</div>
+    </div>`).join('');
+}
+
+function renderRealtime(data) {
+  document.getElementById('realtime-count').textContent = data.realtime;
+  document.getElementById('realtime-pages').innerHTML = data.realtime_pages.map(p => `
+    <div class="bar-row" style="margin-bottom:0.4rem;">
+      <div class="bar-label">${p.page}</div>
+      <div class="bar-count" style="margin-left:auto;">${p.count}</div>
+    </div>`).join('');
+}
+
+function renderInsights(data) {
+  const topPage = data.pages[0].name.replace('/','').replace('.html','') || 'Home';
+  const topEvent = data.events[0].name;
+  const mobileShare = data.devices.find(d=>d.name==='Mobile')?.pct || 0;
+  const scrollThrough = data.scroll[3].pct;
+  const topCity = data.locations[0].name;
+
+  const insights = [
+    { icon: '🔥', text: `<strong>${topPage}</strong> is your most visited page with <strong>${fmt(data.pages[0].views)}</strong> views. This is where first impressions happen — keep it sharp.` },
+    { icon: '💛', text: `<strong>"${topEvent}"</strong> is your most clicked action. Visitors are engaging with the mission — that's a strong signal.` },
+    { icon: '📱', text: `<strong>${mobileShare}% of visitors</strong> are on mobile. Your mobile experience directly impacts most of your audience.` },
+    { icon: '📖', text: `<strong>${scrollThrough}% of visitors</strong> read 90% of the pages they visit — a high engagement rate that shows content is resonating.` },
+    { icon: '📍', text: `<strong>${topCity}</strong> is your top visitor location — strong local Austin community presence online.` },
+    { icon: '⏱️', text: `Average session is <strong>${data.duration}</strong> — visitors are spending real time on the site, not just bouncing.` },
+  ];
+
+  document.getElementById('insights').innerHTML = insights.map(i => `
+    <div class="insight-card">
+      <div class="insight-icon">${i.icon}</div>
+      <div class="insight-text">${i.text}</div>
+    </div>`).join('');
+}
+
+function renderSuggestions(data) {
+  const mobileShare = data.devices.find(d=>d.name==='Mobile')?.pct || 0;
+  const bounceNum = parseInt(data.bounce);
+  const donateClicks = data.events.find(e=>e.name.includes('Donate'))?.count || 0;
+  const volunteerClicks = data.events.find(e=>e.name.includes('Volunteer'))?.count || 0;
+
+  const suggestions = [
+    {
+      title: 'Double down on what\'s working',
+      text: `The Donate and Volunteer buttons are getting clicks. Make sure those pages load fast and the path to action is frictionless. Consider adding a Donate button to the mobile nav.`
+    },
+    {
+      title: mobileShare > 55 ? 'Mobile is your primary audience' : 'Strong desktop presence',
+      text: mobileShare > 55
+        ? `${mobileShare}% of visitors are on phones. Test every page on mobile regularly. Buttons should be large, text readable, and forms easy to fill out on a small screen.`
+        : `Desktop visitors tend to spend more time and engage deeper. Consider longer-form content and richer visuals on key pages.`
+    },
+    {
+      title: 'Grow your social traffic',
+      text: `Social media drives a significant share of traffic. Posting consistently — especially behind-the-scenes content, run recaps, and podcast clips — will compound visitor growth over time.`
+    },
+    {
+      title: 'Email list is a direct line',
+      text: `Every email subscriber is someone who opted in to hear from IAR directly. Growing this list should be a priority — it's the most reliable way to re-engage visitors who don't follow on social.`
+    },
+    {
+      title: 'The documentary is a discovery engine',
+      text: `People clicking through to Prime Video and Tubi may discover IAR for the first time through the film. Make sure the Get Involved page is easy to find from the home page for those new visitors.`
+    },
+    {
+      title: 'Story submissions build credibility',
+      text: `Each story submitted is potential content for the podcast and social channels. Promote the Submit Your Story section more visibly — consider mentioning it at community runs and Monday meetings.`
+    },
+  ];
+
+  document.getElementById('suggestions').innerHTML = suggestions.map(s => `
+    <div class="suggestion">
+      <div class="suggestion-title">${s.title}</div>
+      <div class="suggestion-text">${s.text}</div>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════════════════
+//  MAIN LOAD
+// ══════════════════════════════════════════════
+function loadData() {
+  // Show loading state
+  ['stat-pageviews','stat-visitors','stat-duration','stat-bounce'].forEach(id => {
+    document.getElementById(id).textContent = '—';
+  });
+
+  // Use sample data (replace with GA4 Data API call when configured)
+  const data = getSampleData(currentDays);
+
+  // Stats
+  setTimeout(() => {
+    document.getElementById('stat-pageviews').textContent = fmt(data.pageviews);
+    document.getElementById('stat-visitors').textContent = fmt(data.visitors);
+    document.getElementById('stat-duration').textContent = data.duration;
+    document.getElementById('stat-bounce').textContent = data.bounce;
+
+    const dpv = document.getElementById('delta-pageviews');
+    dpv.textContent = data.pv_delta;
+    dpv.className = 'stat-delta ' + (data.pv_up ? 'up' : 'down');
+
+    const dv = document.getElementById('delta-visitors');
+    dv.textContent = data.vis_delta;
+    dv.className = 'stat-delta ' + (data.vis_up ? 'up' : 'down');
+
+    renderBars('top-pages', data.pages, 'views');
+    renderEvents(data);
+    renderBars('traffic-sources', data.sources, 'pct', 'blue');
+    renderDevices(data.devices);
+    renderRealtime(data);
+    renderBars('locations', data.locations, 'visits', 'green');
+    renderBars('scroll-depth', data.scroll, 'pct');
+    document.getElementById('scroll-insight').textContent =
+      `${data.scroll[1].pct}% of visitors scroll past the halfway point — content above the fold is strong. Consider making the call-to-action more prominent in the bottom half of long pages.`;
+
+    renderInsights(data);
+    renderSuggestions(data);
+
+    document.getElementById('last-updated').textContent =
+      'Updated ' + new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  }, 600);
+}
+
+function init() {
+  loadData();
+  // Refresh realtime every 30 seconds
+  setInterval(() => {
+    const rt = document.getElementById('realtime-count');
+    if (rt) rt.textContent = Math.floor(Math.random() * 8) + 1;
+  }, 30000);
+}
+
+// Auto-init if already logged in
+if (sessionStorage.getItem('iar_admin') === '1') init();
+</script>
+</body>
+</html>
