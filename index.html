@@ -61,39 +61,40 @@
       visibility: visible !important;
     }
 
-    /* ── Mission image stack: desktop overlapping layout ── */
+    /* ── Mission image stack: overlapping layout, height = text column ── */
     .mission-images {
-      align-self: flex-end;
-      overflow: visible;
-    }
-    .mission-img-stack {
-      position: relative;
+      align-self: stretch;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+    }
+    .mission-img-stack {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      height: 100%;
+      min-height: 0;
+      overflow: hidden;
     }
     .mission-img-top {
-      width: 75%;
-      height: auto;
-      max-height: 240px;
+      width: 80%;
+      flex: 1;
+      min-height: 0;
       display: block;
-      object-fit: contain;
-      object-position: right top;
-      border-top: 3px solid var(--gold);
+      object-fit: cover;
+      object-position: center;
       margin-left: auto;
-      margin-right: 0;
+      border-top: none;
     }
     .mission-img-bottom {
-      width: 75%;
-      height: auto;
-      max-height: 240px;
+      width: 80%;
+      flex: 1;
+      min-height: 0;
       display: block;
-      object-fit: contain;
-      object-position: left top;
-      border-top: 3px solid var(--gold);
+      object-fit: cover;
+      object-position: center top;
       margin-right: auto;
-      margin-left: 0;
-      margin-top: -3rem;
+      margin-top: -20%;
+      border-top: none;
       box-shadow: 8px 8px 0 rgba(253,191,18,0.25);
     }
 
@@ -323,8 +324,8 @@
 </script>
 
 <!-- MISSION STRIP -->
-<section class="mission-strip" style="padding:3.5rem 2.5rem;">
-  <div class="mission-grid" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end;">
+<section class="mission-strip" style="padding:3.5rem 2.5rem;overflow:hidden;">
+  <div class="mission-grid" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:stretch;">
     <div class="mission-text fade-in">
       <div class="section-label">Our Mission</div>
       <h2 class="section-title">Everyone is recovering<br>from something.</h2>
