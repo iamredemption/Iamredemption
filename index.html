@@ -63,38 +63,36 @@
 
     /* ── Mission image stack: desktop overlapping layout ── */
     .mission-images {
-      align-self: stretch;
-      overflow: hidden;
+      align-self: flex-end;
+      overflow: visible;
     }
     .mission-img-stack {
       position: relative;
       display: flex;
       flex-direction: column;
-      height: 100%;
-      max-height: 100%;
-      overflow: hidden;
+      align-items: flex-start;
     }
     .mission-img-top {
-      width: 80%;
-      flex: 1;
-      min-height: 0;
-      max-height: 52%;
+      width: 75%;
+      height: auto;
+      max-height: 240px;
       display: block;
       object-fit: contain;
       object-position: right top;
       border-top: 3px solid var(--gold);
       margin-left: auto;
+      margin-right: 0;
     }
     .mission-img-bottom {
-      width: 80%;
-      flex: 1;
-      min-height: 0;
-      max-height: 52%;
+      width: 75%;
+      height: auto;
+      max-height: 240px;
       display: block;
       object-fit: contain;
-      object-position: left bottom;
+      object-position: left top;
       border-top: 3px solid var(--gold);
       margin-right: auto;
+      margin-left: 0;
       margin-top: -3rem;
       box-shadow: 8px 8px 0 rgba(253,191,18,0.25);
     }
@@ -326,7 +324,7 @@
 
 <!-- MISSION STRIP -->
 <section class="mission-strip" style="padding:3.5rem 2.5rem;">
-  <div class="mission-grid" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:stretch;">
+  <div class="mission-grid" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end;">
     <div class="mission-text fade-in">
       <div class="section-label">Our Mission</div>
       <h2 class="section-title">Everyone is recovering<br>from something.</h2>
