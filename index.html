@@ -61,42 +61,41 @@
       visibility: visible !important;
     }
 
-    /* ── Mission image stack: full images, overlapping, spans text height ── */
+    /* ── Mission image stack: top aligns with label, bottom aligns with text ── */
     .mission-images {
       align-self: stretch;
       display: flex;
       flex-direction: column;
-      justify-content: center;
     }
     .mission-img-stack {
-      position: relative;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 0;
+      flex: 1;
+      height: 100%;
+      min-height: 0;
     }
     .mission-img-top {
-      width: 78%;
-      height: auto;
+      width: 80%;
+      flex: 1;
+      min-height: 0;
       display: block;
-      object-fit: contain;
+      object-fit: cover;
+      object-position: center;
       margin-left: auto;
       margin-right: 0;
       border-top: none;
-      position: relative;
-      z-index: 1;
     }
     .mission-img-bottom {
-      width: 78%;
-      height: auto;
+      width: 80%;
+      flex: 1;
+      min-height: 0;
       display: block;
-      object-fit: contain;
+      object-fit: cover;
+      object-position: center top;
       margin-left: 0;
       margin-right: auto;
-      margin-top: -18%;
+      margin-top: -15%;
       border-top: none;
-      position: relative;
-      z-index: 2;
       box-shadow: 8px 8px 0 rgba(253,191,18,0.25);
     }
 
@@ -327,7 +326,7 @@
 
 <!-- MISSION STRIP -->
 <section class="mission-strip" style="padding:3.5rem 2.5rem;">
-  <div class="mission-grid" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;">
+  <div class="mission-grid" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:stretch;">
     <div class="mission-text fade-in">
       <div class="section-label">Our Mission</div>
       <h2 class="section-title">Everyone is recovering<br>from something.</h2>
