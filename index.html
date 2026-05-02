@@ -62,18 +62,30 @@
     }
 
     /* ── Mission image stack: desktop overlapping layout ── */
+    .mission-images {
+      align-self: stretch;
+    }
     .mission-img-stack {
       position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
     .mission-img-top {
       width: 80%;
+      flex: 1;
+      min-height: 0;
       display: block;
+      object-fit: cover;
       border-top: 3px solid var(--gold);
       margin-left: auto;
     }
     .mission-img-bottom {
       width: 80%;
+      flex: 1;
+      min-height: 0;
       display: block;
+      object-fit: cover;
       border-top: 3px solid var(--gold);
       margin-right: auto;
       margin-top: -3rem;
@@ -307,7 +319,7 @@
 
 <!-- MISSION STRIP -->
 <section class="mission-strip" style="padding:3.5rem 2.5rem;">
-  <div class="mission-grid" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;">
+  <div class="mission-grid" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:stretch;">
     <div class="mission-text fade-in">
       <div class="section-label">Our Mission</div>
       <h2 class="section-title">Everyone is recovering<br>from something.</h2>
