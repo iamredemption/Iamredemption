@@ -64,11 +64,14 @@
     /* ── Mission image stack: desktop overlapping layout ── */
     .mission-images {
       align-self: stretch;
+      display: flex;
+      flex-direction: column;
     }
     .mission-img-stack {
       position: relative;
       display: flex;
       flex-direction: column;
+      flex: 1;
       height: 100%;
     }
     .mission-img-top {
@@ -77,6 +80,7 @@
       min-height: 0;
       display: block;
       object-fit: cover;
+      object-position: center;
       border-top: 3px solid var(--gold);
       margin-left: auto;
     }
@@ -86,6 +90,7 @@
       min-height: 0;
       display: block;
       object-fit: cover;
+      object-position: center;
       border-top: 3px solid var(--gold);
       margin-right: auto;
       margin-top: -3rem;
