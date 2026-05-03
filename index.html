@@ -134,47 +134,9 @@
       }
     }
 
-    /* ── Mobile nav: shrink logo so it doesn't overlap hero content ── */
-    @media (max-width: 960px) {
-      .nav-logo-group {
-        position: static !important;
-        transform: none !important;
-        display: flex !important;
-        justify-content: center !important;
-        pointer-events: auto !important;
-      }
-      .nav-logo img {
-        height: 56px !important;
-      }
-      /* Give the hero enough top margin for the shorter mobile nav */
-      .hero {
-        margin-top: 60px !important;
-        padding-top: 3rem !important;
-        min-height: 60vh !important;
-      }
-    }
-
     /* ── Mobile nav: hide logo when menu is open so links are never covered ── */
     @media (max-width: 768px) {
-      #top-nav.nav-open .nav-logo-group {
-        display: none !important;
-      }
-      #top-nav.nav-open {
-        z-index: 9999 !important;
-        position: relative !important;
-      }
-      #top-nav.nav-open .nav-links {
-        display: flex !important;
-        flex-direction: column !important;
-        width: 100% !important;
-        z-index: 9999 !important;
-        position: relative !important;
-      }
-      #top-nav.nav-open .nav-links li a {
-        display: block !important;
-        padding: 0.85rem 1.5rem !important;
-        font-size: 16px !important;
-      }
+      #top-nav.nav-open .nav-logo-group { display: none !important; }
     }
   </style>
 <!-- ── GOOGLE ANALYTICS 4 — Replace G-XXXXXXXXXX with your Measurement ID ── -->
