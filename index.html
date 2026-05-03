@@ -111,19 +111,46 @@
       }
       .mission-img-stack {
         position: static !important;
+        height: auto !important;
         display: flex !important;
         flex-direction: column !important;
         gap: 1rem !important;
       }
       .mission-img-top,
       .mission-img-bottom {
+        position: static !important;
         width: 100% !important;
+        height: auto !important;
         display: block !important;
         margin: 0 !important;
         box-shadow: none !important;
       }
       .mission-img-bottom {
         box-shadow: 4px 4px 0 rgba(253,191,18,0.25) !important;
+      }
+      /* Prevent mission section from having excess top padding on mobile */
+      .mission-strip {
+        padding: 2.5rem 1.25rem !important;
+      }
+    }
+
+    /* ── Mobile nav: shrink logo so it doesn't overlap hero content ── */
+    @media (max-width: 960px) {
+      .nav-logo-group {
+        position: static !important;
+        transform: none !important;
+        display: flex !important;
+        justify-content: center !important;
+        pointer-events: auto !important;
+      }
+      .nav-logo img {
+        height: 56px !important;
+      }
+      /* Give the hero enough top margin for the shorter mobile nav */
+      .hero {
+        margin-top: 60px !important;
+        padding-top: 3rem !important;
+        min-height: 60vh !important;
       }
     }
 
@@ -344,6 +371,7 @@
 <script>
 (function() {
   function matchMissionHeight() {
+    if (window.innerWidth <= 768) { var s = document.querySelector('.mission-img-stack'); if (s) s.style.height = ''; return; }
     var textCol = document.querySelector('.mission-text');
     var imgStack = document.querySelector('.mission-img-stack');
     if (!textCol || !imgStack) return;

@@ -179,33 +179,6 @@
 }
 </style>
 
-<script>
-(function() {
-  var _menuOpen = false;
-  window.toggleMobileMenu = function() {
-    var nav = document.getElementById('top-nav');
-    var logo = nav ? nav.querySelector('.nav-logo-group') : null;
-    var links = nav ? nav.querySelectorAll('.nav-links') : [];
-    if (typeof toggleMenu === 'function') { toggleMenu(); }
-    _menuOpen = !_menuOpen;
-    if (logo) {
-      logo.style.setProperty('display', _menuOpen ? 'none' : '', 'important');
-    }
-    links.forEach(function(ul) {
-      if (_menuOpen) {
-        ul.style.setProperty('display', 'flex', 'important');
-        ul.style.setProperty('flex-direction', 'column', 'important');
-        ul.style.setProperty('width', '100%', 'important');
-      } else {
-        ul.style.removeProperty('display');
-        ul.style.removeProperty('flex-direction');
-        ul.style.removeProperty('width');
-      }
-    });
-  };
-})();
-</script>
-
 <!-- PAGE HERO -->
 <div class="page-hero">
   <div class="page-hero-bg" style="background-image:url('images/hero2.jpg');"></div>
