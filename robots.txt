@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /social-agent.html
+
+Sitemap: https://iamredemption.org/sitemap.xml
