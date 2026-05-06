@@ -80,10 +80,14 @@ function _setupRecaptchaPrefetch() {
     _prefetchToken('submit_contact');
   });
 }
-if (typeof requestIdleCallback !== 'undefined') {
-  requestIdleCallback(_setupRecaptchaPrefetch, { timeout: 3000 });
-} else {
-  setTimeout(_setupRecaptchaPrefetch, 1000);
+// Only prefetch if the reCAPTCHA script tag is actually on this page
+var _hasRecaptchaScript = !!document.querySelector('script[src*="recaptcha/api.js"]');
+if (_hasRecaptchaScript) {
+  if (typeof requestIdleCallback !== 'undefined') {
+    requestIdleCallback(_setupRecaptchaPrefetch, { timeout: 3000 });
+  } else {
+    setTimeout(_setupRecaptchaPrefetch, 1000);
+  }
 }
 
 // ── EMAIL SUBSCRIBE (Formspree) ──
