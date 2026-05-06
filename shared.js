@@ -33,6 +33,19 @@ function toggleMenu() {
   }
 }
 
+// ── reCAPTCHA v3 helper ──
+// Returns a token (invisible to the user) that the server verifies.
+// REPLACE 'YOUR_SITE_KEY' with your actual reCAPTCHA v3 site key.
+const RECAPTCHA_SITE_KEY = '6LdwX9wsAAAAK-McOkZTDRvuLgVXMYHh-hS0wim';
+async function getRecaptchaToken(action) {
+  return new Promise((resolve) => {
+    if (typeof grecaptcha === 'undefined') { resolve(''); return; }
+    grecaptcha.ready(() => {
+      grecaptcha.execute(RECAPTCHA_SITE_KEY, { action }).then(resolve).catch(() => resolve(''));
+    });
+  });
+}
+
 // ── EMAIL SUBSCRIBE (Formspree) ──
 async function submitEmailBar(suffix) {
   const input = document.getElementById('email-input-' + suffix);
@@ -44,9 +57,11 @@ async function submitEmailBar(suffix) {
   }
   if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
   try {
+    const token = await getRecaptchaToken('email_subscribe');
     const formData = new FormData();
     formData.append('email', input.value);
     formData.append('form_type', 'Email Subscription');
+    formData.append('recaptchaToken', token);
     const res = await fetch('https://formspree.io/f/mzdylgwk', { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
     if (res.ok) {
       if (input.parentElement) input.parentElement.style.display = 'none';
@@ -69,7 +84,9 @@ async function submitStoryFormspree(e) {
   const successDiv = document.getElementById('story-success');
   if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
   try {
+    const token = await getRecaptchaToken('submit_story');
     const data = new FormData(form);
+    data.append('recaptchaToken', token);
     const res = await fetch('https://formspree.io/f/mzdylgwk', { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
     if (res.ok) {
       form.querySelectorAll('input:not([type=hidden]),textarea,select').forEach(el => el.value = '');
@@ -91,7 +108,9 @@ async function submitContactFormspree(e) {
   const successDiv = document.getElementById('contact-success');
   if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
   try {
+    const token = await getRecaptchaToken('submit_contact');
     const data = new FormData(form);
+    data.append('recaptchaToken', token);
     const res = await fetch('https://formspree.io/f/mzdylgwk', { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
     if (res.ok) {
       form.querySelectorAll('input:not([type=hidden]),textarea,select').forEach(el => el.value = '');

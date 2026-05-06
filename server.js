@@ -10,6 +10,7 @@
  *   SMTP_USER   – the Gmail/SMTP address you send from
  *   SMTP_PASS   – the app password for that account
  *   TO_EMAIL    – recipient (defaults to jasmine@iamredemption.org)
+ *   RECAPTCHA_SECRET – your Google reCAPTCHA v3 secret key
  *   PORT        – set automatically by Render
  *
  * Deploy checklist:
@@ -26,11 +27,47 @@ const path       = require('path');
 const app = express();
 app.use(express.json());
 
+// ── Security Headers ──────────────────────────────────────────────────────────
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  res.setHeader('Content-Security-Policy', [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://fonts.googleapis.com https://www.googletagmanager.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "font-src 'self' https://fonts.gstatic.com",
+    "frame-src https://www.google.com https://recaptcha.google.com",
+    "img-src 'self' data: https:",
+    "connect-src 'self' https://formspree.io https://www.google.com https://www.google-analytics.com",
+  ].join('; '));
+  next();
+});
+
 // ── Static files ─────────────────────────────────────────────────────────────
-// Serves everything in the same directory as server.js
-// (index.html, shared.css, shared.js, merch.html, etc.)
-// No /public sub-folder needed.
 app.use(express.static(__dirname));
+
+// ── reCAPTCHA v3 Verifier ─────────────────────────────────────────────────────
+async function verifyRecaptcha(token) {
+  const secret = process.env.RECAPTCHA_SECRET;
+  if (!secret) { console.warn('RECAPTCHA_SECRET not set — skipping'); return true; }
+  if (!token)  return false;
+  try {
+    const resp = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify?secret=${encodeURIComponent(secret)}&response=${encodeURIComponent(token)}`,
+      { method: 'POST' }
+    );
+    const data = await resp.json();
+    // Score: 1.0 = human, 0.0 = bot. 0.5 is the standard threshold.
+    return data.success && data.score >= 0.5;
+  } catch (err) {
+    console.error('reCAPTCHA error:', err);
+    return false;
+  }
+}
 
 // ── Nodemailer transporter ────────────────────────────────────────────────────
 const transporter = nodemailer.createTransport({
@@ -48,6 +85,12 @@ const TO_EMAIL = process.env.TO_EMAIL || 'jasmine@iamredemption.org';
 // ── POST /api/submit-form ─────────────────────────────────────────────────────
 app.post('/api/submit-form', async (req, res) => {
   try {
+    // ── reCAPTCHA v3 check ──
+    const recaptchaOk = await verifyRecaptcha(req.body.recaptchaToken);
+    if (!recaptchaOk) {
+      return res.status(400).json({ success: false, error: 'reCAPTCHA check failed. Please try again.' });
+    }
+
     const { formType } = req.body;
     let subject, html;
 
