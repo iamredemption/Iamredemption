@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Get Involved | I Am Redemption</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preload" as="image" href="images/hero5.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="images/iar_logo_transparent.png">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
@@ -104,7 +106,7 @@
     ]
   }
   </script>
-<script src="https://www.google.com/recaptcha/api.js?render=6LdwX9wsAAAAK-McOkZTDRvuLgVXMYHh-hS0wim"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LdwX9wsAAAAK-McOkZTDRvuLgVXMYHh-hS0wim" defer></script>
 </head>
 <body>
 
@@ -116,7 +118,7 @@
   </ul>
   <div class="nav-logo-group">
   <div class="nav-logo">
-    <img src="images/iar_logo_transparent.png" alt="I Am Redemption">
+    <img src="images/iar_logo_transparent.png" alt="I Am Redemption" width="144" height="144">
   </div>
   </div>
   <ul class="nav-links nav-links-right">
@@ -331,7 +333,7 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <img src="images/iar_logo_transparent.png" alt="I Am Redemption">
+      <img src="images/iar_logo_transparent.png" alt="I Am Redemption" width="144" height="144" loading="lazy">
       <p>Built Different. Powered Different.</p>
       <p class="footer-legal">501(c)(3) Registered Nonprofit · All donations directly support our mission.</p>
     </div>
@@ -369,7 +371,7 @@
 </footer>
 
 
-<script src="shared.js"></script>
+<script src="shared.js" defer></script>
 <script>
 function submitStory() {
   const btn = event.currentTarget;

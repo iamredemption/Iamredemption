@@ -66,15 +66,25 @@ async function getRecaptchaToken(action) {
   });
 }
 
-// Pre-fetch all tokens as soon as the page loads
-window.addEventListener('load', () => {
-  if (typeof grecaptcha === 'undefined') return;
+// Pre-fetch tokens after page is fully interactive
+// Uses requestIdleCallback so it never competes with critical rendering
+function _setupRecaptchaPrefetch() {
+  if (typeof grecaptcha === 'undefined') {
+    // reCAPTCHA not loaded yet — retry after a short delay
+    setTimeout(_setupRecaptchaPrefetch, 500);
+    return;
+  }
   grecaptcha.ready(() => {
     _prefetchToken('email_subscribe');
     _prefetchToken('submit_story');
     _prefetchToken('submit_contact');
   });
-});
+}
+if (typeof requestIdleCallback !== 'undefined') {
+  requestIdleCallback(_setupRecaptchaPrefetch, { timeout: 3000 });
+} else {
+  setTimeout(_setupRecaptchaPrefetch, 1000);
+}
 
 // ── EMAIL SUBSCRIBE (Formspree) ──
 async function submitEmailBar(suffix) {

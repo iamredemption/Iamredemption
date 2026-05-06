@@ -32,6 +32,17 @@ body {
 .fade-in-d3 { transition-delay: 0.32s; }
 .fade-in-d4 { transition-delay: 0.42s; }
 
+/* ── PERFORMANCE: skip rendering off-screen sections until needed ── */
+.video-section,
+.email-bar,
+.story-section,
+.challenge-section,
+.content-section.mid,
+footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
 /* ── TYPOGRAPHY ── */
 .section-label {
   font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
