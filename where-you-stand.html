@@ -140,7 +140,8 @@ nav#top-nav{
     .content-section .section-title,
     .content-section .section-subtitle { position: relative; }
     .mission-text p { color: #cccccc !important; }
-  </style>
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+</style>
 <!-- ── GOOGLE ANALYTICS 4 — Replace G-Q7S7B337Q8 with your Measurement ID ── -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q7S7B337Q8"></script>
 <script>
@@ -298,12 +299,14 @@ nav#top-nav{
 
 
 <!-- PAGE HERO -->
+<main>
 <div class="page-hero">
   <div class="page-hero-bg" style="background-image:url('images/hero1.webp');"></div>
   <div class="page-hero-overlay"></div>
   <div class="page-hero-content">
     <div class="page-hero-eyebrow fade-in">Find Your Place</div>
     <h1 class="page-hero-title fade-in fade-in-d1">Where You <em>Stand.</em></h1>
+    <h2 class="sr-only">Recovery Stages</h2>
     <p class="page-hero-sub fade-in fade-in-d2">This isn't about having it all figured out. It's about knowing where you are and taking the next step.</p>
   </div>
 </div>
