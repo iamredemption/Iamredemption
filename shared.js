@@ -34,12 +34,28 @@ function toggleMenu() {
 }
 
 // ── reCAPTCHA v3 helper ──
-// Returns a token (invisible to the user) that the server verifies.
-// REPLACE 'YOUR_SITE_KEY' with your actual reCAPTCHA v3 site key.
 const RECAPTCHA_SITE_KEY = '6LdwX9wsAAAAK-McOkZTDRvuLgVXMYHh-hS0wim';
+
+// Cache of pre-fetched tokens keyed by action
+const _rcTokenCache = {};
+
+function _prefetchToken(action) {
+  if (typeof grecaptcha === 'undefined') return;
+  grecaptcha.ready(() => {
+    grecaptcha.execute(RECAPTCHA_SITE_KEY, { action })
+      .then(token => { _rcTokenCache[action] = token; })
+      .catch(() => {});
+  });
+}
+
+// Returns cached token instantly if available, otherwise fetches fresh with 3s timeout
 async function getRecaptchaToken(action) {
+  if (_rcTokenCache[action]) {
+    const token = _rcTokenCache[action];
+    delete _rcTokenCache[action];
+    return token;
+  }
   return new Promise((resolve) => {
-    // Bail out after 3 seconds no matter what — never block the form
     const timeout = setTimeout(() => resolve(''), 3000);
     if (typeof grecaptcha === 'undefined') { clearTimeout(timeout); resolve(''); return; }
     grecaptcha.ready(() => {
@@ -49,6 +65,16 @@ async function getRecaptchaToken(action) {
     });
   });
 }
+
+// Pre-fetch all tokens as soon as the page loads
+window.addEventListener('load', () => {
+  if (typeof grecaptcha === 'undefined') return;
+  grecaptcha.ready(() => {
+    _prefetchToken('email_subscribe');
+    _prefetchToken('submit_story');
+    _prefetchToken('submit_contact');
+  });
+});
 
 // ── EMAIL SUBSCRIBE (Formspree) ──
 async function submitEmailBar(suffix) {
