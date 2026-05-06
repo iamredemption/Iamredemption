@@ -4,10 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Where You Stand | I Am Redemption</title>
-<link rel="preload" href="shared.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="shared.css"></noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preload" as="image" href="images/hero1.webp" fetchpriority="high">
+<link rel="preload" as="image" href="images/hero5.webp" fetchpriority="high">
 <link rel="preload" as="image" href="images/iar_logo_transparent.png">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -187,6 +185,7 @@ nav#top-nav{
   }
   </script>
 <script src="https://www.google.com/recaptcha/api.js?render=6LdwX9wsAAAAK-McOkZTDRvuLgVXMYHh-hS0wim" defer></script>
+<link rel="stylesheet" href="shared.css">
 </head>
 <body>
 
@@ -299,6 +298,7 @@ nav#top-nav{
 
 
 <!-- PAGE HERO -->
+<main>
 <div class="page-hero">
   <div class="page-hero-bg" style="background-image:url('images/hero1.webp');"></div>
   <div class="page-hero-overlay"></div>
@@ -482,13 +482,13 @@ nav#top-nav{
 <!-- CTA BANNER -->
 <div class="quote-banner">
   <p class="quote-text">Not sure where you are? Start with a run. Everything else follows.</p>
-  <p class="quote-attr"><a href="get-started.html" style="color:var(--gold-dark);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:0.15em;text-transform:uppercase;">Find a Community Event →</a></p>
+  <p class="quote-attr"><a href="get-started.html" style="color:var(--gold-light);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:0.15em;text-transform:uppercase;">Find a Community Event →</a></p>
 </div>
 
 <div class="email-bar">
   <div class="email-bar-inner">
     <div class="email-bar-text">
-      <h3>Stay Connected</h3>
+      <h2>Stay Connected</h2>
       <p>Stories and community updates.</p>
     </div>
     <div class="email-bar-form" id="email-bar-form-wys">
@@ -559,6 +559,12 @@ nav#top-nav{
   align-self: stretch !important;
 }
 .stand-card-desc { flex: 1 !important; }
+
+/* Accessibility contrast fixes */
+.stand-card-number { color: #ffffff !important; }
+.quote-text { color: #ffffff !important; }
+.quote-attr a { color: #fdd04a !important; }
+
 .stand-detail {
   display: none !important;
   grid-column: 1 / -1 !important;

@@ -4,10 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Get Involved | I Am Redemption</title>
-<link rel="preload" href="shared.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="shared.css"></noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preload" as="image" href="images/hero3.webp" fetchpriority="high">
+<link rel="preload" as="image" href="images/hero5.webp" fetchpriority="high">
 <link rel="preload" as="image" href="images/iar_logo_transparent.png">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -203,6 +201,7 @@ nav#top-nav{
   }
   </script>
 <script src="https://www.google.com/recaptcha/api.js?render=6LdwX9wsAAAAK-McOkZTDRvuLgVXMYHh-hS0wim" defer></script>
+<link rel="stylesheet" href="shared.css">
 </head>
 <body>
 
@@ -315,6 +314,7 @@ nav#top-nav{
 
 
 <!-- PAGE HERO -->
+<main>
 <div class="page-hero">
   <div class="page-hero-bg" style="background-image:url('images/hero3.webp');"></div>
   <div class="page-hero-overlay"></div>
@@ -383,7 +383,7 @@ nav#top-nav{
       <form class="story-form" id="contact-form" onsubmit="submitContactFormspree(event)">
         <input type="hidden" name="form_type" value="Contact Us">
         <div class="form-group">
-          <label class="form-label">I'M CONTACTING ABOUT</label>
+          <label class="form-label" for="contacting-about-select">I'M CONTACTING ABOUT</label>
           <select name="topic" class="form-field" id="contacting-about-select">
             <option value="">Select a topic</option>
             <option>Partnership</option>
