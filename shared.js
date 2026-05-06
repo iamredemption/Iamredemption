@@ -39,9 +39,13 @@ function toggleMenu() {
 const RECAPTCHA_SITE_KEY = '6LdwX9wsAAAAK-McOkZTDRvuLgVXMYHh-hS0wim';
 async function getRecaptchaToken(action) {
   return new Promise((resolve) => {
-    if (typeof grecaptcha === 'undefined') { resolve(''); return; }
+    // Bail out after 3 seconds no matter what — never block the form
+    const timeout = setTimeout(() => resolve(''), 3000);
+    if (typeof grecaptcha === 'undefined') { clearTimeout(timeout); resolve(''); return; }
     grecaptcha.ready(() => {
-      grecaptcha.execute(RECAPTCHA_SITE_KEY, { action }).then(resolve).catch(() => resolve(''));
+      grecaptcha.execute(RECAPTCHA_SITE_KEY, { action })
+        .then(token => { clearTimeout(timeout); resolve(token); })
+        .catch(() => { clearTimeout(timeout); resolve(''); });
     });
   });
 }
