@@ -40,7 +40,7 @@ app.use((req, res, next) => {
     "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://fonts.googleapis.com https://www.googletagmanager.com",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' https://fonts.gstatic.com",
-    "frame-src https://www.google.com https://recaptcha.google.com",
+    "frame-src https://www.google.com https://recaptcha.google.com https://www.youtube.com https://www.youtube-nocookie.com",
     "img-src 'self' data: https:",
     "connect-src 'self' https://formspree.io https://www.google.com https://www.google-analytics.com",
   ].join('; '));
