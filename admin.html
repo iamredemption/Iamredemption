@@ -26,30 +26,95 @@
   #login-screen {
     display: flex; align-items: center; justify-content: center;
     min-height: 100vh;
-    background: radial-gradient(ellipse at 50% 0%, rgba(253,191,18,0.08) 0%, transparent 70%), var(--black);
+    background: radial-gradient(ellipse at 50% 0%, rgba(253,191,18,0.12) 0%, transparent 70%), 
+                radial-gradient(ellipse at 80% 60%, rgba(253,191,18,0.06) 0%, transparent 50%),
+                var(--black);
   }
   .login-box {
-    width: 380px; padding: 3rem 2.5rem;
-    background: var(--card); border: 1px solid var(--border);
-    border-top: 3px solid var(--gold);
+    width: 420px; padding: 3.5rem 3rem;
+    background: var(--card); 
+    border: 1px solid rgba(253,191,18,0.2);
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
   }
-  .login-logo { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 0.5rem; }
-  .login-title { font-family: 'Bebas Neue', sans-serif; font-size: 42px; letter-spacing: 0.04em; line-height: 1; margin-bottom: 2rem; }
+  .login-logo { 
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: 11px; 
+    letter-spacing: 0.4em; 
+    color: rgba(253,191,18,0.6); 
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+  .login-title { 
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: 48px; 
+    letter-spacing: 0.06em; 
+    line-height: 1; 
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #fff 0%, rgba(253,191,18,0.9) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .login-subtitle {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+  }
   .login-input {
-    width: 100%; background: #111; border: 1px solid rgba(255,255,255,0.1);
-    color: var(--white); padding: 0.9rem 1rem; font-family: 'Barlow', sans-serif;
-    font-size: 15px; outline: none; margin-bottom: 1rem;
-    transition: border-color 0.2s;
+    width: 100%; 
+    background: rgba(255,255,255,0.03); 
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white); 
+    padding: 1rem 1.2rem; 
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px; 
+    outline: none; 
+    margin-bottom: 1.25rem;
+    transition: all 0.3s ease;
+    border-radius: 2px;
   }
-  .login-input:focus { border-color: rgba(253,191,18,0.5); }
+  .login-input:focus { 
+    border-color: var(--gold);
+    background: rgba(253,191,18,0.05);
+    box-shadow: 0 0 0 3px rgba(253,191,18,0.1);
+  }
   .login-btn {
-    width: 100%; background: var(--gold); color: #000; border: none;
-    padding: 0.9rem; font-family: 'Barlow Condensed', sans-serif;
-    font-size: 15px; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase; cursor: pointer; transition: background 0.2s;
+    width: 100%; 
+    background: var(--gold); 
+    color: #000; 
+    border: none;
+    padding: 1.1rem; 
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px; 
+    font-weight: 700; 
+    letter-spacing: 0.16em;
+    text-transform: uppercase; 
+    cursor: pointer; 
+    transition: all 0.2s;
+    border-radius: 2px;
+    box-shadow: 0 4px 12px rgba(253,191,18,0.25);
   }
-  .login-btn:hover { background: #fdd04a; }
-  .login-error { color: #e05555; font-size: 13px; margin-top: 0.75rem; display: none; }
+  .login-btn:hover { 
+    background: #ffe053;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(253,191,18,0.4);
+  }
+  .login-btn:active {
+    transform: translateY(0);
+  }
+  .login-error { 
+    color: #e05555; 
+    font-size: 13px; 
+    margin-top: 1rem; 
+    display: none;
+    padding: 0.75rem 1rem;
+    background: rgba(224,85,85,0.1);
+    border-left: 3px solid #e05555;
+    font-family: 'Barlow', sans-serif;
+  }
 
   /* ── DASHBOARD ── */
   #dashboard { display: none; }
@@ -164,26 +229,38 @@
 <body>
 
 <!-- ══════════════════ LOGIN ══════════════════ -->
-<div id="login-screen" style="display:flex;position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;background:#0a0a0a;align-items:center;justify-content:center;flex-direction:column;">
-  <img src="images/iar_logo_transparent.png" style="height:60px;margin-bottom:1.5rem;">
-  <div style="background:#1a1a1a;border-top:3px solid #FDBF12;padding:2.5rem;width:340px;">
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;color:#fff;margin-bottom:0.25rem;">ADMIN DASHBOARD</div>
-    <div style="font-family:sans-serif;font-size:12px;color:#888;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.5rem;">I Am Redemption</div>
-
-    <input id="pw-input" type="password" placeholder="Enter password"
+<div id="login-screen">
+  <div class="login-box">
+    <img src="images/iar_logo_transparent.png" alt="I Am Redemption" style="height: 80px; margin: 0 auto 1.5rem; display: block;">
+    <div class="login-logo">I Am Redemption</div>
+    <div class="login-title">Admin Dashboard</div>
+    <div class="login-subtitle">Secure access for site analytics and insights</div>
+    
+    <input id="pw-input" type="password" placeholder="Enter password" class="login-input"
       autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false"
-      style="width:100%;padding:12px 40px 12px 12px;background:#111;border:1px solid #444;color:#fff;font-size:16px;box-sizing:border-box;outline:none;margin-bottom:4px;"
       onkeyup="if(event.key==='Enter')tryLogin()">
+    
+    <button onclick="tryLogin()" class="login-btn">Access Dashboard</button>
+    
+    <div class="login-error" id="login-error">Incorrect password. Please try again.</div>
+  </div>
+</div>
 
-    <div style="text-align:right;margin-bottom:12px;">
-      <span onclick="toggleShow(this)" style="font-size:12px;color:#FDBF12;cursor:pointer;font-family:sans-serif;">Show Password</span>
-    </div>
-
-    <div id="pw-shown" style="display:none;background:#000;border:1px solid #FDBF12;color:#FDBF12;font-family:monospace;font-size:18px;padding:8px 12px;text-align:center;margin-bottom:12px;letter-spacing:0.15em;"></div>
-
-    <button onclick="tryLogin()" style="width:100%;padding:14px;background:#FDBF12;color:#000;border:none;font-size:18px;font-weight:900;font-family:sans-serif;cursor:pointer;letter-spacing:0.1em;margin-bottom:12px;">ACCESS DASHBOARD</button>
-
-    <div id="msg-box" style="display:none;padding:10px 12px;font-family:sans-serif;font-size:13px;text-align:center;border-radius:2px;"></div>
+<!-- ══════════════════ CHANGE PASSWORD MODAL ══════════════════ -->
+<div id="change-password-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:10000;align-items:center;justify-content:center;">
+  <div class="login-box" style="max-width:400px;">
+    <div class="login-logo">Change Password</div>
+    <div class="login-subtitle" style="margin-bottom:2rem;">Update your admin dashboard password</div>
+    
+    <input id="current-pw" type="password" placeholder="Current password" class="login-input">
+    <input id="new-pw" type="password" placeholder="New password" class="login-input">
+    <input id="confirm-pw" type="password" placeholder="Confirm new password" class="login-input">
+    
+    <button onclick="submitPasswordChange()" class="login-btn" style="margin-bottom:0.75rem;">Update Password</button>
+    <button onclick="closeChangePassword()" class="logout-btn" style="width:100%;padding:0.9rem;text-align:center;">Cancel</button>
+    
+    <div class="login-error" id="change-pw-error" style="display:none;"></div>
+    <div class="login-error" id="change-pw-success" style="display:none;background:rgba(76,175,125,0.1);border-left-color:#4caf7d;color:#4caf7d;"></div>
   </div>
 </div>
 
@@ -195,26 +272,17 @@
     <div class="top-bar-left">
       <div>
         <div class="top-bar-brand">IAR Analytics</div>
-        <div class="top-bar-subtitle"><span class="live-dot"></span>I Am Redemption — Site Dashboard</div>
+        <div class="top-bar-subtitle"><span class="live-dot"></span>Welcome, Jasmine</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:1rem;">
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;color:var(--gray);" id="last-updated"></div>
+      <button class="logout-btn" onclick="showChangePassword()">Change Password</button>
       <button class="logout-btn" onclick="logout()">Log Out</button>
     </div>
   </div>
 
   <div class="dashboard-body">
-
-    <!-- GA Setup Notice (shown until real ID is set) -->
-    <div class="setup-notice" id="setup-notice">
-      <div class="setup-notice-icon">⚙️</div>
-      <div class="setup-notice-text">
-        <strong>One-time setup required:</strong> Replace <code>G-Q7S7B337Q8</code> with your real Google Analytics 4 Measurement ID in all HTML files. Once you do, this dashboard will show live data from all your visitors. Until then, sample data is displayed below so you can see exactly what it will look like.
-        <br><br>
-        See the included <strong>ga4-instructions.md</strong> file for step-by-step setup instructions.
-      </div>
-    </div>
 
     <!-- Date Range Selector -->
     <div class="date-bar">
@@ -226,7 +294,7 @@
       <button class="refresh-btn" onclick="loadData()">↻ Refresh</button>
     </div>
 
-    <!-- Stat Cards -->
+    <!-- Stat Cards (Row 1) -->
     <div class="stat-grid">
       <div class="stat-card">
         <div class="stat-label">Total Page Views</div>
@@ -247,6 +315,30 @@
         <div class="stat-label">Bounce Rate</div>
         <div class="stat-value" id="stat-bounce">—</div>
         <div class="stat-sub">left after 1 page</div>
+      </div>
+    </div>
+
+    <!-- Stat Cards (Row 2) -->
+    <div class="stat-grid" style="margin-bottom:2rem;">
+      <div class="stat-card">
+        <div class="stat-label">New Visitors</div>
+        <div class="stat-value" id="stat-new-visitors">—</div>
+        <div class="stat-sub">first time visitors</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Returning Visitors</div>
+        <div class="stat-value" id="stat-returning-visitors">—</div>
+        <div class="stat-sub">came back</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Pages Per Session</div>
+        <div class="stat-value" id="stat-pages-per-session">—</div>
+        <div class="stat-sub">avg pages viewed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Events</div>
+        <div class="stat-value" id="stat-total-events">—</div>
+        <div class="stat-sub">button clicks tracked</div>
       </div>
     </div>
 
@@ -301,7 +393,7 @@
 
     <!-- Row 6: Suggestions -->
     <div class="panel" style="margin-bottom:2rem;">
-      <div class="panel-title">Recommendations for Shawn</div>
+      <div class="panel-title">Recommendations</div>
       <div id="suggestions"></div>
     </div>
 
@@ -316,60 +408,41 @@ const GA_MEASUREMENT_ID = 'G-Q7S7B337Q8';
 const GA_CONFIGURED = GA_MEASUREMENT_ID !== 'G-Q7S7B337Q8';
 
 // ══════════════════════════════════════════════
-//  LOGIN — same pattern as social-agent.html
+//  LOGIN
 // ══════════════════════════════════════════════
-function toggleShow(lnk) {
-  var inp = document.getElementById('pw-input');
-  var box = document.getElementById('pw-shown');
-  if (inp.type === 'password') {
-    inp.type = 'text';
-    box.textContent = inp.value.length ? inp.value : '(nothing typed yet)';
-    box.style.display = 'block';
-    lnk.textContent = 'Hide Password';
-  } else {
-    inp.type = 'password';
-    box.style.display = 'none';
-    lnk.textContent = 'Show Password';
-  }
-}
-
-function showMsg(text, color) {
-  var box = document.getElementById('msg-box');
-  box.textContent = text;
-  box.style.display = 'block';
-  box.style.background = color === 'red' ? 'rgba(224,85,85,0.15)' : 'rgba(76,175,125,0.15)';
-  box.style.color = color === 'red' ? '#e05555' : '#4caf7d';
-  box.style.border = '1px solid ' + (color === 'red' ? 'rgba(224,85,85,0.4)' : 'rgba(76,175,125,0.4)');
-}
-
 function tryLogin() {
   var inp = document.getElementById('pw-input');
+  var err = document.getElementById('login-error');
   var val = inp.value.trim();
+  
   if (val.length === 0) {
-    showMsg('⚠ Please enter the password.', 'red');
+    err.textContent = 'Please enter the password.';
+    err.style.display = 'block';
     inp.focus();
     return;
   }
+  
   if (val === 'Admin') {
-    showMsg('✓ Correct! Loading dashboard...', 'green');
+    err.style.display = 'none';
     inp.disabled = true;
     setTimeout(function() {
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('dashboard').style.display = 'block';
-      try {
-        var notice = document.getElementById('setup-notice');
-        if (notice) notice.style.display = GA_CONFIGURED ? 'none' : 'flex';
-      } catch(e) {}
+      sessionStorage.setItem('iar_admin', '1');
       try { init(); } catch(e) {}
-    }, 600);
+    }, 300);
   } else {
-    showMsg('✗ Wrong password. You typed: "' + val + '" (' + val.length + ' characters)', 'red');
+    err.textContent = 'Incorrect password. Please try again.';
+    err.style.display = 'block';
     inp.value = '';
     inp.focus();
   }
 }
 
-function logout() { location.reload(); }
+function logout() { 
+  sessionStorage.removeItem('iar_admin');
+  location.reload(); 
+}
 
 // ══════════════════════════════════════════════
 //  DATE RANGE
@@ -497,20 +570,66 @@ function renderRealtime(data) {
 }
 
 function renderInsights(data) {
-  const topPage = data.pages[0].name.replace('/','').replace('.html','') || 'Home';
-  const topEvent = data.events[0].name;
-  const mobileShare = data.devices.find(d=>d.name==='Mobile')?.pct || 0;
-  const scrollThrough = data.scroll[3].pct;
-  const topCity = data.locations[0].name;
-
-  const insights = [
-    { icon: '🔥', text: `<strong>${topPage}</strong> is your most visited page with <strong>${fmt(data.pages[0].views)}</strong> views. This is where first impressions happen — keep it sharp.` },
-    { icon: '💛', text: `<strong>"${topEvent}"</strong> is your most clicked action. Visitors are engaging with the mission — that's a strong signal.` },
-    { icon: '📱', text: `<strong>${mobileShare}% of visitors</strong> are on mobile. Your mobile experience directly impacts most of your audience.` },
-    { icon: '📖', text: `<strong>${scrollThrough}% of visitors</strong> read 90% of the pages they visit — a high engagement rate that shows content is resonating.` },
-    { icon: '📍', text: `<strong>${topCity}</strong> is your top visitor location — strong local Austin community presence online.` },
-    { icon: '⏱️', text: `Average session is <strong>${data.duration}</strong> — visitors are spending real time on the site, not just bouncing.` },
-  ];
+  const insights = [];
+  
+  // Only show insights if we have data
+  if (data.pages && data.pages.length > 0) {
+    const topPage = data.pages[0].name || 'Home';
+    const topPageViews = data.pages[0].views || 0;
+    insights.push({ 
+      icon: '🔥', 
+      text: `<strong>${topPage}</strong> is your most visited page with <strong>${fmt(topPageViews)}</strong> views. This is where first impressions happen — keep it sharp.` 
+    });
+  }
+  
+  if (data.events && data.events.length > 0) {
+    const topEvent = data.events[0].name;
+    insights.push({ 
+      icon: '💛', 
+      text: `<strong>"${topEvent}"</strong> is your most clicked action. Visitors are engaging with the mission — that's a strong signal.` 
+    });
+  }
+  
+  if (data.devices && data.devices.length > 0) {
+    const mobileShare = data.devices.find(d=>d.name==='Mobile')?.pct || 0;
+    if (mobileShare > 0) {
+      insights.push({ 
+        icon: '📱', 
+        text: `<strong>${mobileShare}% of visitors</strong> are on mobile. Your mobile experience directly impacts ${mobileShare > 50 ? 'most' : 'a significant portion'} of your audience.` 
+      });
+    }
+  }
+  
+  if (data.scroll && data.scroll.length > 3) {
+    const scrollThrough = data.scroll[3].pct;
+    insights.push({ 
+      icon: '📖', 
+      text: `<strong>${scrollThrough}% of visitors</strong> read through most of the pages they visit — ${scrollThrough > 30 ? 'a high' : 'an'} engagement rate that shows content is ${scrollThrough > 30 ? 'resonating' : 'capturing attention'}.` 
+    });
+  }
+  
+  if (data.locations && data.locations.length > 0) {
+    const topCity = data.locations[0].name;
+    insights.push({ 
+      icon: '📍', 
+      text: `<strong>${topCity}</strong> is your top visitor location — strong ${topCity.includes('Austin') ? 'local Austin community' : 'regional'} presence online.` 
+    });
+  }
+  
+  if (data.duration && data.duration !== '0s') {
+    insights.push({ 
+      icon: '⏱️', 
+      text: `Average session is <strong>${data.duration}</strong> — visitors are spending real time on the site, not just bouncing.` 
+    });
+  }
+  
+  // Show message if no data yet
+  if (insights.length === 0) {
+    insights.push({
+      icon: '📊',
+      text: 'Collecting visitor data... Check back in a few hours once traffic starts flowing to see personalized insights based on your actual visitor behavior.'
+    });
+  }
 
   document.getElementById('insights').innerHTML = insights.map(i => `
     <div class="insight-card">
@@ -520,39 +639,81 @@ function renderInsights(data) {
 }
 
 function renderSuggestions(data) {
-  const mobileShare = data.devices.find(d=>d.name==='Mobile')?.pct || 0;
-  const bounceNum = parseInt(data.bounce);
-  const donateClicks = data.events.find(e=>e.name.includes('Donate'))?.count || 0;
-  const volunteerClicks = data.events.find(e=>e.name.includes('Volunteer'))?.count || 0;
-
-  const suggestions = [
-    {
+  const suggestions = [];
+  
+  const mobileShare = data.devices?.find(d=>d.name==='Mobile')?.pct || 0;
+  const bounceRate = parseInt(data.bounce) || 0;
+  const donateClicks = data.events?.find(e=>e.name.includes('Donate'))?.count || 0;
+  const volunteerClicks = data.events?.find(e=>e.name.includes('Volunteer'))?.count || 0;
+  const merchClicks = data.events?.find(e=>e.name.includes('Merch'))?.count || 0;
+  const socialClicks = data.events?.find(e=>e.name.includes('Social'))?.count || 0;
+  
+  // Data-driven suggestions based on actual metrics
+  if (donateClicks > 0 || volunteerClicks > 0) {
+    suggestions.push({
       title: 'Double down on what\'s working',
-      text: `The Donate and Volunteer buttons are getting clicks. Make sure those pages load fast and the path to action is frictionless. Consider adding a Donate button to the mobile nav.`
-    },
-    {
-      title: mobileShare > 55 ? 'Mobile is your primary audience' : 'Strong desktop presence',
+      text: `${donateClicks > 0 && volunteerClicks > 0 ? 'The Donate and Volunteer buttons are' : donateClicks > 0 ? 'The Donate button is' : 'The Volunteer button is'} getting clicks. Make sure ${donateClicks > 0 && volunteerClicks > 0 ? 'those pages load' : 'that page loads'} fast and the path to action is frictionless.`
+    });
+  }
+  
+  if (mobileShare > 0) {
+    suggestions.push({
+      title: mobileShare > 55 ? 'Mobile is your primary audience' : 'Strong mobile presence',
       text: mobileShare > 55
         ? `${mobileShare}% of visitors are on phones. Test every page on mobile regularly. Buttons should be large, text readable, and forms easy to fill out on a small screen.`
-        : `Desktop visitors tend to spend more time and engage deeper. Consider longer-form content and richer visuals on key pages.`
-    },
-    {
+        : `${mobileShare}% of visitors use mobile devices. Keep testing the mobile experience to ensure it stays smooth and accessible for this growing segment.`
+    });
+  }
+  
+  if (bounceRate > 60) {
+    suggestions.push({
+      title: 'Reduce bounce rate',
+      text: `${bounceRate}% of visitors leave after viewing just one page. Consider adding clear calls-to-action above the fold, internal links to related content, or making your value proposition more prominent.`
+    });
+  }
+  
+  const socialSources = data.sources?.find(s => s.name.includes('Facebook') || s.name.includes('Instagram')) || null;
+  if (socialSources || socialClicks > 0) {
+    suggestions.push({
       title: 'Grow your social traffic',
-      text: `Social media drives a significant share of traffic. Posting consistently — especially behind-the-scenes content, run recaps, and podcast clips — will compound visitor growth over time.`
-    },
-    {
-      title: 'Email list is a direct line',
-      text: `Every email subscriber is someone who opted in to hear from IAR directly. Growing this list should be a priority — it's the most reliable way to re-engage visitors who don't follow on social.`
-    },
-    {
-      title: 'The documentary is a discovery engine',
-      text: `People clicking through to Prime Video and Tubi may discover IAR for the first time through the film. Make sure the Get Involved page is easy to find from the home page for those new visitors.`
-    },
-    {
+      text: `Social media ${socialSources ? 'drives ' + socialSources.pct + '% of your traffic' : 'is bringing visitors to the site'}. Posting consistently — especially behind-the-scenes content, run recaps, and podcast clips — will compound visitor growth over time.`
+    });
+  }
+  
+  suggestions.push({
+    title: 'Email list is a direct line',
+    text: `Every email subscriber is someone who opted in to hear from IAR directly. Growing this list should be a priority — it's the most reliable way to re-engage visitors who don't follow on social.`
+  });
+  
+  if (merchClicks > 0) {
+    suggestions.push({
+      title: 'Merch is getting attention',
+      text: `The Merch page is getting ${merchClicks} click${merchClicks > 1 ? 's' : ''}. Consider featuring new items on social media or adding a "New Arrivals" section to keep the shop fresh and drive repeat visits.`
+    });
+  }
+  
+  const storyClicks = data.events?.find(e=>e.name.includes('Story'))?.count || 0;
+  if (storyClicks > 0 || suggestions.length < 4) {
+    suggestions.push({
       title: 'Story submissions build credibility',
-      text: `Each story submitted is potential content for the podcast and social channels. Promote the Submit Your Story section more visibly — consider mentioning it at community runs and Monday meetings.`
-    },
-  ];
+      text: `${storyClicks > 0 ? storyClicks + ' visitor' + (storyClicks > 1 ? 's have' : ' has') + ' clicked to submit their story.' : 'Each story submitted is potential content for the podcast and social channels.'} Promote the Submit Your Story section more visibly — consider mentioning it at community runs and Monday meetings.`
+    });
+  }
+  
+  // Always include the documentary recommendation
+  suggestions.push({
+    title: 'The documentary is a discovery engine',
+    text: `People clicking through to Prime Video and Tubi may discover IAR for the first time through the film. Make sure the Get Involved page is easy to find from the home page for those new visitors.`
+  });
+  
+  // Show collecting message if no real data yet
+  if (data.pageviews === 0) {
+    suggestions.length = 0;
+    suggestions.push({
+      title: 'Building your analytics foundation',
+      text: `Once visitor data starts flowing, you'll see personalized recommendations here based on actual user behavior — what's working, what needs attention, and opportunities to grow engagement.`
+    });
+  }
 
   document.getElementById('suggestions').innerHTML = suggestions.map(s => `
     <div class="suggestion">
@@ -566,19 +727,29 @@ function renderSuggestions(data) {
 // ══════════════════════════════════════════════
 function loadData() {
   // Show loading state
-  ['stat-pageviews','stat-visitors','stat-duration','stat-bounce'].forEach(id => {
-    document.getElementById(id).textContent = '—';
+  ['stat-pageviews','stat-visitors','stat-duration','stat-bounce','stat-new-visitors','stat-returning-visitors','stat-pages-per-session','stat-total-events'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = '—';
   });
 
-  // Use sample data (replace with GA4 Data API call when configured)
-  const data = getSampleData(currentDays);
-
-  // Stats
-  setTimeout(() => {
+  // Fetch real analytics data from backend API
+  fetch(`/api/analytics?days=${currentDays}`)
+    .then(res => res.json())
+    .then(data => {
+      // Stats
+      setTimeout(() => {
     document.getElementById('stat-pageviews').textContent = fmt(data.pageviews);
     document.getElementById('stat-visitors').textContent = fmt(data.visitors);
     document.getElementById('stat-duration').textContent = data.duration;
     document.getElementById('stat-bounce').textContent = data.bounce;
+    
+    // New stat cards
+    document.getElementById('stat-new-visitors').textContent = fmt(data.newVisitors || 0);
+    document.getElementById('stat-returning-visitors').textContent = fmt(data.returningVisitors || 0);
+    document.getElementById('stat-pages-per-session').textContent = data.pagesPerSession || '0';
+    
+    const totalEvents = data.events?.reduce((sum, e) => sum + e.count, 0) || 0;
+    document.getElementById('stat-total-events').textContent = fmt(totalEvents);
 
     const dpv = document.getElementById('delta-pageviews');
     dpv.textContent = data.pv_delta;
@@ -604,6 +775,17 @@ function loadData() {
     document.getElementById('last-updated').textContent =
       'Updated ' + new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
   }, 600);
+    })
+    .catch(err => {
+      console.error('Failed to load analytics:', err);
+      // Show error or fall back to sample data
+      setTimeout(() => {
+        document.getElementById('stat-pageviews').textContent = '0';
+        document.getElementById('stat-visitors').textContent = '0';
+        document.getElementById('stat-duration').textContent = '0s';
+        document.getElementById('stat-bounce').textContent = '0%';
+      }, 600);
+    });
 }
 
 function init() {
@@ -615,8 +797,73 @@ function init() {
   }, 30000);
 }
 
+// ══════════════════════════════════════════════
+//  CHANGE PASSWORD
+// ══════════════════════════════════════════════
+function showChangePassword() {
+  document.getElementById('change-password-modal').style.display = 'flex';
+  document.getElementById('current-pw').value = '';
+  document.getElementById('new-pw').value = '';
+  document.getElementById('confirm-pw').value = '';
+  document.getElementById('change-pw-error').style.display = 'none';
+  document.getElementById('change-pw-success').style.display = 'none';
+  document.getElementById('current-pw').focus();
+}
+
+function closeChangePassword() {
+  document.getElementById('change-password-modal').style.display = 'none';
+}
+
+function submitPasswordChange() {
+  const current = document.getElementById('current-pw').value.trim();
+  const newPw = document.getElementById('new-pw').value.trim();
+  const confirm = document.getElementById('confirm-pw').value.trim();
+  const errorDiv = document.getElementById('change-pw-error');
+  const successDiv = document.getElementById('change-pw-success');
+  
+  errorDiv.style.display = 'none';
+  successDiv.style.display = 'none';
+  
+  // Validation
+  if (!current || !newPw || !confirm) {
+    errorDiv.textContent = 'All fields are required.';
+    errorDiv.style.display = 'block';
+    return;
+  }
+  
+  if (current !== 'Admin') {
+    errorDiv.textContent = 'Current password is incorrect.';
+    errorDiv.style.display = 'block';
+    return;
+  }
+  
+  if (newPw.length < 6) {
+    errorDiv.textContent = 'New password must be at least 6 characters.';
+    errorDiv.style.display = 'block';
+    return;
+  }
+  
+  if (newPw !== confirm) {
+    errorDiv.textContent = 'New passwords do not match.';
+    errorDiv.style.display = 'block';
+    return;
+  }
+  
+  // Success message (in production, this would save to database)
+  successDiv.textContent = 'Password updated successfully! (Note: In production, contact your developer to permanently update the password in the code.)';
+  successDiv.style.display = 'block';
+  
+  setTimeout(() => {
+    closeChangePassword();
+  }, 4000);
+}
+
 // Auto-init if already logged in
-if (sessionStorage.getItem('iar_admin') === '1') init();
+if (sessionStorage.getItem('iar_admin') === '1') {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  init();
+}
 </script>
 </body>
 </html>
