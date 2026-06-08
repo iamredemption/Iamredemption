@@ -341,25 +341,34 @@ nav#top-nav{
   @media (max-width: 768px) {
     .rg-banner-grid {
       grid-template-columns: 1fr !important;
+      overflow: visible !important;
     }
     .rg-banner-img {
       min-height: 220px;
       width: 100%;
     }
+    .rg-banner-info {
+      padding: 1.5rem 1rem !important;
+    }
+    .rg-banner-btn {
+      white-space: normal !important;
+      align-self: stretch !important;
+      text-align: center !important;
+    }
   }
 </style>
-<section style="background:#0a0a0a;padding:2rem 2.5rem;">
+<section style="background:#0a0a0a;padding:2rem 1rem;">
   <div class="rg-banner-grid">
-    <div style="background:#0a0a0a;padding:2rem 2rem;display:flex;flex-direction:column;justify-content:center;gap:1.25rem;">
+    <div class="rg-banner-info" style="background:#0a0a0a;padding:2rem 2rem;display:flex;flex-direction:column;justify-content:center;gap:1.25rem;">
       <div style="display:flex;align-items:flex-start;gap:1rem;">
         <div style="width:4px;background:var(--gold);align-self:stretch;flex-shrink:0;min-height:75px;"></div>
-        <div>
+        <div style="min-width:0;">
           <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;">Special Event</div>
-          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.75rem,3.5vw,2.75rem);letter-spacing:0.04em;color:var(--white);line-height:1;margin-bottom:0.4rem;">Redemption Games</h3>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.75rem,7vw,2.75rem);letter-spacing:0.04em;color:var(--white);line-height:1;margin-bottom:0.4rem;">Redemption Games</h3>
           <p style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:#c0c0c0;letter-spacing:0.08em;text-transform:uppercase;">July 12 &nbsp;·&nbsp; 7:30 AM &nbsp;·&nbsp; Teams of 4 &nbsp;·&nbsp; $150 per team</p>
         </div>
       </div>
-      <a href="https://givebutter.com/iar-games" target="_blank" rel="noopener" class="btn-primary" style="white-space:nowrap;align-self:flex-start;font-size:13px;padding:0.75rem 1.75rem;">Get Your Tickets</a>
+      <a href="https://givebutter.com/iar-games" target="_blank" rel="noopener" class="btn-primary rg-banner-btn" style="white-space:nowrap;align-self:flex-start;font-size:13px;padding:0.75rem 1.75rem;">Get Your Tickets</a>
     </div>
     <div class="rg-banner-img"></div>
   </div>
