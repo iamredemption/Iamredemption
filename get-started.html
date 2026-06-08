@@ -323,8 +323,33 @@ nav#top-nav{
 </div>
 
 <!-- ── REDEMPTION GAMES EVENT BANNER ─────────────────────────────────────── -->
+<style>
+  .rg-banner-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    overflow: hidden;
+    min-height: 200px;
+  }
+  .rg-banner-img {
+    background-image: url('images/redemption-games-banner.webp');
+    background-size: cover;
+    background-position: center;
+    min-height: 200px;
+  }
+  @media (max-width: 768px) {
+    .rg-banner-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .rg-banner-img {
+      min-height: 220px;
+      width: 100%;
+    }
+  }
+</style>
 <section style="background:#0a0a0a;padding:2rem 2.5rem;">
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;overflow:hidden;min-height:200px;">
+  <div class="rg-banner-grid">
     <div style="background:#0a0a0a;padding:2rem 2rem;display:flex;flex-direction:column;justify-content:center;gap:1.25rem;">
       <div style="display:flex;align-items:flex-start;gap:1rem;">
         <div style="width:4px;background:var(--gold);align-self:stretch;flex-shrink:0;min-height:75px;"></div>
@@ -336,7 +361,7 @@ nav#top-nav{
       </div>
       <a href="https://givebutter.com/iar-games" target="_blank" rel="noopener" class="btn-primary" style="white-space:nowrap;align-self:flex-start;font-size:13px;padding:0.75rem 1.75rem;">Get Your Tickets</a>
     </div>
-    <div style="background-image:url('images/redemption-games-banner.webp');background-size:cover;background-position:center;min-height:200px;"></div>
+    <div class="rg-banner-img"></div>
   </div>
 </section>
 <!-- ── END REDEMPTION GAMES EVENT BANNER ─────────────────────────────────── -->
