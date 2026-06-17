@@ -299,10 +299,10 @@ footer {
 .footer-brand p { font-size: 12px; font-weight: 300; color: #b0b0b0; line-height: 1.6; max-width: 300px; margin-bottom: 0.3rem; }
 .footer-legal { font-size: 11px; color: rgba(253,191,18,0.5); margin-top: 0.2rem; display: block; }
 .footer-col h5 {
-  font-family: 'Barlow Condensed', sans-serif; font-size: 11px;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 16px;
   font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--gold); margin-bottom: 0.6rem;
-  padding-bottom: 0.3rem; border-bottom: 1px solid rgba(253,191,18,0.2);
+  padding-bottom: 0.3rem;
 }
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin-bottom: 0.25rem; }
