@@ -34,7 +34,7 @@ function toggleMenu() {
 }
 
 // ── reCAPTCHA v3 helper ──
-const RECAPTCHA_SITE_KEY = '6LdwX9wsAAAAK-McOkZTDRvuLgVXMYHh-hS0wim';
+const RECAPTCHA_SITE_KEY = '6LdwX9wsAAAAAK-McOkZTDRvuLgVXMYHh-hS0wim';
 
 // Cache of pre-fetched tokens keyed by action
 const _rcTokenCache = {};
@@ -105,7 +105,7 @@ async function submitEmailBar(suffix) {
     const formData = new FormData();
     formData.append('email', input.value);
     formData.append('form_type', 'Email Subscription');
-    formData.append('recaptchaToken', token);
+    formData.append('g-recaptcha-response', token);
     const res = await fetch('https://formspree.io/f/mzdylgwk', { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
     if (res.ok) {
       if (input.parentElement) input.parentElement.style.display = 'none';
@@ -130,7 +130,7 @@ async function submitStoryFormspree(e) {
   try {
     const token = await getRecaptchaToken('submit_story');
     const data = new FormData(form);
-    data.append('recaptchaToken', token);
+    data.append('g-recaptcha-response', token);
     const res = await fetch('https://formspree.io/f/mzdylgwk', { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
     if (res.ok) {
       form.querySelectorAll('input:not([type=hidden]),textarea,select').forEach(el => el.value = '');
@@ -154,7 +154,7 @@ async function submitContactFormspree(e) {
   try {
     const token = await getRecaptchaToken('submit_contact');
     const data = new FormData(form);
-    data.append('recaptchaToken', token);
+    data.append('g-recaptcha-response', token);
     const res = await fetch('https://formspree.io/f/mzdylgwk', { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
     if (res.ok) {
       form.querySelectorAll('input:not([type=hidden]),textarea,select').forEach(el => el.value = '');
