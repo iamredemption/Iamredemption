@@ -462,8 +462,8 @@ textarea.form-field { resize: vertical; }
 .merch-card:hover .merch-cta { background: var(--gold); color: #000; }
 
 /* ── EVENTS ── */
-.events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.event-card { background: var(--card-bg); border: 1px solid rgba(253,191,18,0.12); padding: 2.25rem; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+.events-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.event-card { background: var(--card-bg); border: 1px solid rgba(253,191,18,0.12); padding: 1.75rem; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
 .event-card:hover { border-color: rgba(253,191,18,0.5); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
 .event-tag { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(253,191,18,0.4); padding: 3px 10px; margin-bottom: 1.35rem; }
 .event-name { font-family: 'Bebas Neue', sans-serif; font-size: 27px; letter-spacing: 0.05em; color: var(--white); margin-bottom: 0.6rem; line-height: 1.1; }
@@ -473,6 +473,9 @@ textarea.form-field { resize: vertical; }
 .event-link:hover { gap: 11px; }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 1180px) {
+  .events-grid { grid-template-columns: 1fr 1fr; }
+}
 @media (max-width: 960px) {
   nav#top-nav { padding: 0.85rem 1.5rem; grid-template-columns: auto 1fr auto; }
   .nav-links-left, .nav-links-right { display: none; }
