@@ -73,7 +73,8 @@
   .showup-card { display:flex; flex-direction:column; }
   .showup-icon { width:56px; height:56px; border:1.5px solid rgba(253,191,18,0.4); border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem; }
   .showup-icon svg { width:26px; height:26px; }
-  .showup-eyebrow { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:0.6rem; }
+  .showup-eyebrow { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:0.6rem; display:flex; align-items:center; gap:12px; }
+  .showup-eyebrow::before { content:''; display:block; width:42px; height:3px; background:var(--gold); flex-shrink:0; }
   .showup-title { font-family:'Bebas Neue',sans-serif; font-size:34px; letter-spacing:0.03em; color:var(--white); margin-bottom:0.9rem; line-height:1.05; }
   .showup-text { font-size:14.5px; font-weight:300; color:#c0c0c0; line-height:1.75; margin-bottom:1.75rem; flex-grow:1; }
 
@@ -172,7 +173,7 @@
   <div class="page-hero-overlay"></div>
   <div class="page-hero-content">
     <div class="page-hero-eyebrow fade-in">Race Weekend 2027</div>
-    <h1 class="page-hero-title fade-in fade-in-d1">IAR x<br><em>Austin Marathon.</em></h1>
+    <h1 class="page-hero-title fade-in fade-in-d1">IAR <span style="font-size:0.5em;">x</span><br>Austin Marathon.</h1>
     <p class="page-hero-sub fade-in fade-in-d2">We're honored to stand alongside the Ascension Seton Austin Marathon this race weekend as we serve, connect, and move our community forward.</p>
   </div>
 </div>
@@ -201,7 +202,7 @@
 <!-- TWO WAYS TO SHOW UP -->
 <section class="content-section alt" id="show-up" style="padding:2rem 2.5rem 5rem;">
   <div class="showup-wrap">
-    <h2 class="section-title" style="text-align:center;white-space:nowrap;">Race Day.</h2>
+    <h2 class="section-title" style="text-align:center;white-space:nowrap;color:var(--gold);">Race Day.</h2>
     <p class="section-subtitle" style="text-align:center;margin:0 auto;">Whether you volunteer on the course or line up at the start, every person who shows up for the Austin Marathon under Team I Am Redemption is showing up for the mission.</p>
 
     <div class="showup-grid">
