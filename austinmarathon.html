@@ -84,33 +84,6 @@
     .showup-divider { display:none; }
   }
 
-  /* Partner photo gallery — pinwheel frame, no images (Jasmine adds photos manually) */
-  .partner-gallery {
-    position:relative; width:100%; aspect-ratio:1/1;
-    border:10px solid #fff; box-shadow:0 14px 40px rgba(0,0,0,0.55);
-    background:#fff; margin-top:0.5rem;
-  }
-  .partner-gallery .pg-panel { position:absolute; inset:0; width:100%; height:100%; filter:drop-shadow(0 0 2px #fff); }
-  .partner-gallery .pg-panel img { width:100%; height:100%; object-fit:cover; display:block; }
-  .partner-gallery .pg-placeholder {
-    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-    color:rgba(255,255,255,0.4); font-family:'Barlow Condensed',sans-serif; font-size:11px;
-    font-weight:700; letter-spacing:0.1em; text-transform:uppercase; text-align:center;
-    pointer-events:none; padding:0 8px;
-  }
-  /* Outer wedges — replace each with a background-image or <img> when photos are ready */
-  .partner-gallery .pg-1 { clip-path:polygon(0% 0%, 50% 0%, 35% 33%, 27% 56%, 0% 60%); background:#141414; }
-  .partner-gallery .pg-2 { clip-path:polygon(50% 0%, 100% 0%, 100% 50%, 73% 56%, 65% 33%); background:#1b1b1b; }
-  .partner-gallery .pg-3 { clip-path:polygon(0% 60%, 27% 56%, 50% 80%, 38% 100%, 0% 100%); background:#141414; }
-  .partner-gallery .pg-4 { clip-path:polygon(38% 100%, 50% 80%, 62% 100%); background:#1f1f1f; }
-  .partner-gallery .pg-5 { clip-path:polygon(62% 100%, 50% 80%, 73% 56%, 100% 50%, 100% 100%); background:#1b1b1b; }
-  /* Center pentagon — gold border ring, empty black interior */
-  .partner-gallery .pg-center-outer { clip-path:polygon(35% 33%, 65% 33%, 73% 56%, 50% 80%, 27% 56%); background:var(--gold); }
-  .partner-gallery .pg-center-inner { clip-path:polygon(36.5% 34.7%, 63.5% 34.7%, 70.7% 55.4%, 50% 77%, 29.3% 55.4%); background:#0a0a0a; }
-  @media (max-width:768px) {
-    .partner-gallery { border-width:7px; }
-  }
-
   /* Featured POR strip */
   .featured-strip { max-width:820px; margin:0 auto; display:flex; gap:2rem; align-items:center; flex-wrap:wrap; }
   .featured-strip img { width:140px; height:140px; object-fit:cover; display:block; border:1px solid rgba(253,191,18,0.25); flex-shrink:0; }
@@ -223,19 +196,7 @@
       </p>
     </div>
     <div class="fade-in fade-in-d1">
-      <div class="partner-gallery">
-        <!-- Pinwheel frame — 5 outer wedges (pg-1 through pg-5) + center pentagon (pg-center).
-             Each wedge already has an <img>. To swap in a real photo, just update its src attribute —
-             the clip-path on the parent div shapes it automatically, no CSS editing needed.
-             pg-4 is the small bottom-center sliver; pg-center-outer/inner form the badge — add your own text/logo there. -->
-        <div class="pg-panel pg-1"><span class="pg-placeholder">Photo 1</span><img src="images/am-gallery-1.webp" loading="lazy" alt="I Am Redemption at the Austin Marathon" onerror="this.style.display='none';" onload="this.previousElementSibling.style.display='none';"></div>
-        <div class="pg-panel pg-2"><span class="pg-placeholder">Photo 2</span><img src="images/am-gallery-2.webp" loading="lazy" alt="IAR volunteers at an aid station" onerror="this.style.display='none';" onload="this.previousElementSibling.style.display='none';"></div>
-        <div class="pg-panel pg-3"><span class="pg-placeholder">Photo 3</span><img src="images/am-gallery-3.webp" loading="lazy" alt="Runners crossing the finish line for Team IAR" onerror="this.style.display='none';" onload="this.previousElementSibling.style.display='none';"></div>
-        <div class="pg-panel pg-4"><span class="pg-placeholder">Photo 4</span><img src="images/am-gallery-4.webp" loading="lazy" alt="Team IAR group photo before the race" onerror="this.style.display='none';" onload="this.previousElementSibling.style.display='none';"></div>
-        <div class="pg-panel pg-5"><span class="pg-placeholder">Photo 5</span><img src="images/am-gallery-5.webp" loading="lazy" alt="Shawn speaking with runners at the Austin Marathon" onerror="this.style.display='none';" onload="this.previousElementSibling.style.display='none';"></div>
-        <div class="pg-panel pg-center-outer"></div>
-        <div class="pg-panel pg-center-inner"></div>
-      </div>
+      <img src="images/AMCollage.webp" loading="lazy" alt="I Am Redemption at the Austin Marathon — team, volunteers, and finishers" style="width:100%;height:auto;display:block;border:10px solid #fff;box-shadow:0 14px 40px rgba(0,0,0,0.55);">
     </div>
   </div>
 </section>
