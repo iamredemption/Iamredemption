@@ -52,7 +52,6 @@
   .section-subtitle { color: #e0e0e0 !important; }
   .page-hero-sub { color: #e0e0e0 !important; }
   p { color: #c8c8c8; }
-  .page-hero-title { white-space: nowrap; font-size: clamp(32px, 5.5vw, 80px); }
   .page-hero-sub { max-width: 460px; white-space: normal; }
 
   @media (max-width: 768px) {
@@ -168,8 +167,8 @@
   <div class="page-hero-overlay"></div>
   <div class="page-hero-content">
     <div class="page-hero-eyebrow fade-in">Official Partners</div>
-    <h1 class="page-hero-title fade-in fade-in-d1">IAR X Austin <em>Marathon.</em></h1>
-    <p class="page-hero-sub fade-in fade-in-d2">We're proud to be an Official Charity & Community Partner of the Ascension Seton Austin Marathon. Join us race weekend as we serve, connect, and move our community forward.</p>
+    <h1 class="page-hero-title fade-in fade-in-d1">IAR x<br><em>Austin Marathon.</em></h1>
+    <p class="page-hero-sub fade-in fade-in-d2">We're proud to be an Official Charity &amp; Community Partner of the Ascension Seton Austin Marathon. Join us race weekend as we serve, connect, and move our community forward.</p>
     <div class="am-badge-row fade-in fade-in-d3">
       <div class="am-badge">Ascension Seton Austin Marathon</div>
       <div class="am-badge">Austin Marathon Gives Charity Partner</div>
@@ -216,13 +215,20 @@
         <div class="showup-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#FDBF12" stroke-width="1.6"><path d="M8 21h8M12 17v4M6 3h12l-1 9a5 5 0 0 1-10 0L6 3zM4 6h2M18 6h2"/></svg>
         </div>
-        <div class="showup-eyebrow">Aid Station Volunteers</div>
-        <h3 class="showup-title">Y'all Showed up!</h3>
-        <p class="showup-text">Team IAR showed up in 2026 and Austin Marathon noticed. Because of your incredible support, we're getting TWO aid stations in 2027, and they're right across the street from each other! <div>
-Volunteer registration is managed by the Austin Marathon. Let us know you're interested below, and we'll send the links as soon as they're released.</p>
-        <!-- TODO: replace # with the Austin Marathon aid station volunteer signup link once Shawn/AM confirm it -->
-        <a href="#" class="btn-outline" target="_blank" rel="noopener">Sign Up To Volunteer</a>
-        <div class="todo-note">Placeholder — waiting on the direct aid station signup link from the Austin Marathon volunteer team.</div>
+        <div class="showup-eyebrow">Aid Station Volunteer</div>
+        <h3 class="showup-title">Y'all Showed Up!</h3>
+        <p class="showup-text">Team IAR showed up in 2026 and Austin Marathon noticed. Because of your incredible support, we're getting TWO aid stations in 2027, and they're right across the street from each other!<br><br>Volunteer registration is managed by the Austin Marathon. Let us know you're interested below, and we'll send the links as soon as they're released.</p>
+        <form class="story-form" id="am-volunteer-form" onsubmit="submitVolunteerFormspree(event)">
+          <input type="hidden" name="form_type" value="Austin Marathon Volunteer Interest">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">FIRST NAME</label><input type="text" name="firstName" class="form-field" placeholder="Your first name"></div>
+            <div class="form-group"><label class="form-label">LAST NAME</label><input type="text" name="lastName" class="form-field" placeholder="Your last name"></div>
+          </div>
+          <div class="form-group"><label class="form-label">EMAIL</label><input type="email" name="email" class="form-field" placeholder="Your email address"></div>
+          <div class="form-group"><label class="form-label">PHONE</label><input type="tel" name="phone" class="form-field" placeholder="Your phone number"></div>
+          <button type="submit" class="btn-primary" style="width:100%;border:none;font-size:15px;margin-top:0.5rem;">Let Us Know I'm Interested</button>
+          <div id="am-volunteer-success" style="display:none;margin-top:1rem;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.1em;font-size:15px;border-top:2px solid var(--gold);padding-top:1rem;">Thanks! We'll send the signup link as soon as it's released.</div>
+        </form>
       </div>
 
       <div class="showup-divider"></div>
