@@ -83,15 +83,15 @@
     .showup-divider { display:none; }
   }
 
-  /* Partner photo gallery — tilted collage */
+  /* Partner photo gallery — editorial mosaic */
   .partner-gallery {
     display:grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 170px 170px 170px;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: 170px 150px 150px;
     grid-template-areas:
-      "a b"
-      "a c"
-      "d e";
+      "a a b"
+      "a a c"
+      "d d c";
     gap:16px;
     margin-top:0.5rem;
   }
@@ -106,12 +106,11 @@
   .partner-gallery .pg-2 { grid-area:b; }
   .partner-gallery .pg-3 { grid-area:c; }
   .partner-gallery .pg-4 { grid-area:d; }
-  .partner-gallery .pg-5 { grid-area:e; }
   @media (max-width:768px) {
     .partner-gallery {
       grid-template-columns: 1fr;
-      grid-template-rows: repeat(5, 200px);
-      grid-template-areas: "a" "b" "c" "d" "e";
+      grid-template-rows: repeat(4, 220px);
+      grid-template-areas: "a" "b" "c" "d";
       gap:12px;
     }
     .partner-gallery img { --rot:0deg; }
@@ -222,7 +221,7 @@
       <div class="section-label">Race Weekend 2027</div>
       <h2 class="section-title" style="white-space:nowrap;font-size:44px;letter-spacing:0.03em;">Community and Charity Partners.</h2>
       <p class="section-subtitle" style="margin-bottom:1.25rem;">
-        We're honored to be returning as an Official Austin Marathon Charity and Community Partner. The Austin Marathon selects organizations that are making a meaningful impact in our community and creating opportunities for runners to give every mile a greater purpose and we're proud to be part of that mission.
+        We're honored to be returning as an official Charity and Community Partner of Ascension Seton Austin Marathon, Half Marathon, and 5K. The Austin Marathon selects organizations that are making a meaningful impact in our community and creating opportunities for runners to give every mile a greater purpose and we're proud to be part of that mission.
       </p>
       <p class="section-subtitle">
         Whether you join Team IAR, volunteer at one of our aid stations, or make a donation, you're helping build a community where connection creates hope, hope inspires change, and lives are transformed. Together, nobody recovers alone.
@@ -234,8 +233,7 @@
         <img src="images/hero2.webp" loading="lazy" alt="I Am Redemption at the Austin Marathon" class="pg-1" style="--rot:-2deg;">
         <img src="images/am-gallery-2.webp" loading="lazy" alt="IAR volunteers at an aid station" class="pg-2" style="--rot:3deg;">
         <img src="images/am-gallery-3.webp" loading="lazy" alt="Runners crossing the finish line for Team IAR" class="pg-3" style="--rot:-3deg;">
-        <img src="images/am-gallery-4.webp" loading="lazy" alt="Team IAR group photo before the race" class="pg-4" style="--rot:4deg;">
-        <img src="images/am-gallery-5.webp" loading="lazy" alt="Shawn speaking with runners at the Austin Marathon" class="pg-5" style="--rot:2deg;">
+        <img src="images/am-gallery-4.webp" loading="lazy" alt="Team IAR group photo before the race" class="pg-4" style="--rot:2deg;">
       </div>
     </div>
   </div>
@@ -244,8 +242,8 @@
 <!-- TWO WAYS TO SHOW UP -->
 <section class="content-section alt" id="show-up" style="padding:2rem 2.5rem 5rem;">
   <div class="showup-wrap">
-    <h2 class="section-title" style="text-align:center;white-space:nowrap;color:var(--gold);">Toe The Line.</h2>
-    <p class="section-subtitle" style="text-align:center;margin:0 auto;">Whether you volunteer on the course or line up at the start, every person who shows up for the Austin Marathon under Team I Am Redemption is showing up for the mission.</p>
+    <h2 class="section-title" style="text-align:center;white-space:nowrap;color:var(--gold);font-size:44px;letter-spacing:0.03em;">Toe The Line.</h2>
+   
 
     <div class="showup-grid">
 
