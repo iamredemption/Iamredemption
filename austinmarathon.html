@@ -87,6 +87,11 @@
   .featured-strip img { width:140px; height:140px; object-fit:cover; display:block; border:1px solid rgba(253,191,18,0.25); flex-shrink:0; }
 
   .todo-note { margin-top:1rem; padding:0.85rem 1rem; background:rgba(253,191,18,0.08); border:1px dashed rgba(253,191,18,0.4); font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:0.03em; color:var(--gold-light); text-align:left; }
+
+  /* This page's hero image already has a black area built in behind the
+     text, so the site-wide darkening filter + gradient overlay aren't needed here. */
+  .page-hero .page-hero-bg { filter: none; }
+  .page-hero .page-hero-overlay { background: none; }
 </style>
 </head>
 <body>
