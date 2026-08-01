@@ -92,6 +92,12 @@
   }
   .partner-gallery .pg-panel { position:absolute; inset:0; width:100%; height:100%; filter:drop-shadow(0 0 2px #fff); }
   .partner-gallery .pg-panel img { width:100%; height:100%; object-fit:cover; display:block; }
+  .partner-gallery .pg-placeholder {
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    color:rgba(255,255,255,0.4); font-family:'Barlow Condensed',sans-serif; font-size:11px;
+    font-weight:700; letter-spacing:0.1em; text-transform:uppercase; text-align:center;
+    pointer-events:none; padding:0 8px;
+  }
   /* Outer wedges — replace each with a background-image or <img> when photos are ready */
   .partner-gallery .pg-1 { clip-path:polygon(0% 0%, 50% 0%, 35% 33%, 27% 56%, 0% 60%); background:#141414; }
   .partner-gallery .pg-2 { clip-path:polygon(50% 0%, 100% 0%, 100% 50%, 73% 56%, 65% 33%); background:#1b1b1b; }
@@ -222,11 +228,11 @@
              Each wedge already has an <img>. To swap in a real photo, just update its src attribute —
              the clip-path on the parent div shapes it automatically, no CSS editing needed.
              pg-4 is the small bottom-center sliver; pg-center-outer/inner form the badge — add your own text/logo there. -->
-        <div class="pg-panel pg-1"><img src="images/am-gallery-1.webp" loading="lazy" alt="I Am Redemption at the Austin Marathon"></div>
-        <div class="pg-panel pg-2"><img src="images/am-gallery-2.webp" loading="lazy" alt="IAR volunteers at an aid station"></div>
-        <div class="pg-panel pg-3"><img src="images/am-gallery-3.webp" loading="lazy" alt="Runners crossing the finish line for Team IAR"></div>
-        <div class="pg-panel pg-4"><img src="images/am-gallery-4.webp" loading="lazy" alt="Team IAR group photo before the race"></div>
-        <div class="pg-panel pg-5"><img src="images/am-gallery-5.webp" loading="lazy" alt="Shawn speaking with runners at the Austin Marathon"></div>
+        <div class="pg-panel pg-1"><span class="pg-placeholder">Photo 1</span><img src="images/am-gallery-1.webp" loading="lazy" alt="I Am Redemption at the Austin Marathon" onerror="this.style.display='none';" onload="this.previousElementSibling.style.display='none';"></div>
+        <div class="pg-panel pg-2"><span class="pg-placeholder">Photo 2</span><img src="images/am-gallery-2.webp" loading="lazy" alt="IAR volunteers at an aid station" onerror="this.style.display='none';" onload="this.previousElementSibling.style.display='none';"></div>
+        <div class="pg-panel pg-3"><span class="pg-placeholder">Photo 3</span><img src="images/am-gallery-3.webp" loading="lazy" alt="Runners crossing the finish line for Team IAR" onerror="this.style.display='none';" onload="this.previousElementSibling.style.display='none';"></div>
+        <div class="pg-panel pg-4"><span class="pg-placeholder">Photo 4</span><img src="images/am-gallery-4.webp" loading="lazy" alt="Team IAR group photo before the race" onerror="this.style.display='none';" onload="this.previousElementSibling.style.display='none';"></div>
+        <div class="pg-panel pg-5"><span class="pg-placeholder">Photo 5</span><img src="images/am-gallery-5.webp" loading="lazy" alt="Shawn speaking with runners at the Austin Marathon" onerror="this.style.display='none';" onload="this.previousElementSibling.style.display='none';"></div>
         <div class="pg-panel pg-center-outer"></div>
         <div class="pg-panel pg-center-inner"></div>
       </div>
@@ -237,7 +243,7 @@
 <!-- TWO WAYS TO SHOW UP -->
 <section class="content-section alt" id="show-up" style="padding:2rem 2.5rem 5rem;">
   <div class="showup-wrap">
-    <h2 class="section-title" style="text-align:center;white-space:nowrap;color:var(--gold);font-size:44px;letter-spacing:0.03em;">Toe The Line.</h2>
+    <h2 class="section-title" style="text-align:center;white-space:nowrap;color:var(--gold);font-size:44px;letter-spacing:0.03em;">Choose Your Team!</h2>
    
 
     <div class="showup-grid">
@@ -266,7 +272,7 @@
 
       <!-- RUN FOR TEAM IAR (placeholder per current instructions) -->
       <div class="showup-card fade-in fade-in-d1">
-        <div class="showup-eyebrow">Run</div>
+        <div class="showup-eyebrow">Go the distance</div>
         <h3 class="showup-title">Run For Team IAR</h3>
         <p class="showup-text">Register for the Austin Marathon, Half Marathon, or 5K and run under Team I Am Redemption. Details on registration and fundraising are still being finalized with the Austin Marathon.</p>
         <a href="#" class="btn-outline" aria-disabled="true">Coming Soon</a>
