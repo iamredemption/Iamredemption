@@ -103,12 +103,14 @@
     <img src="images/iar_logo_transparent.webp" alt="I Am Redemption" width="144" height="144">
   </div>
   </div>
+  <div class="nav-right-group">
   <ul class="nav-links nav-links-right">
     <li><a href="get-involved.html">Get Involved</a></li>
     <li><a href="austinmarathon.html" class="active">Austin Marathon</a></li>
     <li><a href="merch.html">Merch</a></li>
-    <li><a href="https://givebutter.com/IAR" class="nav-cta">Donate</a></li>
   </ul>
+  <a href="https://givebutter.com/IAR" class="nav-cta">Donate</a>
+  </div>
   <div class="nav-hamburger" id="nav-hamburger-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
 </nav>
 <script>
@@ -119,7 +121,7 @@
     if (overlay) return;
     overlay = document.createElement('div');
     overlay.id = 'mobile-nav-overlay';
-    var allLinks = document.querySelectorAll('#top-nav .nav-links-left a, #top-nav .nav-links-right a');
+    var allLinks = document.querySelectorAll('#top-nav .nav-links-left a, #top-nav .nav-right-group a');
     allLinks.forEach(function(a) {
       var item = document.createElement('a');
       item.href = a.href;
