@@ -169,7 +169,7 @@ async function submitContactFormspree(e) {
   }
 }
 
-// ── AUSTIN MARATHON VOLUNTEER INTEREST FORM (Formspree) ──
+// ── AUSTIN MARATHON VOLUNTEER FORM (Formspree) ──
 async function submitVolunteerFormspree(e) {
   e.preventDefault();
   const form = document.getElementById('am-volunteer-form');
@@ -184,7 +184,7 @@ async function submitVolunteerFormspree(e) {
     if (res.ok) {
       form.querySelectorAll('input:not([type=hidden]),textarea,select').forEach(el => el.value = '');
       if (successDiv) successDiv.style.display = 'block';
-      if (btn) { btn.textContent = 'Sent!'; }
+      if (btn) { btn.textContent = 'Submitted!'; }
     } else {
       if (btn) { btn.textContent = 'Error — Try Again'; btn.disabled = false; }
     }
