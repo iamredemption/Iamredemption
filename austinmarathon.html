@@ -174,19 +174,15 @@
     <div class="page-hero-eyebrow fade-in">Official Partners</div>
     <h1 class="page-hero-title fade-in fade-in-d1">IAR x<br><em>Austin Marathon.</em></h1>
     <p class="page-hero-sub fade-in fade-in-d2">We're proud to be an Official Charity &amp; Community Partner of the Ascension Seton Austin Marathon. Join us race weekend as we serve, connect, and move our community forward.</p>
-    <div class="am-badge-row fade-in fade-in-d3">
-      <div class="am-badge">Ascension Seton Austin Marathon</div>
-      <div class="am-badge">Austin Marathon Gives Charity Partner</div>
-    </div>
   </div>
 </div>
 
 <!-- ABOUT THE PARTNERSHIP -->
-<section class="content-section dark" id="partner" style="padding:5rem 2.5rem;">
+<section class="content-section dark" id="partner" style="padding:2rem 2.5rem 5rem;">
   <div class="section-inner">
     <div class="fade-in">
       <div class="section-label">The Partnership</div>
-      <h2 class="section-title">Selected as an<br>Official Charity Partner.</h2>
+      <h2 class="section-title" style="white-space:nowrap;">Community and Charity Partners.</h2>
       <p class="section-subtitle" style="margin-bottom:1.25rem;">
         <!-- TODO: confirm exact language/figures with Shawn before publishing -->
         Every year, the Austin Marathon selects a small group of nonprofits to stand alongside as Official Charity Partners through the Austin Marathon Gives program. I Am Redemption was chosen for the impact we make in the Austin recovery and running community, and for what we represent on race day: people who have rebuilt their lives showing up to move forward, one mile at a time.
@@ -194,10 +190,6 @@
       <p class="section-subtitle">
         This partnership puts IAR in front of thousands of runners, spectators, and volunteers across one of the largest events in Central Texas, and it directly supports our mission to turn pain into purpose.
       </p>
-      <div class="btn-row" style="margin-top:2rem;">
-        <!-- TODO: link to the official Austin Marathon charity partner page once confirmed -->
-        <a href="#" class="btn-outline" target="_blank" rel="noopener">View Austin Marathon Charity Partners</a>
-      </div>
     </div>
     <div class="fade-in fade-in-d1">
       <!-- TODO: replace with an approved Austin Marathon / IAR expo photo -->
@@ -207,31 +199,30 @@
 </section>
 
 <!-- TWO WAYS TO SHOW UP -->
-<section class="content-section alt" id="show-up" style="padding:5rem 2.5rem;">
+<section class="content-section alt" id="show-up" style="padding:2rem 2.5rem 5rem;">
   <div class="showup-wrap">
     <div class="section-label center" style="justify-content:center;">Race Day</div>
-    <h2 class="section-title" style="text-align:center;">Two Ways To<br>Show Up.</h2>
-    <p class="section-subtitle" style="text-align:center;margin:0 auto;">Whether you volunteer on the course or line up at the start, every person who shows up for the Austin Marathon under Team I Am Redemption is showing up for the mission.</p>
+    <h2 class="section-title" style="text-align:center;white-space:nowrap;">Two Ways To Show Up.</h2>
+    <p class="section-subtitle" style="text-align:center;margin:0 auto;white-space:nowrap;">Whether you volunteer on the course or line up at the start, every person who shows up for the Austin Marathon under Team I Am Redemption is showing up for the mission.</p>
 
     <div class="showup-grid">
 
       <!-- VOLUNTEER -->
       <div class="showup-card fade-in">
-        <div class="showup-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#FDBF12" stroke-width="1.6"><path d="M8 21h8M12 17v4M6 3h12l-1 9a5 5 0 0 1-10 0L6 3zM4 6h2M18 6h2"/></svg>
-        </div>
-        <div class="showup-eyebrow">Aid Station Volunteer</div>
-        <h3 class="showup-title">Y'all Showed Up!</h3>
-        <p class="showup-text">Team IAR showed up in 2026 and Austin Marathon noticed. Because of your incredible support, we're getting TWO aid stations in 2027, and they're right across the street from each other!<br><br>Volunteer registration is managed by the Austin Marathon. Let us know you're interested below, and we'll send the links as soon as they're released.</p>
+        <div class="showup-eyebrow">Volunteer</div>
+        <h3 class="showup-title">Aid Stations</h3>
+        <p class="showup-text">Team IAR came through in 2026 and Austin Marathon noticed. Because of your incredible support, we're getting <strong>TWO</strong> aid stations in 2027, and they're right across the street from each other!<br><br>Volunteer registration is managed by the Austin Marathon. Let us know you're interested below, and we'll send the links as soon as they're released.</p>
         <form class="story-form" id="am-volunteer-form" onsubmit="submitVolunteerFormspree(event)">
           <input type="hidden" name="form_type" value="Austin Marathon Volunteer Interest">
           <div class="form-row">
             <div class="form-group"><label class="form-label">FIRST NAME</label><input type="text" name="firstName" class="form-field" placeholder="Your first name"></div>
             <div class="form-group"><label class="form-label">LAST NAME</label><input type="text" name="lastName" class="form-field" placeholder="Your last name"></div>
           </div>
-          <div class="form-group"><label class="form-label">EMAIL</label><input type="email" name="email" class="form-field" placeholder="Your email address"></div>
-          <div class="form-group"><label class="form-label">PHONE</label><input type="tel" name="phone" class="form-field" placeholder="Your phone number"></div>
-          <button type="submit" class="btn-primary" style="width:100%;border:none;font-size:15px;margin-top:0.5rem;">Let Us Know I'm Interested</button>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">EMAIL</label><input type="email" name="email" class="form-field" placeholder="Your email address"></div>
+            <div class="form-group"><label class="form-label">PHONE</label><input type="tel" name="phone" class="form-field" placeholder="Your phone number"></div>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;border:none;font-size:15px;margin-top:0.5rem;">Submit</button>
           <div id="am-volunteer-success" style="display:none;margin-top:1rem;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.1em;font-size:15px;border-top:2px solid var(--gold);padding-top:1rem;">Thanks! We'll send the signup link as soon as it's released.</div>
         </form>
       </div>
@@ -240,14 +231,10 @@
 
       <!-- RUN FOR TEAM IAR (placeholder per current instructions) -->
       <div class="showup-card fade-in fade-in-d1">
-        <div class="showup-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#FDBF12" stroke-width="1.6"><path d="M13 4a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM7 21l3-6-2-3 1-5 4 2 3 4M8 12l4-1"/></svg>
-        </div>
         <div class="showup-eyebrow">Run</div>
         <h3 class="showup-title">Run For Team IAR</h3>
         <p class="showup-text">Register for the Austin Marathon, Half Marathon, or 5K and run under Team I Am Redemption. Details on registration and fundraising are still being finalized with the Austin Marathon.</p>
         <a href="#" class="btn-outline" aria-disabled="true">Coming Soon</a>
-        <div class="todo-note">Placeholder — discount codes and the Austin Marathon Gives fundraising program (opens this fall) will be added here once confirmed.</div>
       </div>
 
     </div>
@@ -262,8 +249,7 @@
     <div class="fade-in" style="flex:1 1 320px;">
       <div class="section-label" style="margin-bottom:0.5rem;">Featured</div>
       <h3 style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:0.04em;color:var(--white);margin-bottom:0.5rem;">Price of Redemption</h3>
-      <!-- TODO: confirm current film copy/status with Shawn -->
-      <p style="font-size:14.5px;font-weight:300;color:#c0c0c0;line-height:1.7;margin-bottom:0.9rem;">The feature film based on Shawn's story, currently in production from director Andrew (100 Miles to Redemption).</p>
+      <p style="font-size:14.5px;font-weight:300;color:#c0c0c0;line-height:1.7;margin-bottom:0.9rem;">An Army veteran battles PTSD and heroin addiction while his younger sister fights to hold onto the brother she once knew. Facing the collapse of his family, he sets out on a 100 mile trail race in a desperate fight for redemption. It's the same fight IAR exists to support, and the film directly funds our work.</p>
       <a href="get-involved.html#partner" class="btn-outline" style="padding:0.6rem 1.5rem;font-size:12px;">Learn More</a>
     </div>
   </div>
