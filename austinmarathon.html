@@ -118,6 +118,10 @@
   .page-hero .page-hero-bg { filter: none; }
   .page-hero .page-hero-overlay { background: none; }
   .page-hero { height: 55vh; min-height: 55vh; align-items: center; }
+  @media (max-width: 768px) {
+    .page-hero .page-hero-bg { filter: brightness(0.5) !important; background-position: center center !important; }
+    .page-hero .page-hero-overlay { background: linear-gradient(180deg, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.55) 50%, rgba(10,10,10,0.75) 100%) !important; }
+  }
 </style>
 </head>
 <body>
