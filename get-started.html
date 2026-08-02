@@ -44,12 +44,12 @@ nav#top-nav{
 .nav-logo img{height:144px;width:auto;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.5));}
 .nav-links{display:flex;align-items:center;gap:0;list-style:none;}
 .nav-links-left{justify-content:flex-end;grid-column:1;padding-right:88px;}
-.nav-links-right{justify-content:flex-start;grid-column:2;padding-left:94px;}
+.nav-links-right{justify-content:flex-start;grid-column:2;padding-left:94px;}.nav-right-group{grid-column:2;display:flex;align-items:center;justify-content:space-between;padding-left:94px;}.nav-right-group .nav-links-right{padding-left:0;}
 .nav-links li{display:flex;align-items:center;}
 .nav-links li::before{content:'';display:inline-block;width:2px;height:16px;background:var(--gold);margin-right:1.25rem;flex-shrink:0;}
 .nav-links-left li:first-child::before{display:none;}
 .nav-links-right li:first-child::before{display:none;}
-.nav-links a{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;letter-spacing:0.13em;text-transform:uppercase;color:#c0c0c0;text-decoration:none;transition:color 0.2s;padding-right:1.25rem;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;letter-spacing:0.13em;text-transform:uppercase;color:#c0c0c0;text-decoration:none;transition:color 0.2s;padding-right:1.25rem;white-space:nowrap;}
 .nav-links a:hover,.nav-links a.active{color:var(--gold);}
 .nav-cta{background:var(--gold)!important;color:#000!important;padding:0.45rem 1.2rem!important;font-weight:700!important;box-shadow:0 2px 12px rgba(253,191,18,0.3);}
 .nav-cta:hover{background:var(--gold-light)!important;color:#000!important;}
@@ -79,7 +79,7 @@ nav#top-nav{
 .btn-row{display:flex;gap:1rem;flex-wrap:wrap;}
 @media(max-width:960px){
   nav#top-nav{padding:0.85rem 1.5rem;grid-template-columns:auto 1fr auto;}
-  .nav-links-left,.nav-links-right{display:none;}
+  .nav-links-left,.nav-links-right,.nav-right-group{display:none;}
   .nav-hamburger{display:flex;grid-column:3;}
   .nav-logo-group{grid-column:2;justify-content:center;}
   .nav-tagline{display:none!important;}
@@ -214,11 +214,14 @@ nav#top-nav{
     <img src="images/iar_logo_transparent.webp" alt="I Am Redemption" width="144" height="144">
   </div>
   </div>
+  <div class="nav-right-group">
   <ul class="nav-links nav-links-right">
     <li><a href="get-involved.html">Get Involved</a></li>
+    <li><a href="austinmarathon.html">Austin Marathon</a></li>
     <li><a href="merch.html">Merch</a></li>
-    <li><a href="https://givebutter.com/IAR" class="nav-cta">Donate</a></li>
   </ul>
+  <a href="https://givebutter.com/IAR" class="nav-cta">Donate</a>
+  </div>
   <div class="nav-hamburger" id="nav-hamburger-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
 </nav>
 <script>
@@ -233,7 +236,7 @@ nav#top-nav{
     overlay.id = 'mobile-nav-overlay';
 
     // Collect all links from both nav lists in order
-    var allLinks = document.querySelectorAll('#top-nav .nav-links-left a, #top-nav .nav-links-right a');
+    var allLinks = document.querySelectorAll('#top-nav .nav-links-left a, #top-nav .nav-right-group a');
     allLinks.forEach(function(a) {
       var item = document.createElement('a');
       item.href = a.href;
@@ -477,6 +480,7 @@ nav#top-nav{
         <li><a href="where-you-stand.html">Where You Stand</a></li>
         <li><a href="get-started.html">Show Up</a></li>
         <li><a href="get-involved.html">Get Involved</a></li>
+        <li><a href="austinmarathon.html">Austin Marathon</a></li>
         <li><a href="merch.html">Merch</a></li>
       </ul>
     </div>

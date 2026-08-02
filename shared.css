@@ -119,6 +119,13 @@ nav#top-nav {
    So padding-right = 88px, padding-left = 68px (bar 20px wide reaches 88px) */
 .nav-links-left  { justify-content: flex-end; grid-column: 1; padding-right: 88px; }
 .nav-links-right { justify-content: flex-start; grid-column: 2; padding-left: 94px; }
+/* Wraps the right-hand text links + the Donate button so Donate can sit
+   flush at the far edge of the bar, visually separate from the links. */
+.nav-right-group {
+  grid-column: 2; display: flex; align-items: center;
+  justify-content: space-between; padding-left: 94px;
+}
+.nav-right-group .nav-links-right { padding-left: 0; }
 .nav-links li { display: flex; align-items: center; }
 .nav-links li::before {
   content: '';
@@ -136,7 +143,7 @@ nav#top-nav {
   font-family: 'Barlow Condensed', sans-serif; font-size: 16px;
   font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase;
   color: #c0c0c0; text-decoration: none; transition: color 0.2s;
-  padding-right: 1.25rem;
+  padding-right: 1.25rem; white-space: nowrap;
 }
 .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 .nav-cta {
@@ -478,7 +485,7 @@ textarea.form-field { resize: vertical; }
 }
 @media (max-width: 960px) {
   nav#top-nav { padding: 0.85rem 1.5rem; grid-template-columns: auto 1fr auto; }
-  .nav-links-left, .nav-links-right { display: none; }
+  .nav-links-left, .nav-links-right, .nav-right-group { display: none; }
   .nav-hamburger { display: flex; grid-column: 3; }
   .nav-logo-group { grid-column: 2; justify-content: center; gap: 0; }
   .nav-tagline { display: none !important; }

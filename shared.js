@@ -78,6 +78,7 @@ function _setupRecaptchaPrefetch() {
     _prefetchToken('email_subscribe');
     _prefetchToken('submit_story');
     _prefetchToken('submit_contact');
+    _prefetchToken('submit_volunteer');
   });
 }
 // Only prefetch if the reCAPTCHA script tag is actually on this page
@@ -160,6 +161,30 @@ async function submitContactFormspree(e) {
       form.querySelectorAll('input:not([type=hidden]),textarea,select').forEach(el => el.value = '');
       if (successDiv) successDiv.style.display = 'block';
       if (btn) { btn.textContent = 'Sent!'; }
+    } else {
+      if (btn) { btn.textContent = 'Error — Try Again'; btn.disabled = false; }
+    }
+  } catch(e) {
+    if (btn) { btn.textContent = 'Error — Try Again'; btn.disabled = false; }
+  }
+}
+
+// ── AUSTIN MARATHON VOLUNTEER FORM (Formspree) ──
+async function submitVolunteerFormspree(e) {
+  e.preventDefault();
+  const form = document.getElementById('am-volunteer-form');
+  const btn = form ? form.querySelector('button[type="submit"]') : null;
+  const successDiv = document.getElementById('am-volunteer-success');
+  if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
+  try {
+    const token = await getRecaptchaToken('submit_volunteer');
+    const data = new FormData(form);
+    data.append('g-recaptcha-response', token);
+    const res = await fetch('https://formspree.io/f/mzdylgwk', { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+    if (res.ok) {
+      form.querySelectorAll('input:not([type=hidden]),textarea,select').forEach(el => el.value = '');
+      if (successDiv) successDiv.style.display = 'block';
+      if (btn) { btn.textContent = 'Submitted!'; }
     } else {
       if (btn) { btn.textContent = 'Error — Try Again'; btn.disabled = false; }
     }

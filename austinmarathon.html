@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Austin Marathon Charity Partner 2027 | I Am Redemption</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preload" as="image" href="images/AM.webp" fetchpriority="high">
+<link rel="preload" as="image" href="images/iar_logo_transparent.webp">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<meta name="theme-color" content="#FDBF12">
+
+<!-- SEO -->
+<meta name="robots" content="index, follow">
+<meta name="description" content="I Am Redemption is an Official Charity and Community Partner of the Ascension Seton Austin Marathon, Half Marathon, and 5K. Volunteer at an aid station, run for Team I Am Redemption, or donate to support recovery, community, and second chances in Austin, TX.">
+<link rel="canonical" href="https://iamredemption.org/austinmarathon.html">
+<meta property="og:title" content="Austin Marathon Charity Partner | I Am Redemption">
+<meta property="og:description" content="Official Charity and Community Partner of the Ascension Seton Austin Marathon. Volunteer at an aid station, run for Team I Am Redemption, or donate this race season.">
+<meta property="og:url" content="https://iamredemption.org/austinmarathon.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="I Am Redemption">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://iamredemption.org/images/LOGO.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="I Am Redemption logo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Austin Marathon Charity Partner | I Am Redemption">
+<meta name="twitter:description" content="Official Charity and Community Partner of the Ascension Seton Austin Marathon. Volunteer at an aid station, run for Team I Am Redemption, or donate this race season.">
+<meta name="twitter:image" content="https://iamredemption.org/images/LOGO.png">
+
+<!-- Structured data: breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://iamredemption.org/" },
+    { "@type": "ListItem", "position": 2, "name": "Austin Marathon", "item": "https://iamredemption.org/austinmarathon.html" }
+  ]
+}
+</script>
+
+<!-- ── GOOGLE ANALYTICS 4 ── -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q7S7B337Q8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Q7S7B337Q8');
+  var _scrolled={25:0,50:0,75:0,90:0};
+  window.addEventListener('scroll',function(){
+    var p=Math.round((window.scrollY/(document.body.scrollHeight-window.innerHeight))*100);
+    [25,50,75,90].forEach(function(d){
+      if(!_scrolled[d]&&p>=d){_scrolled[d]=1;gtag('event','scroll_depth',{event_category:'Engagement',event_label:d+'%',value:d});}
+    });
+  },{passive:true});
+</script>
+
+<script src="https://www.google.com/recaptcha/api.js?render=6LdwX9wsAAAAAK-McOkZTDRvuLgVXMYHh-hS0wim" defer></script>
+<link rel="stylesheet" href="shared.css">
+
+<style>
+  /* ── Page-specific tweaks (kept consistent with other pages) ── */
+  footer { background: #000000 !important; }
+  .footer-col ul a { color: #c0c0c0 !important; font-size: 14px !important; }
+  .footer-col ul a:hover { color: var(--gold) !important; }
+  .footer-brand p { color: #c8c8c8 !important; font-size: 14px !important; }
+  .footer-bottom { color: #a8a8a8 !important; }
+  .section-subtitle { color: #e0e0e0 !important; }
+  .page-hero-sub { color: #e0e0e0 !important; }
+  p { color: #c8c8c8; }
+  .page-hero-sub { max-width: 460px; white-space: normal; }
+
+  @media (max-width: 768px) {
+    [style*="display:grid"], [style*="display: grid"] { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+    [style*="max-width:1100px"] { max-width: 100% !important; padding: 0 !important; }
+    img { max-width: 100%; height: auto; }
+    .btn-primary, .btn-outline { display: block; width: 100%; box-sizing: border-box; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    #partner .section-title, #show-up .section-title { font-size: 30px !important; }
+  }
+
+  /* ── AM-specific blocks ── */
+  .am-badge-row { display:flex; gap:1.5rem; flex-wrap:wrap; margin-top:1.75rem; }
+  .am-badge { display:flex; align-items:center; gap:0.6rem; font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+  .am-badge::before { content:''; display:block; width:8px; height:8px; background:var(--gold); border-radius:50%; }
+
+  /* Two Ways to Show Up split */
+  .showup-wrap { max-width:1160px; margin:0 auto; }
+  .showup-grid { display:grid; grid-template-columns:1fr 1px 1fr; gap:3rem; align-items:stretch; margin-top:3rem; }
+  .showup-divider { background:linear-gradient(180deg,rgba(253,191,18,0) 0%,rgba(253,191,18,0.5) 50%,rgba(253,191,18,0) 100%); width:1px; }
+  .showup-card { display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .showup-card .story-form { width:100%; }
+  .showup-icon { width:56px; height:56px; border:1.5px solid rgba(253,191,18,0.4); border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem; }
+  .showup-icon svg { width:26px; height:26px; }
+  .showup-eyebrow { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:0.6rem; display:flex; align-items:center; gap:12px; }
+  .showup-eyebrow::before { content:''; display:block; width:42px; height:3px; background:var(--gold); flex-shrink:0; }
+  .showup-title { font-family:'Bebas Neue',sans-serif; font-size:34px; letter-spacing:0.03em; color:var(--white); margin-bottom:0.9rem; line-height:1.05; }
+  .showup-text { font-size:14.5px; font-weight:300; color:#c0c0c0; line-height:1.75; margin-bottom:1.75rem; flex-grow:1; }
+
+  @media (max-width:900px) {
+    .showup-grid { grid-template-columns:1fr; gap:2.5rem; }
+    .showup-divider { display:none; }
+  }
+
+  /* Featured POR strip */
+  .featured-strip { max-width:900px; margin:0 auto; display:flex; gap:2.25rem; align-items:center; flex-wrap:wrap; }
+  .featured-strip img { width:360px; max-width:100%; aspect-ratio:4/3; height:auto; object-fit:cover; display:block; border:1px solid rgba(253,191,18,0.25); flex-shrink:0; }
+
+  .todo-note { margin-top:1rem; padding:0.85rem 1rem; background:rgba(253,191,18,0.08); border:1px dashed rgba(253,191,18,0.4); font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:0.03em; color:var(--gold-light); text-align:left; }
+
+  /* This page's hero image already has a black area built in behind the
+     text, so the site-wide darkening filter + gradient overlay aren't needed here. */
+  .page-hero .page-hero-bg { filter: none; }
+  .page-hero .page-hero-overlay { background: none; }
+  .page-hero { height: 55vh; min-height: 55vh; align-items: center; }
+  @media (max-width: 768px) {
+    .page-hero .page-hero-bg { filter: brightness(0.5) !important; background-position: center center !important; }
+    .page-hero .page-hero-overlay { background: linear-gradient(180deg, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.55) 50%, rgba(10,10,10,0.75) 100%) !important; }
+    .page-hero { justify-content: center; }
+    .page-hero-title { margin-left: 0 !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="top-nav">
+  <ul class="nav-links nav-links-left">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="where-you-stand.html">Where You Stand</a></li>
+    <li><a href="get-started.html">Show Up</a></li>
+  </ul>
+  <div class="nav-logo-group">
+  <div class="nav-logo">
+    <img src="images/iar_logo_transparent.webp" alt="I Am Redemption" width="144" height="144">
+  </div>
+  </div>
+  <div class="nav-right-group">
+  <ul class="nav-links nav-links-right">
+    <li><a href="get-involved.html">Get Involved</a></li>
+    <li><a href="austinmarathon.html" class="active">Austin Marathon</a></li>
+    <li><a href="merch.html">Merch</a></li>
+  </ul>
+  <a href="https://givebutter.com/IAR" class="nav-cta">Donate</a>
+  </div>
+  <div class="nav-hamburger" id="nav-hamburger-btn" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+</nav>
+<script>
+(function() {
+  var _menuOpen = false;
+  var overlay = null;
+  function buildOverlay() {
+    if (overlay) return;
+    overlay = document.createElement('div');
+    overlay.id = 'mobile-nav-overlay';
+    var allLinks = document.querySelectorAll('#top-nav .nav-links-left a, #top-nav .nav-right-group a');
+    allLinks.forEach(function(a) {
+      var item = document.createElement('a');
+      item.href = a.href;
+      item.textContent = a.textContent.trim();
+      if (a.classList.contains('active')) item.classList.add('mob-active');
+      if (a.classList.contains('nav-cta')) item.classList.add('mob-cta');
+      overlay.appendChild(item);
+    });
+    document.body.appendChild(overlay);
+  }
+  window.toggleMobileMenu = function() {
+    var nav  = document.getElementById('top-nav');
+    var logo = nav ? nav.querySelector('.nav-logo-group') : null;
+    var left  = nav ? nav.querySelector('.nav-links-left')  : null;
+    var right = nav ? nav.querySelector('.nav-links-right') : null;
+    _menuOpen = !_menuOpen;
+    if (left)  left.style.display = 'none';
+    if (right) right.style.display = 'none';
+    if (logo) logo.style.setProperty('display', _menuOpen ? 'none' : '', 'important');
+    if (_menuOpen) {
+      buildOverlay();
+      var navH = nav ? nav.offsetHeight : 60;
+      overlay.style.top = navH + 'px';
+      overlay.style.display = 'flex';
+    } else {
+      if (overlay) overlay.style.display = 'none';
+    }
+  };
+})();
+</script>
+
+<style>
+#mobile-nav-overlay { display:none; position:fixed; left:0; right:0; z-index:998; flex-direction:column; align-items:center; background:rgba(10,10,10,0.99); border-bottom:1px solid rgba(200,151,58,0.2); padding:0.5rem 0 1rem; }
+#mobile-nav-overlay a { font-family:'Barlow Condensed',sans-serif; font-size:16px; font-weight:800; letter-spacing:0.13em; text-transform:uppercase; color:#c0c0c0; text-decoration:none; text-align:center; padding:0.65rem 2rem; width:100%; display:block; }
+#mobile-nav-overlay a:hover, #mobile-nav-overlay a.mob-active { color: var(--gold); }
+#mobile-nav-overlay a.mob-cta { color:#000; background:var(--gold); margin:0.5rem 2rem 0; width:calc(100% - 4rem); padding:0.6rem 1rem; }
+</style>
+
+<main>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('images/AM.webp');"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <h1 class="page-hero-title fade-in fade-in-d1" style="margin-left:0.5rem;text-align:center;line-height:1;">
+      <span style="color:var(--white);display:block;margin:0.1em 0;">I Am Redemption</span>
+      <span style="color:var(--white);display:block;margin:0.1em 0;">x</span>
+      <span style="color:var(--gold);display:block;margin:0.1em 0;">Austin Marathon</span>
+    </h1>
+  </div>
+</div>
+
+<!-- ABOUT THE PARTNERSHIP -->
+<section class="content-section dark" id="partner" style="padding:5rem 2.5rem 3rem;">
+  <div class="section-inner">
+    <div class="fade-in">
+      <div class="section-label">Race Weekend: February 12-14, 2027</div>
+      <h2 class="section-title" style="font-size:44px;letter-spacing:0.03em;">Community and Charity Partners.</h2>
+      <p class="section-subtitle" style="margin-bottom:1.25rem;">
+        We're honored to be returning as an official Charity and Community Partner of Ascension Seton Austin Marathon, Half Marathon, and 5K. The Austin Marathon selects organizations that are making a meaningful impact in our community and creating opportunities for runners to give every mile a greater purpose and we're proud to be part of that mission.
+      </p>
+      <p class="section-subtitle">
+        Whether you join Team IAR, volunteer at one of our aid stations, or make a donation, you're helping build a community where connection creates hope, hope inspires change, and lives are transformed. Together, nobody recovers alone.
+      </p>
+    </div>
+    <div class="fade-in fade-in-d1">
+      <img src="images/AMCollage.webp" loading="lazy" width="1600" height="1600" alt="I Am Redemption at the Austin Marathon — team, volunteers, and finishers" style="width:78%;height:auto;display:block;margin-left:auto;margin-right:0;box-sizing:border-box;border:10px solid #fff;box-shadow:0 14px 40px rgba(0,0,0,0.55);">
+    </div>
+  </div>
+</section>
+
+<!-- TWO WAYS TO SHOW UP -->
+<section class="content-section alt" id="show-up" style="padding:2rem 2.5rem 5rem;">
+  <div class="showup-wrap">
+    <h2 class="section-title" style="text-align:center;color:var(--gold);font-size:44px;letter-spacing:0.03em;">Choose Your Team!</h2>
+   
+
+    <div class="showup-grid">
+
+      <!-- VOLUNTEER -->
+      <div class="showup-card fade-in">
+        <div class="showup-eyebrow">Volunteer</div>
+        <h3 class="showup-title">Aid Stations</h3>
+        <p class="showup-text">Team IAR came through in 2026 and Austin Marathon noticed. Because of your incredible support, we're getting <span style="font-weight:600;color:var(--white);">TWO</span> aid stations in 2027, and they're right across the street from each other!<br><br>Volunteer registration is managed by the Austin Marathon. Let us know you're interested below, and we'll send the links as soon as they're released.</p>
+        <form class="story-form" id="am-volunteer-form" onsubmit="submitVolunteerFormspree(event)">
+          <input type="hidden" name="form_type" value="Austin Marathon Volunteers">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">FIRST NAME</label><input type="text" name="firstName" class="form-field" placeholder="Your first name"></div>
+            <div class="form-group"><label class="form-label">LAST NAME</label><input type="text" name="lastName" class="form-field" placeholder="Your last name"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">EMAIL</label><input type="email" name="email" class="form-field" placeholder="Your email address"></div>
+            <div class="form-group"><label class="form-label">PHONE</label><input type="tel" name="phone" class="form-field" placeholder="Your phone number"></div>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;border:none;font-size:15px;margin-top:0.5rem;">Submit</button>
+          <div id="am-volunteer-success" style="display:none;margin-top:1rem;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.1em;font-size:15px;border-top:2px solid var(--gold);padding-top:1rem;">Thanks! We'll send the signup link as soon as it's released.</div>
+        </form>
+      </div>
+
+      <div class="showup-divider"></div>
+
+      <!-- RUN FOR TEAM IAR (placeholder per current instructions) -->
+      <div class="showup-card fade-in fade-in-d1">
+        <div class="showup-eyebrow">Go the distance</div>
+        <h3 class="showup-title">Run For Team IAR</h3>
+        <div style="flex-grow:1;">
+          <p class="showup-text" style="margin-bottom:1rem;">Join Team I Am Redemption at the Austin Marathon, Half Marathon, or 5K. <br> Save <span style="font-weight:600;color:var(--white);">10%</span> on any distance with code <span style="font-weight:600;color:var(--white);">IAMREDEMPTION27</span>.</p>
+          <p class="showup-text" style="margin-bottom:1rem;"><span style="font-weight:800;font-size:1.1em;color:var(--white);">Want to run for free?</span><br>Raise <span style="font-weight:600;color:var(--white);">$600 or more</span>, and we'll cover the cost of your race entry.<br>Create your Team I Am Redemption fundraising page below.</p>
+          <p class="showup-text" style="margin-bottom:0;"><span style="font-weight:800;font-size:1.1em;color:var(--white);">Want to train with IAR?</span><br>Marathon training begins in mid-August with weekly Sunday runs. Experience the Austin Marathon course with fully supported training runs, including aid stations along the route. Follow us on Instagram @iam.redemption for updates and the official kickoff.</p>
+        </div>
+        <a class="btn-outline" role="button" aria-disabled="true" tabindex="-1" onclick="return false;" style="cursor:default;">Fundraising Page - Coming Soon</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED: PRICE OF REDEMPTION (small, low-key — AM's partnership is with IAR, not the film) -->
+<section class="content-section dark" id="film" style="padding:3.5rem 2.5rem;">
+  <div class="featured-strip">
+    <img src="images/POR.webp" loading="lazy" width="4032" height="3024" alt="Price of Redemption — a feature film about recovery, family, and community, from I Am Redemption">
+    <div class="fade-in" style="flex:1 1 320px;">
+      <div class="section-label" style="margin-bottom:0.5rem;">Featuring</div>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:0.03em;color:var(--white);margin-bottom:0.5rem;">Price of Redemption</h3>
+      <p style="font-size:14.5px;font-weight:300;color:#c0c0c0;line-height:1.7;margin-bottom:0.9rem;">Price of Redemption is a feature film about how one person’s fight for recovery impacts everyone around them. It shows what families, friends, and communities carry, and how healing becomes a shared process. It gives people a real look at what these battles feel like from every side.
+The people who love you feel the weight, the fear, and the hope right alongside you. Price of Redemption shows why support and belonging are essential and how they change the direction of a life. Helping people understand our mission and the movement behind it.</p>
+      <a class="btn-outline" role="button" aria-disabled="true" tabindex="-1" onclick="return false;" style="padding:0.6rem 1.5rem;font-size:12px;cursor:default;">Currently in Post-Production</a>
+    </div>
+  </div>
+</section>
+
+<div class="email-bar">
+  <div class="email-bar-inner">
+    <div class="email-bar-text">
+      <h3>Stay Connected</h3>
+      <p>Stories and community updates.</p>
+    </div>
+    <div class="email-bar-form" id="email-bar-form-am">
+      <input type="hidden" name="form_type" value="Email Subscription">
+      <input type="email" class="email-input" id="email-input-am" placeholder="Enter your email address">
+      <button class="email-btn" onclick="submitEmailBar('am')">Subscribe</button>
+    </div>
+    <div id="email-bar-success-am" style="display:none;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.1em;font-size:15px;">Thanks for subscribing!</div>
+  </div>
+</div>
+
+</main>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="images/iar_logo_transparent.webp" alt="I Am Redemption" width="144" height="144" loading="lazy">
+      <p>Built Different. Powered Different.</p>
+      <p class="footer-legal">501(c)(3) Registered Nonprofit · All donations directly support our mission.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Navigate</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="where-you-stand.html">Where You Stand</a></li>
+        <li><a href="get-started.html">Show Up</a></li>
+        <li><a href="get-involved.html">Get Involved</a></li>
+        <li><a href="austinmarathon.html">Austin Marathon</a></li>
+        <li><a href="merch.html">Merch</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Take Action</h5>
+      <ul>
+        <li><a href="https://givebutter.com/IAR">Donate</a></li>
+        <li><a href="austinmarathon.html#show-up">Volunteer</a></li>
+        <li><a href="get-involved.html#partner">Partner With Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="get-involved.html#story">Submit Your Story</a></li>
+        <li><a href="get-involved.html#partner">Book Shawn</a></li>
+        <li><a href="get-involved.html#partner">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 I Am Redemption. All Rights Reserved.</span>
+    <span>Austin, TX</span>
+  </div>
+</footer>
+
+<script src="shared.js" defer></script>
+</body>
+</html>
