@@ -116,12 +116,12 @@
 
   /* Partnership logo row (under the intro paragraphs) */
   .am-logo-row { display:flex; align-items:center; justify-content:center; column-gap:12rem; row-gap:1.5rem; flex-wrap:wrap; }
-  .am-logo-item { height:175px; width:auto; object-fit:contain; }
+  .am-logo-item { height:150px; width:auto; object-fit:contain; }
   .am-logo-band { max-width:600px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:.75rem; }
   .am-fade-line { width:100%; height:1px; background:linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%); }
 
   @media (max-width:768px) {
-    .am-collage-img { margin-left:auto !important; margin-right:auto !important; }
+    .am-collage-img { width:100% !important; margin-left:auto !important; margin-right:auto !important; }
   }
 
   /* This page's hero image already has a black area built in behind the
@@ -133,7 +133,8 @@
     .page-hero .page-hero-bg { filter: none !important; background-position: center center !important; background-image: url('images/AMMobile.webp') !important; }
     .page-hero .page-hero-overlay { background: none !important; }
     .page-hero { justify-content: center; }
-    .page-hero-title { margin-left: 0 !important; transform: scale(0.75) !important; }
+    .page-hero-title { margin-left: 0 !important; transform: none !important; }
+    .am-title-outline { -webkit-text-stroke: 1.5px #000; paint-order: stroke fill; }
   }
 </style>
 </head>
@@ -215,8 +216,8 @@
   <div class="page-hero-overlay"></div>
   <div class="page-hero-content">
     <h1 class="page-hero-title fade-in fade-in-d1" style="margin-left:0.5rem;text-align:center;line-height:1;transform:scale(0.75);transform-origin:center top;">
-      <span style="color:var(--white);display:block;margin:0.1em 0;">I Am Redemption</span>
-      <span style="color:var(--white);display:block;margin:0.1em 0;">x</span>
+      <span class="am-title-outline" style="color:var(--white);display:block;margin:0.1em 0;">I Am Redemption</span>
+      <span class="am-title-outline" style="color:var(--white);display:block;margin:0.1em 0;">x</span>
       <span style="color:var(--gold);display:block;margin:0.1em 0;">Austin Marathon</span>
     </h1>
   </div>
