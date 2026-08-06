@@ -47,9 +47,9 @@ app.use((req, res, next) => {
   next();
 });
 
-// ── Clean URLs (e.g. /austinmarathon → austinmarathon.html) ──────────────────
+// ── Clean URLs (e.g. /austinmarathon, /AustinMarathon → austinmarathon.html) ─
 app.get(/^\/[a-zA-Z0-9-]+$/, (req, res, next) => {
-  const filePath = path.join(__dirname, `${req.path}.html`);
+  const filePath = path.join(__dirname, `${req.path.toLowerCase()}.html`);
   res.sendFile(filePath, (err) => {
     if (err) next(); // no matching .html file — fall through to static/404
   });
