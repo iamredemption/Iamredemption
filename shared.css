@@ -321,7 +321,7 @@ footer {
 .footer-col ul a:hover { color: var(--gold); padding-left: 4px; }
 .footer-bottom {
   display: flex; align-items: center; justify-content: space-between;
-  padding-top: 0.8rem; border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: 0.3rem; border-top: 1px solid rgba(255,255,255,0.07);
   font-family: 'Barlow Condensed', sans-serif; font-size: 11px;
   letter-spacing: 0.1em; color: #666; text-transform: uppercase;
   max-width: var(--max-w); margin: 0 auto;
