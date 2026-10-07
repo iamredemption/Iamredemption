@@ -269,28 +269,45 @@ nav#top-nav {
   font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(0,0,0,0.55);
 }
 
-/* ── EMAIL BAR ── */
-.email-bar { background: #161616; border-top: 2px solid var(--gold); padding: 1.5rem 2.5rem; }
-.email-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 3rem; max-width: 920px; margin: 0 auto; flex-wrap: wrap; }
-.email-bar-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 0.05em; color: var(--white); margin-bottom: 0.3rem; }
-.email-bar-text p { font-size: 15px; font-weight: 300; color: var(--lighter-gray); }
-.email-bar-form { display: flex; flex: 1; min-width: 280px; max-width: 460px; }
+/* ── EMAIL BAR (Stay Connected: email + optional SMS) ── */
+.email-bar { background: #161616; border-top: 2px solid var(--gold); padding: 1.75rem 2.5rem; }
+.email-bar-inner { display: grid; grid-template-columns: auto minmax(0, 700px); justify-content: center; align-items: center; column-gap: clamp(2.5rem, 5vw, 4.5rem); max-width: var(--max-w); margin: 0 auto; }
+.email-bar-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: 44px; line-height: 1; letter-spacing: 0.04em; color: var(--white); margin-bottom: 0.4rem; }
+.email-bar-text p { font-size: 17px; font-weight: 400; color: var(--lighter-gray); }
+.email-bar-form { display: flex; flex-direction: column; gap: 0.75rem; width: 100%; }
+[id^="email-bar-success-"] { grid-column: 2; }
+.eb-row { display: flex; align-items: center; gap: 0.6rem; }
 .email-input {
-  flex: 1; background: var(--mid-gray);
-  border: 1px solid rgba(253,191,18,0.3); border-right: none;
-  color: var(--cream); padding: 0.9rem 1.2rem;
-  font-family: 'Barlow', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s;
+  flex: 1; min-width: 0; background: var(--mid-gray);
+  border: 1px solid rgba(255,255,255,0.15); border-radius: 3px;
+  color: var(--cream); padding: 0.9rem 1.1rem;
+  font-family: 'Barlow', sans-serif; font-size: 15px; outline: none; transition: border-color 0.2s;
 }
-.email-input::placeholder { color: #888; }
+.email-input::placeholder { color: #8a8a8a; }
 .email-input:focus { border-color: var(--gold); }
 .email-btn {
-  background: var(--gold); color: #000; border: none;
-  padding: 0.9rem 1.6rem;
-  font-family: 'Barlow Condensed', sans-serif; font-size: 13px;
+  background: var(--gold); color: #000; border: none; border-radius: 3px;
+  padding: 0.95rem 1rem; width: 200px; flex-shrink: 0;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 15px;
   font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
   cursor: pointer; transition: background 0.2s; white-space: nowrap;
 }
 .email-btn:hover { background: var(--gold-light); }
+.email-btn:disabled { opacity: 0.7; cursor: default; }
+.eb-sms-label { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 15px; color: var(--white); white-space: nowrap; }
+.eb-check { display: inline-flex; align-items: center; gap: 0.6rem; width: 200px; flex-shrink: 0; padding-left: 0.4rem; font-size: 15px; color: var(--lighter-gray); cursor: pointer; user-select: none; white-space: nowrap; }
+.eb-check input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.eb-box { width: 20px; height: 20px; border: 1.5px solid #bdbdbd; border-radius: 2px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; transition: background 0.15s, border-color 0.15s; }
+.eb-check input:checked + .eb-box { background: var(--gold); border-color: var(--gold); }
+.eb-check input:checked + .eb-box::after { content: ''; width: 5px; height: 10px; border: solid #000; border-width: 0 2px 2px 0; transform: rotate(45deg) translate(-1px,-1px); }
+.eb-check input:focus-visible + .eb-box { outline: 2px solid var(--gold); outline-offset: 2px; }
+.eb-check.eb-error .eb-box { border-color: #e05555; }
+.eb-disclosure { font-size: 12px !important; color: #a8a8a8 !important; line-height: 1.6; white-space: nowrap; }
+.eb-links { display: flex; margin-top: 0.35rem; white-space: nowrap; }
+.eb-links a, .footer-legal-links a { color: #c8c8c8; text-decoration: underline; text-underline-offset: 2px; transition: color 0.2s; }
+.eb-links a { padding: 0 0.9rem; border-left: 1px solid rgba(255,255,255,0.25); }
+.eb-links a:first-child { padding-left: 0; border-left: none; }
+.eb-links a:hover, .footer-legal-links a:hover { color: var(--gold); }
 
 /* ── FOOTER ── */
 footer {
@@ -328,6 +345,9 @@ footer {
   letter-spacing: 0.1em; color: #666; text-transform: uppercase;
   max-width: var(--max-w); margin: 0 auto;
 }
+
+.footer-legal-links { display: inline-flex; gap: 1.25rem; }
+.footer-legal-links a { text-decoration: none; color: #a8a8a8; }
 
 /* ── MOBILE BOTTOM NAV ── */
 .mobile-bottom-nav {
@@ -502,9 +522,10 @@ textarea.form-field { resize: vertical; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
   .footer-brand { grid-column: 1 / -1; }
   .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
-  .email-bar-inner { flex-direction: column; align-items: flex-start; }
+  .email-bar-inner { grid-template-columns: 1fr; justify-content: stretch; row-gap: 1.25rem; }
+  [id^="email-bar-success-"] { grid-column: 1; }
+  .eb-disclosure { white-space: normal; }
   .email-bar-form { width: 100%; max-width: 100%; }
-  .email-input { width: 100%; }
   .img-stack { height: 280px; }
   .content-section { padding: 3rem 1.25rem; }
   .hero { padding: 80px 1.25rem 2rem; min-height: 65vh; }
@@ -535,8 +556,11 @@ textarea.form-field { resize: vertical; }
   .page-hero { padding: 4rem 1rem 2rem; }
   .email-bar { padding: 1.5rem 1rem; }
   .email-bar-inner { gap: 1.25rem; }
-  .email-input, .email-btn { width: 100%; }
-  .email-bar-form { display: flex; flex-direction: column; gap: 0.5rem; }
+  .email-bar-text h3 { font-size: 36px; }
+  .eb-row { flex-direction: column; align-items: stretch; }
+  .email-input, .email-btn { width: 100%; min-width: 0; }
+  .eb-check { padding-left: 0; width: auto; }
+  .eb-links { margin-top: 0.4rem; }
   .btn-primary, .btn-outline { font-size: 13px; padding: 0.8rem 1.5rem; }
   .section-title { font-size: clamp(28px, 7vw, 48px); }
   .phase-map-inner { overflow-x: auto; padding-bottom: 0.5rem; }

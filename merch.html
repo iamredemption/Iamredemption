@@ -351,12 +351,20 @@ nav#top-nav{
   <div class="email-bar-inner">
     <div class="email-bar-text">
       <h3>Stay Connected</h3>
-      <p>Stories and community updates.</p>
+      <p>Community updates and opportunities.</p>
     </div>
     <div class="email-bar-form" id="email-bar-form-merch">
       <input type="hidden" name="form_type" value="Email Subscription">
-      <input type="email" class="email-input" id="email-input-merch" placeholder="Enter your email address">
-      <button class="email-btn" onclick="submitEmailBar('merch')">Subscribe</button>
+      <div class="eb-row">
+        <input type="email" class="email-input" id="email-input-merch" placeholder="Enter your email address" aria-label="Email address" autocomplete="email">
+        <button class="email-btn" id="email-btn-merch" onclick="submitEmailBar('merch')">Subscribe</button>
+      </div>
+      <div class="eb-row eb-sms-row">
+        <label class="eb-sms-label" for="phone-input-merch">Want texts too?</label>
+        <input type="tel" class="email-input phone-input" id="phone-input-merch" placeholder="Enter your phone number (optional)" autocomplete="tel">
+        <label class="eb-check"><input type="checkbox" id="sms-consent-merch"><span class="eb-box"></span>Yes, text me.</label>
+      </div>
+      <p class="eb-disclosure">Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help.<span class="eb-links"><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a></span></p>
     </div>
     <div id="email-bar-success-merch" style="display:none;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.1em;font-size:15px;">Thanks for subscribing!</div>
   </div>
@@ -404,6 +412,7 @@ nav#top-nav{
   </div>
   <div class="footer-bottom">
     <span>© 2026 I Am Redemption. All Rights Reserved.</span>
+    <span class="footer-legal-links"><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a></span>
   </div>
 </footer>
 
