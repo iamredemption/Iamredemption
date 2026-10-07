@@ -91,25 +91,53 @@ if (_hasRecaptchaScript) {
   }
 }
 
-// ── EMAIL SUBSCRIBE (Formspree) ──
+// ── EMAIL + SMS SUBSCRIBE (Formspree) ──
+// Email is required. A phone number is only sent when the visitor has
+// ticked "Yes, text me." (express SMS consent). The checkbox is never pre-checked.
 async function submitEmailBar(suffix) {
   const input = document.getElementById('email-input-' + suffix);
-  const btn = input ? input.parentElement.querySelector('.email-btn') : null;
+  const phoneInput = document.getElementById('phone-input-' + suffix);
+  const consent = document.getElementById('sms-consent-' + suffix);
+  const consentLabel = consent ? consent.closest('.eb-check') : null;
+  const btn = document.getElementById('email-btn-' + suffix);
+  const formWrap = document.getElementById('email-bar-form-' + suffix);
   const successDiv = document.getElementById('email-bar-success-' + suffix);
-  if (!input || !input.value.includes('@')) {
-    if (input) input.style.borderColor = '#b83232';
+  [input, phoneInput].forEach(el => { if (el) el.style.borderColor = ''; });
+  if (consentLabel) consentLabel.classList.remove('eb-error');
+
+  if (!input || !/^\S+@\S+\.\S+$/.test(input.value.trim())) {
+    if (input) { input.style.borderColor = '#e05555'; input.focus(); }
     return;
   }
+  const phone = phoneInput ? phoneInput.value.trim() : '';
+  const wantsSms = !!(consent && consent.checked);
+  const digits = phone.replace(/\D/g, '');
+  if (wantsSms && (digits.length < 10 || digits.length > 11)) {
+    if (phoneInput) { phoneInput.style.borderColor = '#e05555'; phoneInput.focus(); }
+    return;
+  }
+  if (phone && !wantsSms) {
+    // Number typed but consent not given: ask them to confirm instead of silently dropping it.
+    if (consentLabel) consentLabel.classList.add('eb-error');
+    return;
+  }
+
   if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
   try {
     const token = await getRecaptchaToken('email_subscribe');
     const formData = new FormData();
-    formData.append('email', input.value);
-    formData.append('form_type', 'Email Subscription');
+    formData.append('email', input.value.trim());
+    formData.append('form_type', wantsSms ? 'Email + SMS Subscription' : 'Email Subscription');
+    if (wantsSms) {
+      formData.append('phone', phone);
+      formData.append('sms_consent', 'Yes - opted in to text messages from I AM REDEMPTION');
+      formData.append('sms_consent_timestamp', new Date().toISOString());
+      formData.append('sms_consent_page', window.location.href);
+    }
     formData.append('g-recaptcha-response', token);
     const res = await fetch('https://formspree.io/f/mzdylgwk', { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
     if (res.ok) {
-      if (input.parentElement) input.parentElement.style.display = 'none';
+      if (formWrap) formWrap.style.display = 'none';
       if (successDiv) successDiv.style.display = 'block';
     } else {
       if (btn) { btn.textContent = 'Try Again'; btn.disabled = false; }
