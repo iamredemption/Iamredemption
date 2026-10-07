@@ -302,7 +302,7 @@ nav#top-nav {
 .eb-check input:checked + .eb-box::after { content: ''; width: 5px; height: 10px; border: solid #000; border-width: 0 2px 2px 0; transform: rotate(45deg) translate(-1px,-1px); }
 .eb-check input:focus-visible + .eb-box { outline: 2px solid var(--gold); outline-offset: 2px; }
 .eb-check.eb-error .eb-box { border-color: #e05555; }
-.eb-disclosure { font-size: 12px !important; color: #a8a8a8 !important; line-height: 1.6; white-space: nowrap; }
+.eb-disclosure { font-size: 12px !important; color: #a8a8a8 !important; line-height: 1.6; }
 .eb-links { display: flex; margin-top: 0.35rem; white-space: nowrap; }
 .eb-links a, .footer-legal-links a { color: #c8c8c8; text-decoration: underline; text-underline-offset: 2px; transition: color 0.2s; }
 .eb-links a { padding: 0 0.9rem; border-left: 1px solid rgba(255,255,255,0.25); }
