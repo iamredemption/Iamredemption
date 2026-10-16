@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donate | I Am Redemption</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preload" as="image" href="images/iar_logo_transparent.webp">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style id="critical-css">
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#0a0a0a;--off-black:#0f0f0f;--dark-gray:#161616;
+  --mid-gray:#222222;--card-bg:#1c1c1c;--light-gray:#b8b8b8;
+  --lighter-gray:#e0e0e0;--body-text:#dcdcdc;--gold:#FDBF12;
+  --gold-light:#fdd04a;--gold-dark:#c49100;--cream:#f0ebe0;
+  --white:#ffffff;--max-w:1160px;
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Barlow',sans-serif;
+  background:var(--off-black);color:var(--body-text);
+  line-height:1.65;font-size:16px;
+  overflow-x:hidden;padding-bottom:64px;
+}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+.fade-in-d1{transition-delay:0.12s;}
+.fade-in-d2{transition-delay:0.22s;}
+.fade-in-d3{transition-delay:0.32s;}
+.fade-in-d4{transition-delay:0.42s;}
+nav#top-nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;padding:2.5rem 2rem 0.75rem;
+  background:rgba(0,0,0,0.98);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(253,191,18,0.18);overflow:visible;
+}
+.nav-logo-group{position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:1002;pointer-events:none;}
+.nav-logo{display:flex;align-items:center;justify-content:center;text-decoration:none;pointer-events:all;background:transparent;padding:8px;}
+.nav-tagline{display:none;}
+.nav-logo img{height:144px;width:auto;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.5));}
+.nav-links{display:flex;align-items:center;gap:0;list-style:none;}
+.nav-links-left{justify-content:flex-end;grid-column:1;padding-right:88px;}
+.nav-links-right{justify-content:flex-start;grid-column:2;padding-left:94px;}.nav-right-group{grid-column:2;display:flex;align-items:center;justify-content:space-between;padding-left:94px;}.nav-right-group .nav-links-right{padding-left:0;}
+.nav-links li{display:flex;align-items:center;}
+.nav-links li::before{content:'';display:inline-block;width:2px;height:16px;background:var(--gold);margin-right:1.25rem;flex-shrink:0;}
+.nav-links-left li:first-child::before{display:none;}
+.nav-links-right li:first-child::before{display:none;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;letter-spacing:0.13em;text-transform:uppercase;color:#c0c0c0;text-decoration:none;transition:color 0.2s;padding-right:1.25rem;white-space:nowrap;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-cta{background:var(--gold)!important;color:#000!important;padding:0.45rem 1.2rem!important;font-weight:700!important;box-shadow:0 2px 12px rgba(253,191,18,0.3);}
+.nav-cta:hover{background:var(--gold-light)!important;color:#000!important;}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;grid-column:2;justify-self:end;}
+.nav-hamburger span{display:block;width:24px;height:2px;background:var(--cream);}
+.hero{position:relative;min-height:75vh;display:flex;flex-direction:column;justify-content:flex-start;padding:5rem 2.5rem 2rem;overflow:hidden;margin-top:88px;}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:top center;filter:brightness(0.6);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(10,10,10,0.0) 0%,rgba(10,10,10,0.25) 50%,rgba(10,10,10,0.60) 100%);}
+.hero-content{position:relative;max-width:none;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,88px);line-height:0.95;letter-spacing:0.02em;color:var(--white);margin-bottom:1rem;text-shadow:0 2px 40px rgba(0,0,0,0.7);}
+.hero h1 em{font-style:normal;color:var(--gold);}
+.hero-sub{font-size:17px;font-weight:300;color:var(--lighter-gray);max-width:480px;margin-bottom:1.5rem;line-height:1.7;}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+.hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:600;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:flex;align-items:center;gap:14px;}
+.hero-eyebrow::before{content:'';display:block;width:50px;height:3px;background:var(--gold);}
+.page-hero{position:relative;padding:5rem 2.5rem 2.5rem;min-height:55vh;display:flex;align-items:flex-start;overflow:hidden;margin-top:86px;}
+.page-hero-bg{position:absolute;inset:0;background-size:cover;background-position:top center;filter:brightness(0.6);}
+.page-hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(10,10,10,0.0) 0%,rgba(10,10,10,0.25) 50%,rgba(10,10,10,0.60) 100%);}
+.page-hero-content{position:relative;max-width:780px;}
+.page-hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,7vw,96px);line-height:0.92;letter-spacing:0.02em;color:var(--white);margin-bottom:0.75rem;white-space:nowrap;}
+.page-hero-title em{font-style:normal;color:var(--gold);}
+.page-hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:14px;}
+.page-hero-eyebrow::before{content:'';display:block;width:50px;height:3px;background:var(--gold);}
+.page-hero-sub{font-size:16px;font-weight:300;color:var(--lighter-gray);line-height:1.7;margin-top:0.75rem;max-width:420px;white-space:normal;}
+.btn-primary{display:inline-block;padding:0.9rem 2.2rem;background:var(--gold);color:#000;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 4px 18px rgba(253,191,18,0.25);}
+.btn-outline{display:inline-block;padding:0.9rem 2.2rem;border:1.5px solid rgba(253,191,18,0.6);color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;background:transparent;cursor:pointer;transition:all 0.2s;}
+.btn-row{display:flex;gap:1rem;flex-wrap:wrap;}
+@media(max-width:960px){
+  nav#top-nav{padding:0.85rem 1.5rem;grid-template-columns:auto 1fr auto;}
+  .nav-links-left,.nav-links-right,.nav-right-group{display:none;}
+  .nav-hamburger{display:flex;grid-column:3;}
+  .nav-logo-group{grid-column:2;justify-content:center;}
+  .nav-tagline{display:none!important;}
+  .hero{padding:80px 1.25rem 2rem;min-height:65vh;}
+  .page-hero{padding:4rem 1.25rem 2rem;}
+  .hero h1{font-size:clamp(38px,9vw,64px);white-space:normal;}
+  .page-hero-title{font-size:clamp(32px,8vw,60px);white-space:normal;}
+  .btn-primary,.btn-outline{width:100%;text-align:center;box-sizing:border-box;}
+  .hero-actions{flex-direction:column;gap:0.75rem;}
+  .hero-actions .btn-primary,.hero-actions .btn-outline{width:auto;}
+}
+@media(max-width:768px){
+  .hero{padding:80px 1rem 2rem;}
+  .page-hero{padding:4rem 1rem 2rem;}
+  .btn-primary,.btn-outline{font-size:13px;padding:0.8rem 1.5rem;}
+}
+@media(max-width:600px){
+  .hero h1{font-size:clamp(36px,11vw,58px);line-height:1;}
+  .page-hero-title{white-space:normal;font-size:clamp(30px,10vw,52px);}
+  .hero-actions{flex-direction:column;}
+  .btn-row{flex-direction:column;}
+}
+</style>
+
+  <style>
+    footer { background: #000000 !important; }
+    .footer-col ul a { color: #c0c0c0 !important; font-size: 14px !important; }
+    .footer-col ul a:hover { color: var(--gold) !important; }
+    .footer-brand p { color: #c8c8c8 !important; font-size: 14px !important; }
+    
+    .footer-bottom { color: #a8a8a8 !important; }
+    .email-bar-text p { color: #e0e0e0 !important; }
+    p { color: #c8c8c8; }  </style>
+<!-- ── GOOGLE ANALYTICS 4 — Replace G-Q7S7B337Q8 with your Measurement ID ── -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q7S7B337Q8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Q7S7B337Q8');
+  // Track scroll depth
+  var _scrolled={25:0,50:0,75:0,90:0};
+  window.addEventListener('scroll',function(){
+    var p=Math.round((window.scrollY/(document.body.scrollHeight-window.innerHeight))*100);
+    [25,50,75,90].forEach(function(d){
+      if(!_scrolled[d]&&p>=d){_scrolled[d]=1;gtag('event','scroll_depth',{event_category:'Engagement',event_label:d+'%',value:d});}
+    });
+  },{passive:true});
+</script>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <!-- SEO -->
+  <meta name="description" content="Donate to I Am Redemption, a 501(c)(3) nonprofit helping people rebuild through community, connection, and support.">
+  <link rel="canonical" href="https://iamredemption.org/give">
+  <meta property="og:title" content="Donate | I Am Redemption">
+  <meta property="og:description" content="Help people rebuild through community, connection, and support.">
+  <meta property="og:url" content="https://iamredemption.org/give">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://iamredemption.org/images/LOGO.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Donate | I Am Redemption">
+  <meta name="twitter:description" content="Help people rebuild through community, connection, and support.">
+  <!-- Givebutter widget library (donation form below) -->
+  <script async src="https://widgets.givebutter.com/latest.umd.cjs?acct=q5iKedqaQPeYDepT&p=other"></script>
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav id="top-nav">
+  <ul class="nav-links nav-links-left">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="where-you-stand.html">Where You Stand</a></li>
+    <li><a href="get-started.html">Show Up</a></li>
+  </ul>
+  <div class="nav-logo-group">
+  <div class="nav-logo">
+    <img src="images/iar_logo_transparent.webp" alt="I Am Redemption" width="144" height="144">
+  </div>
+  </div>
+  <div class="nav-right-group">
+  <ul class="nav-links nav-links-right">
+    <li><a href="get-involved.html">Get Involved</a></li>
+    <li><a href="austinmarathon.html">Austin Marathon</a></li>
+    <li><a href="merch.html">Merch</a></li>
+  </ul>
+  <a href="give.html" class="nav-cta">Donate</a>
+  </div>
+  <div class="nav-hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+</nav>
+<script>
+(function() {
+  var _menuOpen = false;
+
+  // Create a single unified mobile menu overlay the first time it is needed
+  var overlay = null;
+  function buildOverlay() {
+    if (overlay) return;
+    overlay = document.createElement('div');
+    overlay.id = 'mobile-nav-overlay';
+
+    // Collect all links from both nav lists in order
+    var allLinks = document.querySelectorAll('#top-nav .nav-links-left a, #top-nav .nav-right-group a');
+    allLinks.forEach(function(a) {
+      var item = document.createElement('a');
+      item.href = a.href;
+      item.textContent = a.textContent.trim();
+      if (a.classList.contains('active')) item.classList.add('mob-active');
+      if (a.classList.contains('nav-cta')) item.classList.add('mob-cta');
+      overlay.appendChild(item);
+    });
+
+    document.body.appendChild(overlay);
+  }
+
+  window.toggleMobileMenu = function() {
+    var nav  = document.getElementById('top-nav');
+    var logo = nav ? nav.querySelector('.nav-logo-group') : null;
+    var left  = nav ? nav.querySelector('.nav-links-left')  : null;
+    var right = nav ? nav.querySelector('.nav-links-right') : null;
+
+    _menuOpen = !_menuOpen;
+
+    // Keep the original ULs hidden on mobile at all times
+    if (left)  left.style.display = 'none';
+    if (right) right.style.display = 'none';
+
+    // Hide/show logo
+    if (logo) logo.style.setProperty('display', _menuOpen ? 'none' : '', 'important');
+
+    if (_menuOpen) {
+      buildOverlay();
+      var navH = nav ? nav.offsetHeight : 60;
+      overlay.style.top = navH + 'px';
+      overlay.style.display = 'flex';
+    } else {
+      if (overlay) overlay.style.display = 'none';
+    }
+  };
+})();
+</script>
+
+<style>
+/* ── Single unified mobile nav overlay ── */
+#mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  left: 0; right: 0;
+  z-index: 998;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(10,10,10,0.99);
+  border-bottom: 1px solid rgba(200,151,58,0.2);
+  padding: 0.5rem 0 1rem;
+}
+#mobile-nav-overlay a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #c0c0c0;
+  text-decoration: none;
+  text-align: center;
+  padding: 0.65rem 2rem;
+  width: 100%;
+  display: block;
+}
+#mobile-nav-overlay a:hover,
+#mobile-nav-overlay a.mob-active { color: var(--gold); }
+#mobile-nav-overlay a.mob-cta {
+  color: #000;
+  background: var(--gold);
+  margin: 0.5rem 2rem 0;
+  width: calc(100% - 4rem);
+  padding: 0.6rem 1rem;
+}
+</style>
+
+
+<style>
+.give{margin-top:86px;padding:5rem 1.25rem 3.5rem;}
+.give-inner{max-width:640px;margin:0 auto;}
+.give-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:0.5rem;}
+.give-eyebrow::before{content:'';display:block;width:50px;height:3px;background:var(--gold);}
+.give-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,64px);line-height:0.95;letter-spacing:0.02em;color:var(--white);}
+.give-title em{font-style:normal;color:var(--gold);}
+.give-sub{font-size:16px;font-weight:300;color:var(--lighter-gray);margin:0.5rem 0 1.5rem;}
+.give-form{min-height:420px;}
+.give-fallback{display:inline-block;background:var(--gold);color:#000;font-weight:700;padding:0.85rem 1.75rem;border-radius:4px;text-decoration:none;}
+@media(max-width:600px){.give{padding:4.5rem 1rem 3rem;}}
+</style>
+<main>
+<section class="give">
+  <div class="give-inner">
+    <div class="give-eyebrow">Donate</div>
+    <h1 class="give-title">Fuel the <em>Mission.</em></h1>
+    <p class="give-sub">Help people rebuild through community, connection, and support.</p>
+    <div class="give-form">
+      <!-- GIVEBUTTER FORM WIDGET: paste the widget code here -->
+      <a class="give-fallback" href="https://givebutter.com/IAR">Donate on Givebutter</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="images/iar_logo_transparent.webp" alt="I Am Redemption" width="144" height="144" loading="lazy">
+      <p class="footer-legal">501(c)(3) Registered Nonprofit</p>
+      <p class="footer-legal">EIN: 39-3288488</p>
+      <p class="footer-legal">431 Wren Ln. Kyle, TX 78640</p>
+      <div class="footer-seal">
+        <a aria-label="I Am Redemption" href="https://app.candid.org/profile/16402962/i-am-redemption-39-3288488/?pkId=64119e19-7145-44ac-93f7-8e0d1cc5efaa" target="_blank" rel="noopener"><img alt="Candid Platinum Transparency Seal" src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16402962/svg" loading="lazy"></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Navigate</h5>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="where-you-stand.html">Where You Stand</a></li>
+        <li><a href="get-started.html">Show Up</a></li>
+        <li><a href="get-involved.html">Get Involved</a></li>
+        <li><a href="austinmarathon.html">Austin Marathon</a></li>
+        <li><a href="merch.html">Merch</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Take Action</h5>
+      <ul>
+        <li><a href="https://givebutter.com/IAR">Donate</a></li>
+        <li><a href="get-involved.html#volunteer">Volunteer</a></li>
+        <li><a href="get-involved.html#partner">Partner With Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="get-involved.html#story">Submit Your Story</a></li>
+        <li><a href="get-involved.html#partner">Book Shawn</a></li>
+        <li><a href="get-involved.html#partner">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 I Am Redemption. All Rights Reserved.</span>
+    <span class="footer-legal-links"><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a></span>
+  </div>
+</footer>
+
+
+<script src="shared.js" defer></script>
+</body>
+</html>
