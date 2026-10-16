@@ -8,6 +8,31 @@
 })();
 
 
+// ── DONATE BUTTONS → GIVEBUTTER POPUP ──
+// Swaps each header Donate link (and the one in the phone menu) for Givebutter's Donate button,
+// which opens the donation amounts in a popup. The swap only happens once Givebutter has loaded,
+// so if it ever fails, the original link to givebutter.com/IAR stays put and Donate still works.
+(function () {
+  var WIDGET_ID = 'LWkn4J';
+  if (!window.customElements) return;
+  function swap(link) {
+    if (link.dataset.gbSwapped) return;
+    link.dataset.gbSwapped = '1';
+    var w = document.createElement('givebutter-widget');
+    w.setAttribute('id', WIDGET_ID);
+    link.insertAdjacentElement('afterend', w);
+    link.style.display = 'none';
+  }
+  customElements.whenDefined('givebutter-widget').then(function () {
+    document.querySelectorAll('a.nav-cta').forEach(swap);
+    // The phone menu is built the first time it opens, so watch for its Donate link too.
+    new MutationObserver(function () {
+      document.querySelectorAll('#mobile-nav-overlay a.mob-cta').forEach(swap);
+    }).observe(document.body, { childList: true, subtree: true });
+  });
+})();
+
+
 // ── FADE-IN ON SCROLL ──
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
