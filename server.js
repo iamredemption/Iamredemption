@@ -37,12 +37,12 @@ app.use((req, res, next) => {
   res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
   res.setHeader('Content-Security-Policy', [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://fonts.googleapis.com https://www.googletagmanager.com",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-    "font-src 'self' https://fonts.gstatic.com",
-    "frame-src https://www.google.com https://recaptcha.google.com https://www.youtube.com https://www.youtube-nocookie.com https://form.jotform.com https://submit.jotform.com",
+    "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://fonts.googleapis.com https://www.googletagmanager.com https://givebutter.com https://*.givebutter.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://givebutter.com https://*.givebutter.com",
+    "font-src 'self' https://fonts.gstatic.com https://givebutter.com https://*.givebutter.com",
+    "frame-src https://www.google.com https://recaptcha.google.com https://www.youtube.com https://www.youtube-nocookie.com https://form.jotform.com https://submit.jotform.com https://givebutter.com https://*.givebutter.com https://js.stripe.com https://hooks.stripe.com https://pay.google.com",
     "img-src 'self' data: https:",
-    "connect-src 'self' https://formspree.io https://www.google.com https://www.google-analytics.com",
+    "connect-src 'self' https://formspree.io https://www.google.com https://www.google-analytics.com https://givebutter.com https://*.givebutter.com https://api.stripe.com",
   ].join('; '));
   next();
 });

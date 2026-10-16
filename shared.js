@@ -1,3 +1,13 @@
+// ── GIVEBUTTER WIDGET LIBRARY (donation popup) ──
+(function () {
+  if (document.querySelector('script[src*="widgets.givebutter.com"]')) return;
+  var gb = document.createElement('script');
+  gb.async = true;
+  gb.src = 'https://widgets.givebutter.com/latest.umd.cjs?acct=q5iKedqaQPeYDepT&p=other';
+  document.head.appendChild(gb);
+})();
+
+
 // ── FADE-IN ON SCROLL ──
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
