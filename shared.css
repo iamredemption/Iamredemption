@@ -501,6 +501,16 @@ textarea.form-field { resize: vertical; }
 .event-link { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
 .event-link:hover { gap: 11px; }
 
+/* ── COMPACT MENU BAR FROM THE START (desktop) ──
+   The menu bar used to start with 40px of extra space on top and only shrink after
+   scrolling. It now starts compact (the same height it has after scrolling), and the
+   page content below moves up 28px to match. Phones are unchanged. */
+@media (min-width: 961px) {
+  html body nav#top-nav { padding: 0.75rem 2rem; }
+  html body .hero { margin-top: 60px; }
+  html body .page-hero { margin-top: 58px; }
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1180px) {
   .events-grid { grid-template-columns: 1fr 1fr; }

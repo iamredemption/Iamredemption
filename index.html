@@ -232,6 +232,13 @@ nav#top-nav{
       }
     }
 
+    /* ── Compact menu bar from the start (desktop) — same rule as in shared.css,
+       repeated here so the homepage never flashes the old taller bar while loading ── */
+    @media (min-width: 961px) {
+      html body nav#top-nav { padding: 0.75rem 2rem; }
+      html body .hero { margin-top: 60px; }
+    }
+
     /* ── Mobile nav: hide logo when menu is open so links are never covered ── */
     @media (max-width: 768px) {
       #top-nav.nav-open .nav-logo-group { display: none !important; }
@@ -308,7 +315,7 @@ nav#top-nav{
   <ul class="nav-links nav-links-right">
     <li><a href="get-involved.html">Get Involved</a></li>
     <li><a href="austinmarathon.html">Austin Marathon</a></li>
-    <li><a href="merch.html">Merch</a></li>
+    <li><a href="https://iamredemption.square.site/#6I3OGUREEUYFOE54PTP5O6BD" target="_blank" rel="noopener">Merch</a></li>
   </ul>
   <a href="https://givebutter.com/IAR" class="nav-cta">Donate</a>
   </div>
@@ -331,6 +338,7 @@ nav#top-nav{
       var item = document.createElement('a');
       item.href = a.href;
       item.textContent = a.textContent.trim();
+      if (a.target) { item.target = a.target; item.rel = a.rel || 'noopener'; }
       if (a.classList.contains('active')) item.classList.add('mob-active');
       if (a.classList.contains('nav-cta')) item.classList.add('mob-cta');
       overlay.appendChild(item);
@@ -412,10 +420,6 @@ nav#top-nav{
     <img src="images/weatheredtext.webp" alt="I Am Redemption" class="hero-eyebrow" width="480" height="120" fetchpriority="high" style="width:clamp(280px,80vw,480px);height:auto;display:block;margin:0 auto 0.5rem;opacity:1;">
     <h1 class="fade-in fade-in-d1" style="font-size:clamp(22px,2.6vw,46px);line-height:1.15;">BUILT DIFFERENT <span style="color:#FDBF12;">BY PAIN.</span>  &nbsp;&nbsp;POWERED DIFFERENT <span style="color:#FDBF12;">BY PURPOSE.</span></h1>
     <p class="hero-sub fade-in fade-in-d2" style="color:#d8d8d8;">Your past doesn't break you, it builds you.</p>
-    <div class="hero-actions fade-in fade-in-d3">
-      <a href="where-you-stand.html" class="btn-outline">Where Do You Stand</a>
-      <a href="https://givebutter.com/IAR" class="btn-outline">Support the Mission</a>
-    </div>
   </div>
 </section>
 <style>
@@ -582,7 +586,7 @@ nav#top-nav{
         <li><a href="get-started.html">Show Up</a></li>
         <li><a href="get-involved.html">Get Involved</a></li>
         <li><a href="austinmarathon.html">Austin Marathon</a></li>
-        <li><a href="merch.html">Merch</a></li>
+        <li><a href="https://iamredemption.square.site/#6I3OGUREEUYFOE54PTP5O6BD" target="_blank" rel="noopener">Merch</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -711,22 +715,24 @@ function openTrailer() {
     transform: translateY(-1px);
   }
   #am-cta-btn svg { flex-shrink: 0; }
+  #am-modal givebutter-widget { display: flex; justify-content: center; }
   @media (max-width: 560px) {
     #am-modal { padding: 1.1rem 1rem 1.25rem; }
   }
 </style>
 
+<!-- This one pop-up shows the GivingTuesday flyer Nov 1 – Dec 4 and the Austin Marathon flyer the rest
+     of the time. The GivingTuesday dates (and the TEST_DATE preview setting) live at the top of shared.js. -->
 <div id="am-overlay" role="dialog" aria-modal="true" aria-label="Austin Marathon Partnership">
   <div id="am-modal">
     <button id="am-close" onclick="closeAMPopup()" aria-label="Close">&#x2715;</button>
     <img id="am-flyer"
-         src="images/AMPOP.webp"
-         alt="I Am Redemption x Austin Marathon — Official Charity & Community Partner. We're back at the Austin Marathon! Run with Team IAR, volunteer at an aid station, or learn how to get involved."
+         alt=""
          width="1534" height="1000">
     <a id="am-cta-btn"
        href="https://iamredemption.org/austinmarathon.html"
        onclick="closeAMPopup()">
-      <span>Run or Volunteer with IAR</span>
+      <span id="am-cta-text">Run or Volunteer with IAR</span>
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
   </div>
@@ -734,9 +740,30 @@ function openTrailer() {
 
 <script>
 (function() {
-  // ── Expiration: February 14, 2027 at 12:00 AM Central Time ──
+  // ── Austin Marathon pop-up expiration: February 14, 2027 at 12:00 AM Central Time ──
   // Using UTC offset for Central Standard Time (CST = UTC-6)
   var EXPIRES_UTC = new Date('2027-02-14T06:00:00Z');
+
+  // ── Which pop-up to show ──
+  var POPUPS = {
+    am: {
+      img: 'images/AMPOP.webp',
+      alt: "I Am Redemption x Austin Marathon — Official Charity & Community Partner. We're back at the Austin Marathon! Run with Team IAR, volunteer at an aid station, or learn how to get involved.",
+      label: 'Austin Marathon Partnership',
+      button: 'Run or Volunteer with IAR',
+      href: 'https://iamredemption.org/austinmarathon.html',
+      dismissKey: 'am_popup_dismissed'
+    },
+    gt: {
+      img: 'images/GTPOP.webp',
+      alt: 'GivingTuesday, December 1, 2026. Everyone is recovering from something. Our goal: $5,000. Campaign open November 1 to December 4. Supported by QuickDry Restoration.',
+      label: 'GivingTuesday 2026',
+      button: 'Give Today',
+      href: 'https://givebutter.com/IARGives',
+      dismissKey: 'gt_popup_dismissed'
+    }
+  };
+  var current = POPUPS.am;
 
   function closeAMPopup() {
     var overlay = document.getElementById('am-overlay');
@@ -745,9 +772,40 @@ function openTrailer() {
       overlay.style.transition = 'opacity 0.25s ease';
       setTimeout(function() { overlay.classList.remove('am-visible'); }, 250);
     }
-    try { sessionStorage.setItem('am_popup_dismissed', '1'); } catch(e) {}
+    try { sessionStorage.setItem(current.dismissKey, '1'); } catch(e) {}
   }
   window.closeAMPopup = closeAMPopup;
+
+  // Fill the pop-up with whichever flyer is active
+  function fillPopup() {
+    var c = window.IARCampaign;
+    if (c && c.phase) {
+      current = POPUPS.gt;
+      current.button = c.copy.popupButton || current.button;
+      current.href = c.url || current.href;
+    }
+    var overlay = document.getElementById('am-overlay');
+    var img = document.getElementById('am-flyer');
+    var btn = document.getElementById('am-cta-btn');
+    var txt = document.getElementById('am-cta-text');
+    if (overlay) overlay.setAttribute('aria-label', current.label);
+    if (img) { img.src = current.img; img.alt = current.alt; }
+    if (btn) btn.href = current.href;
+    if (txt) txt.textContent = current.button;
+    if (btn && current === POPUPS.gt) {
+      btn.addEventListener('click', function() {
+        if (c && c.track) c.track('popup_' + c.phase);
+      });
+      // Use the Givebutter "Give Today" button so the donation form opens right here.
+      // Closing this pop-up when it's clicked keeps the donation form in front.
+      if (c && c.useWidget) {
+        c.useWidget(btn, function() {
+          if (c.track) c.track('popup_' + c.phase);
+          closeAMPopup();
+        });
+      }
+    }
+  }
 
   // Close on overlay click (outside modal)
   var overlay = document.getElementById('am-overlay');
@@ -764,11 +822,14 @@ function openTrailer() {
 
   // ── Show logic ──
   function maybeShow() {
-    // Past expiration? Never show.
-    if (new Date() >= EXPIRES_UTC) return;
+    fillPopup();
 
-    // Already dismissed this session? Don't re-show.
-    try { if (sessionStorage.getItem('am_popup_dismissed')) return; } catch(e) {}
+    // Austin Marathon pop-up past its expiration? Never show it.
+    if (current === POPUPS.am && new Date() >= EXPIRES_UTC) return;
+
+    // Already dismissed this session? Don't re-show. (Skipped on the test site so it always shows.)
+    var testing = window.IARCampaign && window.IARCampaign.testing;
+    try { if (!testing && sessionStorage.getItem(current.dismissKey)) return; } catch(e) {}
 
     // Show after 1.5s delay
     setTimeout(function() {
