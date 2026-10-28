@@ -232,6 +232,13 @@ nav#top-nav{
       }
     }
 
+    /* ── Compact menu bar from the start (desktop) — same rule as in shared.css,
+       repeated here so the homepage never flashes the old taller bar while loading ── */
+    @media (min-width: 961px) {
+      html body nav#top-nav { padding: 0.75rem 2rem; }
+      html body .hero { margin-top: 60px; }
+    }
+
     /* ── Mobile nav: hide logo when menu is open so links are never covered ── */
     @media (max-width: 768px) {
       #top-nav.nav-open .nav-logo-group { display: none !important; }
