@@ -20,6 +20,10 @@ var TEST_DATE = '2026-11-01';
 
 (function () {
   var CAMPAIGN_URL = 'https://givebutter.com/IARGives';
+  // Givebutter "Give Today" button for the GivingTuesday campaign. It opens the donation form
+  // in a pop-up without leaving the site. If Givebutter ever fails to load, the plain
+  // link to the campaign page shows instead, so giving still works.
+  var GT_WIDGET_ID = 'g8Mrq2';
 
   // Today's date in Central time, as 'YYYY-MM-DD'
   function centralToday() {
@@ -69,6 +73,22 @@ var TEST_DATE = '2026-11-01';
   }
   window.IARCampaign.track = track;
 
+  // Swap a plain link for the Givebutter button (only once Givebutter has loaded)
+  function useWidget(link, onClick) {
+    if (!link || !window.customElements) return;
+    customElements.whenDefined('givebutter-widget').then(function () {
+      if (link.dataset.gbSwapped) return;
+      link.dataset.gbSwapped = '1';
+      var w = document.createElement('givebutter-widget');
+      w.setAttribute('id', GT_WIDGET_ID);
+      w.className = 'gt-widget';
+      if (onClick) w.addEventListener('click', onClick);
+      link.insertAdjacentElement('afterend', w);
+      link.style.display = 'none';
+    });
+  }
+  window.IARCampaign.useWidget = useWidget;
+
   // ── Styles ──
   var css = ''
     + ':root{--gt-bar-h:52px;}'
@@ -89,6 +109,7 @@ var TEST_DATE = '2026-11-01';
     + '#gt-bar .gt-btn{flex-shrink:0;background:#000;color:#FDBF12;text-decoration:none;font-family:"Barlow Condensed",sans-serif;'
     +   'font-size:16px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:8px 18px;white-space:nowrap;transition:background 0.2s;}'
     + '#gt-bar .gt-btn:hover{background:#222;}'
+    + '#gt-bar givebutter-widget{flex-shrink:0;display:flex;align-items:center;}'
     + '@media (max-width:1100px){#gt-bar .gt-text .gt-long{display:none;}#gt-bar .gt-text .gt-short{display:inline;}}'
     + '@media (max-width:760px){'
     +   '#gt-bar{justify-content:space-between;gap:10px;padding:0 12px;}'
@@ -124,9 +145,11 @@ var TEST_DATE = '2026-11-01';
       + '<a class="gt-btn" href="' + CAMPAIGN_URL + '">'
       +   '<span class="gt-long">' + esc(c.button) + '</span><span class="gt-short">' + esc(c.buttonShort || c.button) + '</span>'
       + '</a>';
-    bar.querySelector('.gt-btn').addEventListener('click', function () { track('banner_' + phase); });
+    var link = bar.querySelector('.gt-btn');
+    link.addEventListener('click', function () { track('banner_' + phase); });
     document.body.insertBefore(bar, document.body.firstChild);
     document.documentElement.classList.add('gt-bar-on');
+    useWidget(link, function () { track('banner_' + phase); });
   }
   if (document.body) addBar();
   else document.addEventListener('DOMContentLoaded', addBar);

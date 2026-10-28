@@ -711,6 +711,7 @@ function openTrailer() {
     transform: translateY(-1px);
   }
   #am-cta-btn svg { flex-shrink: 0; }
+  #am-modal givebutter-widget { display: flex; justify-content: center; }
   @media (max-width: 560px) {
     #am-modal { padding: 1.1rem 1rem 1.25rem; }
   }
@@ -791,6 +792,14 @@ function openTrailer() {
       btn.addEventListener('click', function() {
         if (c && c.track) c.track('popup_' + c.phase);
       });
+      // Use the Givebutter "Give Today" button so the donation form opens right here.
+      // Closing this pop-up when it's clicked keeps the donation form in front.
+      if (c && c.useWidget) {
+        c.useWidget(btn, function() {
+          if (c.track) c.track('popup_' + c.phase);
+          closeAMPopup();
+        });
+      }
     }
   }
 
