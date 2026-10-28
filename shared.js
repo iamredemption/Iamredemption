@@ -114,7 +114,6 @@ var TEST_DATE = '2026-11-01';
     + '@media (max-width:760px){:root{--gt-bar-h:62px;}}'
     + 'html.gt-bar-on body{padding-top:var(--gt-bar-h);}'
     + 'html.gt-bar-on nav#top-nav{top:var(--gt-bar-h);}'
-    + 'html.gt-bar-on .nav-logo-group{top:var(--gt-bar-h);}'
     + 'html.gt-bar-on #mobile-nav-overlay{margin-top:var(--gt-bar-h);}'
     + '#gt-bar{position:fixed;top:0;left:0;right:0;height:var(--gt-bar-h);z-index:1003;background:#FDBF12;color:#000;'
     +   'display:flex;align-items:center;justify-content:center;gap:18px;padding:0 20px;box-sizing:border-box;'
