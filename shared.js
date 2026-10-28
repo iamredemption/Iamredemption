@@ -63,7 +63,10 @@ var TEST_DATE = '2026-11-01';
   };
 
   // Other scripts (like the homepage pop-up) read this
-  window.IARCampaign = { date: today, phase: phase, url: CAMPAIGN_URL, copy: phase ? COPY[phase] : null };
+  // testing = true while TEST_DATE is set (or ?campaign-date= is used). In testing, the
+  // homepage pop-up shows on every page load, even after you close it, so it's easy to check.
+  var testing = !!TEST_DATE || /[?&]campaign-date=/.test(window.location.search);
+  window.IARCampaign = { date: today, phase: phase, url: CAMPAIGN_URL, copy: phase ? COPY[phase] : null, testing: testing };
 
   if (!phase) return;
   var c = COPY[phase];
@@ -73,7 +76,8 @@ var TEST_DATE = '2026-11-01';
   }
   window.IARCampaign.track = track;
 
-  // Swap a plain link for the Givebutter button (only once Givebutter has loaded)
+  // Swap a plain link for the Givebutter button — but only once the Givebutter button has
+  // actually appeared on the page. Until then (or if it never appears), the plain link stays.
   function useWidget(link, onClick) {
     if (!link || !window.customElements) return;
     customElements.whenDefined('givebutter-widget').then(function () {
@@ -82,9 +86,24 @@ var TEST_DATE = '2026-11-01';
       var w = document.createElement('givebutter-widget');
       w.setAttribute('id', GT_WIDGET_ID);
       w.className = 'gt-widget';
+      // Load it invisibly first so we can check that it really shows up
+      w.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;';
       if (onClick) w.addEventListener('click', onClick);
       link.insertAdjacentElement('afterend', w);
-      link.style.display = 'none';
+      var tries = 0;
+      (function check() {
+        var r = w.getBoundingClientRect();
+        if (r.width > 10 && r.height > 10) {
+          w.style.cssText = '';
+          link.style.display = 'none';
+        } else if (++tries < 40) {
+          setTimeout(check, 250);      // keep checking for up to 10 seconds
+        } else {
+          w.remove();                  // never appeared: keep the plain link
+          link.dataset.gbSwapped = '';
+          try { console.warn('GivingTuesday: Givebutter button ' + GT_WIDGET_ID + ' did not appear; using the plain link instead.'); } catch (e) {}
+        }
+      })();
     });
   }
   window.IARCampaign.useWidget = useWidget;

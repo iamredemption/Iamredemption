@@ -823,8 +823,9 @@ function openTrailer() {
     // Austin Marathon pop-up past its expiration? Never show it.
     if (current === POPUPS.am && new Date() >= EXPIRES_UTC) return;
 
-    // Already dismissed this session? Don't re-show.
-    try { if (sessionStorage.getItem(current.dismissKey)) return; } catch(e) {}
+    // Already dismissed this session? Don't re-show. (Skipped on the test site so it always shows.)
+    var testing = window.IARCampaign && window.IARCampaign.testing;
+    try { if (!testing && sessionStorage.getItem(current.dismissKey)) return; } catch(e) {}
 
     // Show after 1.5s delay
     setTimeout(function() {
