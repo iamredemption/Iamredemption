@@ -308,7 +308,7 @@ nav#top-nav{
   <ul class="nav-links nav-links-right">
     <li><a href="get-involved.html">Get Involved</a></li>
     <li><a href="austinmarathon.html">Austin Marathon</a></li>
-    <li><a href="merch.html">Merch</a></li>
+    <li><a href="https://iamredemption.square.site/#6I3OGUREEUYFOE54PTP5O6BD" target="_blank" rel="noopener">Merch</a></li>
   </ul>
   <a href="https://givebutter.com/IAR" class="nav-cta">Donate</a>
   </div>
@@ -331,6 +331,7 @@ nav#top-nav{
       var item = document.createElement('a');
       item.href = a.href;
       item.textContent = a.textContent.trim();
+      if (a.target) { item.target = a.target; item.rel = a.rel || 'noopener'; }
       if (a.classList.contains('active')) item.classList.add('mob-active');
       if (a.classList.contains('nav-cta')) item.classList.add('mob-cta');
       overlay.appendChild(item);
@@ -582,7 +583,7 @@ nav#top-nav{
         <li><a href="get-started.html">Show Up</a></li>
         <li><a href="get-involved.html">Get Involved</a></li>
         <li><a href="austinmarathon.html">Austin Marathon</a></li>
-        <li><a href="merch.html">Merch</a></li>
+        <li><a href="https://iamredemption.square.site/#6I3OGUREEUYFOE54PTP5O6BD" target="_blank" rel="noopener">Merch</a></li>
       </ul>
     </div>
     <div class="footer-col">
