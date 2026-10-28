@@ -1,3 +1,138 @@
+// ══════════════════════════════════════════════════════════════════════════
+//  GIVINGTUESDAY 2026 CAMPAIGN — banner on every page + homepage pop-up
+// ══════════════════════════════════════════════════════════════════════════
+//
+//  TEST_DATE makes the site act like it's a certain day, so you can preview.
+//    • Test site:  leave it as '2026-11-01' (or try '2026-12-01', '2026-12-02')
+//    • Live site:  change it to null   →   var TEST_DATE = null;
+//
+//  You can also preview any day without editing, by adding this to the address:
+//    ?campaign-date=2026-12-01
+//
+//  Schedule (Central time, switches at midnight):
+//    Before Nov 1 ........ nothing shows (Austin Marathon pop-up as usual)
+//    Nov 1 – Nov 30 ...... "GivingTuesday is December 1" banner + GivingTuesday pop-up
+//    Dec 1 ............... match-day banner + GivingTuesday pop-up
+//    Dec 2 – Dec 4 ....... "Last chance" banner + GivingTuesday pop-up
+//    After Dec 4 ......... nothing shows (Austin Marathon pop-up comes back)
+//
+var TEST_DATE = '2026-11-01';
+
+(function () {
+  var CAMPAIGN_URL = 'https://givebutter.com/IARGives';
+
+  // Today's date in Central time, as 'YYYY-MM-DD'
+  function centralToday() {
+    try {
+      var p = {};
+      new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', year: 'numeric', month: '2-digit', day: '2-digit' })
+        .formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
+      return p.year + '-' + p.month + '-' + p.day;
+    } catch (e) {
+      return new Date().toISOString().slice(0, 10);
+    }
+  }
+
+  function pickDate() {
+    var m = /[?&]campaign-date=(\d{4}-\d{2}-\d{2})/.exec(window.location.search);
+    if (m) return m[1];
+    if (TEST_DATE) return TEST_DATE;
+    return centralToday();
+  }
+
+  var today = pickDate();
+  var phase = null;
+  if (today >= '2026-11-01' && today <= '2026-11-30') phase = 'nov';
+  else if (today === '2026-12-01') phase = 'day';
+  else if (today >= '2026-12-02' && today <= '2026-12-04') phase = 'last';
+
+  var COPY = {
+    nov:  { title: 'GivingTuesday is December 1', text: 'Help us raise $5,000 to keep our programs accessible.',
+            titleShort: 'GivingTuesday is Dec 1',  textShort: 'Help us raise $5,000',
+            button: 'Give Today', popupButton: 'Give Today' },
+    day:  { title: 'Today is GivingTuesday',      text: 'The first $500 given today is matched, dollar for dollar.',
+            titleShort: 'Double Your Impact',      textShort: 'First $500 today is matched',
+            button: 'Double Your Impact', buttonShort: 'Give Today', popupButton: 'Double Your Impact Today' },
+    last: { title: 'Last Chance',                 text: 'Our GivingTuesday campaign closes December 4.',
+            titleShort: 'Last Chance',             textShort: 'Giving closes Dec 4',
+            button: 'Give Today', popupButton: 'Last Chance to Give' }
+  };
+
+  // Other scripts (like the homepage pop-up) read this
+  window.IARCampaign = { date: today, phase: phase, url: CAMPAIGN_URL, copy: phase ? COPY[phase] : null };
+
+  if (!phase) return;
+  var c = COPY[phase];
+
+  function track(label) {
+    try { if (typeof gtag === 'function') gtag('event', 'givingtuesday_click', { event_category: 'GivingTuesday', event_label: label }); } catch (e) {}
+  }
+  window.IARCampaign.track = track;
+
+  // ── Styles ──
+  var css = ''
+    + ':root{--gt-bar-h:52px;}'
+    + '@media (max-width:760px){:root{--gt-bar-h:62px;}}'
+    + 'html.gt-bar-on body{padding-top:var(--gt-bar-h);}'
+    + 'html.gt-bar-on nav#top-nav{top:var(--gt-bar-h);}'
+    + 'html.gt-bar-on .nav-logo-group{top:var(--gt-bar-h);}'
+    + 'html.gt-bar-on #mobile-nav-overlay{margin-top:var(--gt-bar-h);}'
+    + '#gt-bar{position:fixed;top:0;left:0;right:0;height:var(--gt-bar-h);z-index:1003;background:#FDBF12;color:#000;'
+    +   'display:flex;align-items:center;justify-content:center;gap:18px;padding:0 20px;box-sizing:border-box;'
+    +   'font-family:"Barlow",Arial,sans-serif;box-shadow:0 1px 0 rgba(0,0,0,0.25);}'
+    + '#gt-bar .gt-heart{height:30px;width:auto;flex-shrink:0;}'
+    + '#gt-bar .gt-words{display:flex;align-items:center;gap:16px;min-width:0;}'
+    + '#gt-bar .gt-title{font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;line-height:1.1;}'
+    + '#gt-bar .gt-divider{width:2px;height:22px;background:#000;flex-shrink:0;}'
+    + '#gt-bar .gt-text{font-size:16px;font-weight:600;white-space:nowrap;line-height:1.2;}'
+    + '#gt-bar .gt-short{display:none;}'
+    + '#gt-bar .gt-btn{flex-shrink:0;background:#000;color:#FDBF12;text-decoration:none;font-family:"Barlow Condensed",sans-serif;'
+    +   'font-size:16px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:8px 18px;white-space:nowrap;transition:background 0.2s;}'
+    + '#gt-bar .gt-btn:hover{background:#222;}'
+    + '@media (max-width:1100px){#gt-bar .gt-text .gt-long{display:none;}#gt-bar .gt-text .gt-short{display:inline;}}'
+    + '@media (max-width:760px){'
+    +   '#gt-bar{justify-content:space-between;gap:10px;padding:0 12px;}'
+    +   '#gt-bar .gt-heart{height:28px;}'
+    +   '#gt-bar .gt-words{flex-direction:column;align-items:flex-start;gap:2px;flex:1;overflow:hidden;}'
+    +   '#gt-bar .gt-divider{display:none;}'
+    +   '#gt-bar .gt-long{display:none !important;}#gt-bar .gt-short{display:inline !important;}'
+    +   '#gt-bar .gt-title{font-size:15px;letter-spacing:0.03em;max-width:100%;overflow:hidden;text-overflow:ellipsis;}'
+    +   '#gt-bar .gt-text{font-size:13px;max-width:100%;overflow:hidden;text-overflow:ellipsis;}'
+    +   '#gt-bar .gt-btn{font-size:14px;letter-spacing:0.06em;padding:0 11px;min-height:44px;display:flex;align-items:center;}'
+    + '}'
+    + '@media (max-width:374px){#gt-bar .gt-heart{display:none;}}';
+  var style = document.createElement('style');
+  style.id = 'gt-bar-style';
+  style.textContent = css;
+  document.head.appendChild(style);
+
+  // ── Banner ──
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  function addBar() {
+    if (document.getElementById('gt-bar') || !document.getElementById('top-nav')) return;
+    var bar = document.createElement('div');
+    bar.id = 'gt-bar';
+    bar.setAttribute('role', 'region');
+    bar.setAttribute('aria-label', 'GivingTuesday');
+    bar.innerHTML =
+        '<img class="gt-heart" src="images/gt-heart.webp" alt="" width="96" height="77">'
+      + '<div class="gt-words">'
+      +   '<span class="gt-title"><span class="gt-long">' + esc(c.title) + '</span><span class="gt-short">' + esc(c.titleShort) + '</span></span>'
+      +   '<span class="gt-divider" aria-hidden="true"></span>'
+      +   '<span class="gt-text"><span class="gt-long">' + esc(c.text) + '</span><span class="gt-short">' + esc(c.textShort) + '</span></span>'
+      + '</div>'
+      + '<a class="gt-btn" href="' + CAMPAIGN_URL + '">'
+      +   '<span class="gt-long">' + esc(c.button) + '</span><span class="gt-short">' + esc(c.buttonShort || c.button) + '</span>'
+      + '</a>';
+    bar.querySelector('.gt-btn').addEventListener('click', function () { track('banner_' + phase); });
+    document.body.insertBefore(bar, document.body.firstChild);
+    document.documentElement.classList.add('gt-bar-on');
+  }
+  if (document.body) addBar();
+  else document.addEventListener('DOMContentLoaded', addBar);
+})();
+
+
 // ── GIVEBUTTER WIDGET LIBRARY (donation popup) ──
 (function () {
   if (document.querySelector('script[src*="widgets.givebutter.com"]')) return;

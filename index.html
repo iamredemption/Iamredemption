@@ -716,17 +716,18 @@ function openTrailer() {
   }
 </style>
 
+<!-- This one pop-up shows the GivingTuesday flyer Nov 1 – Dec 4 and the Austin Marathon flyer the rest
+     of the time. The GivingTuesday dates (and the TEST_DATE preview setting) live at the top of shared.js. -->
 <div id="am-overlay" role="dialog" aria-modal="true" aria-label="Austin Marathon Partnership">
   <div id="am-modal">
     <button id="am-close" onclick="closeAMPopup()" aria-label="Close">&#x2715;</button>
     <img id="am-flyer"
-         src="images/AMPOP.webp"
-         alt="I Am Redemption x Austin Marathon — Official Charity & Community Partner. We're back at the Austin Marathon! Run with Team IAR, volunteer at an aid station, or learn how to get involved."
+         alt=""
          width="1534" height="1000">
     <a id="am-cta-btn"
        href="https://iamredemption.org/austinmarathon.html"
        onclick="closeAMPopup()">
-      <span>Run or Volunteer with IAR</span>
+      <span id="am-cta-text">Run or Volunteer with IAR</span>
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
   </div>
@@ -734,9 +735,30 @@ function openTrailer() {
 
 <script>
 (function() {
-  // ── Expiration: February 14, 2027 at 12:00 AM Central Time ──
+  // ── Austin Marathon pop-up expiration: February 14, 2027 at 12:00 AM Central Time ──
   // Using UTC offset for Central Standard Time (CST = UTC-6)
   var EXPIRES_UTC = new Date('2027-02-14T06:00:00Z');
+
+  // ── Which pop-up to show ──
+  var POPUPS = {
+    am: {
+      img: 'images/AMPOP.webp',
+      alt: "I Am Redemption x Austin Marathon — Official Charity & Community Partner. We're back at the Austin Marathon! Run with Team IAR, volunteer at an aid station, or learn how to get involved.",
+      label: 'Austin Marathon Partnership',
+      button: 'Run or Volunteer with IAR',
+      href: 'https://iamredemption.org/austinmarathon.html',
+      dismissKey: 'am_popup_dismissed'
+    },
+    gt: {
+      img: 'images/GTPOP.webp',
+      alt: 'GivingTuesday, December 1, 2026. Everyone is recovering from something. Our goal: $5,000. Campaign open November 1 to December 4. Supported by QuickDry Restoration.',
+      label: 'GivingTuesday 2026',
+      button: 'Give Today',
+      href: 'https://givebutter.com/IARGives',
+      dismissKey: 'gt_popup_dismissed'
+    }
+  };
+  var current = POPUPS.am;
 
   function closeAMPopup() {
     var overlay = document.getElementById('am-overlay');
@@ -745,9 +767,32 @@ function openTrailer() {
       overlay.style.transition = 'opacity 0.25s ease';
       setTimeout(function() { overlay.classList.remove('am-visible'); }, 250);
     }
-    try { sessionStorage.setItem('am_popup_dismissed', '1'); } catch(e) {}
+    try { sessionStorage.setItem(current.dismissKey, '1'); } catch(e) {}
   }
   window.closeAMPopup = closeAMPopup;
+
+  // Fill the pop-up with whichever flyer is active
+  function fillPopup() {
+    var c = window.IARCampaign;
+    if (c && c.phase) {
+      current = POPUPS.gt;
+      current.button = c.copy.popupButton || current.button;
+      current.href = c.url || current.href;
+    }
+    var overlay = document.getElementById('am-overlay');
+    var img = document.getElementById('am-flyer');
+    var btn = document.getElementById('am-cta-btn');
+    var txt = document.getElementById('am-cta-text');
+    if (overlay) overlay.setAttribute('aria-label', current.label);
+    if (img) { img.src = current.img; img.alt = current.alt; }
+    if (btn) btn.href = current.href;
+    if (txt) txt.textContent = current.button;
+    if (btn && current === POPUPS.gt) {
+      btn.addEventListener('click', function() {
+        if (c && c.track) c.track('popup_' + c.phase);
+      });
+    }
+  }
 
   // Close on overlay click (outside modal)
   var overlay = document.getElementById('am-overlay');
@@ -764,11 +809,13 @@ function openTrailer() {
 
   // ── Show logic ──
   function maybeShow() {
-    // Past expiration? Never show.
-    if (new Date() >= EXPIRES_UTC) return;
+    fillPopup();
+
+    // Austin Marathon pop-up past its expiration? Never show it.
+    if (current === POPUPS.am && new Date() >= EXPIRES_UTC) return;
 
     // Already dismissed this session? Don't re-show.
-    try { if (sessionStorage.getItem('am_popup_dismissed')) return; } catch(e) {}
+    try { if (sessionStorage.getItem(current.dismissKey)) return; } catch(e) {}
 
     // Show after 1.5s delay
     setTimeout(function() {
