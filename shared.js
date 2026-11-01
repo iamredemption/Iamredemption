@@ -19,11 +19,9 @@
 var TEST_DATE = null;
 
 (function () {
+  // The GivingTuesday buttons (banner + homepage pop-up) open this campaign page in a NEW TAB,
+  // so visitors see the story, goal bar and donors, and the IAR site stays open behind it.
   var CAMPAIGN_URL = 'https://givebutter.com/IARGives';
-  // Givebutter "Give Today" button for the GivingTuesday campaign. It opens the donation form
-  // in a pop-up without leaving the site. If Givebutter ever fails to load, the plain
-  // link to the campaign page shows instead, so giving still works.
-  var GT_WIDGET_ID = 'g8Mrq2';
 
   // Today's date in Central time, as 'YYYY-MM-DD'
   function centralToday() {
@@ -76,38 +74,6 @@ var TEST_DATE = null;
   }
   window.IARCampaign.track = track;
 
-  // Swap a plain link for the Givebutter button — but only once the Givebutter button has
-  // actually appeared on the page. Until then (or if it never appears), the plain link stays.
-  function useWidget(link, onClick) {
-    if (!link || !window.customElements) return;
-    customElements.whenDefined('givebutter-widget').then(function () {
-      if (link.dataset.gbSwapped) return;
-      link.dataset.gbSwapped = '1';
-      var w = document.createElement('givebutter-widget');
-      w.setAttribute('id', GT_WIDGET_ID);
-      w.className = 'gt-widget';
-      // Load it invisibly first so we can check that it really shows up
-      w.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;';
-      if (onClick) w.addEventListener('click', onClick);
-      link.insertAdjacentElement('afterend', w);
-      var tries = 0;
-      (function check() {
-        var r = w.getBoundingClientRect();
-        if (r.width > 10 && r.height > 10) {
-          w.style.cssText = '';
-          link.style.display = 'none';
-        } else if (++tries < 40) {
-          setTimeout(check, 250);      // keep checking for up to 10 seconds
-        } else {
-          w.remove();                  // never appeared: keep the plain link
-          link.dataset.gbSwapped = '';
-          try { console.warn('GivingTuesday: Givebutter button ' + GT_WIDGET_ID + ' did not appear; using the plain link instead.'); } catch (e) {}
-        }
-      })();
-    });
-  }
-  window.IARCampaign.useWidget = useWidget;
-
   // ── Styles ──
   var css = ''
     + ':root{--gt-bar-h:52px;}'
@@ -127,7 +93,6 @@ var TEST_DATE = null;
     + '#gt-bar .gt-btn{flex-shrink:0;background:#000;color:#FDBF12;text-decoration:none;font-family:"Barlow Condensed",sans-serif;'
     +   'font-size:16px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:8px 18px;white-space:nowrap;transition:background 0.2s;}'
     + '#gt-bar .gt-btn:hover{background:#222;}'
-    + '#gt-bar givebutter-widget{flex-shrink:0;display:flex;align-items:center;}'
     + '@media (max-width:1100px){#gt-bar .gt-text .gt-long{display:none;}#gt-bar .gt-text .gt-short{display:inline;}}'
     + '@media (max-width:760px){'
     +   '#gt-bar{justify-content:space-between;gap:10px;padding:0 12px;}'
@@ -160,14 +125,13 @@ var TEST_DATE = null;
       +   '<span class="gt-divider" aria-hidden="true"></span>'
       +   '<span class="gt-text"><span class="gt-long">' + esc(c.text) + '</span><span class="gt-short">' + esc(c.textShort) + '</span></span>'
       + '</div>'
-      + '<a class="gt-btn" href="' + CAMPAIGN_URL + '">'
+      + '<a class="gt-btn" href="' + CAMPAIGN_URL + '" target="_blank" rel="noopener">'
       +   '<span class="gt-long">' + esc(c.button) + '</span><span class="gt-short">' + esc(c.buttonShort || c.button) + '</span>'
       + '</a>';
     var link = bar.querySelector('.gt-btn');
     link.addEventListener('click', function () { track('banner_' + phase); });
     document.body.insertBefore(bar, document.body.firstChild);
     document.documentElement.classList.add('gt-bar-on');
-    useWidget(link, function () { track('banner_' + phase); });
   }
   if (document.body) addBar();
   else document.addEventListener('DOMContentLoaded', addBar);

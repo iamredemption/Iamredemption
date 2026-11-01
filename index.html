@@ -715,7 +715,6 @@ function openTrailer() {
     transform: translateY(-1px);
   }
   #am-cta-btn svg { flex-shrink: 0; }
-  #am-modal givebutter-widget { display: flex; justify-content: center; }
   @media (max-width: 560px) {
     #am-modal { padding: 1.1rem 1rem 1.25rem; }
   }
@@ -793,17 +792,13 @@ function openTrailer() {
     if (btn) btn.href = current.href;
     if (txt) txt.textContent = current.button;
     if (btn && current === POPUPS.gt) {
+      // GivingTuesday button goes to the Givebutter campaign page (story, goal bar, donors)
+      // in a NEW TAB, so the IAR site stays open behind it. The pop-up closes on click.
+      btn.target = '_blank';
+      btn.rel = 'noopener';
       btn.addEventListener('click', function() {
         if (c && c.track) c.track('popup_' + c.phase);
       });
-      // Use the Givebutter "Give Today" button so the donation form opens right here.
-      // Closing this pop-up when it's clicked keeps the donation form in front.
-      if (c && c.useWidget) {
-        c.useWidget(btn, function() {
-          if (c.track) c.track('popup_' + c.phase);
-          closeAMPopup();
-        });
-      }
     }
   }
 
