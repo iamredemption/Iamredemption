@@ -49,8 +49,8 @@ var TEST_DATE = null;
   else if (today >= '2026-12-02' && today <= '2026-12-04') phase = 'last';
 
   var COPY = {
-    nov:  { title: 'GivingTuesday is December 1', text: 'Help us raise $5,000 to keep our programs accessible.',
-            titleShort: 'GivingTuesday is Dec 1',  textShort: 'Help us raise $5,000',
+    nov:  { title: 'GivingTuesday is December 1', text: 'Help us raise $15,000 to keep our programs accessible.',
+            titleShort: 'GivingTuesday is Dec 1',  textShort: 'Help us raise $15,000',
             button: 'Give Today', popupButton: 'Give Today' },
     day:  { title: 'Today is GivingTuesday',      text: 'The first $500 given today is matched, dollar for dollar.',
             titleShort: 'Double Your Impact',      textShort: 'First $500 today is matched',
