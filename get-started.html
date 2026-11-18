@@ -148,6 +148,16 @@ nav#top-nav{
     .platform-link { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(253,191,18,0.08); border:1px solid rgba(253,191,18,0.25); color:var(--gold); text-decoration:none; padding:0.65rem 1.25rem; font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; transition:background 0.2s; }
     .platform-link:hover { background:rgba(253,191,18,0.18); }
     @media (max-width: 960px) { .volunteer-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; } }
+    /* ── App download banner ── */
+    #events .app-banner { max-width:1500px; margin:0 auto 2.5rem; background:var(--card-bg); border:1.5px solid rgba(253,191,18,0.6); padding:1.25rem 2rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.25rem; }
+    .app-banner-text h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,3.5vw,40px); line-height:1; letter-spacing:0.03em; color:var(--gold); }
+    .app-banner-text p { font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-top:0.3rem; }
+    .app-badges { display:flex; flex-wrap:wrap; align-items:center; gap:1.5rem; }
+    .app-badges a { display:block; }
+    .app-badges img { height:44px; width:auto; display:block; }
+    @media (max-width: 768px) {
+      .app-banner { padding:1.25rem; flex-direction:column; align-items:flex-start; }
+    }
   </style>
 <!-- ── GOOGLE ANALYTICS 4 — Replace G-Q7S7B337Q8 with your Measurement ID ── -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q7S7B337Q8"></script>
@@ -329,6 +339,19 @@ nav#top-nav{
 
 <!-- EVENTS GRID -->
 <section class="content-section dark" id="events" style="padding:3rem 2.5rem;">
+
+  <!-- App download banner -->
+  <div class="app-banner fade-in">
+    <div class="app-banner-text">
+      <h2>Download the App</h2>
+      <p>Schedules, updates and group chats</p>
+    </div>
+    <div class="app-badges">
+      <a href="https://apps.apple.com/us/app/iar-i-am-redemption/id6827284192" target="_blank" rel="noopener"><img src="images/app-store-badge.svg" alt="Download on the App Store"></a>
+      <a href="https://play.google.com/store/apps/details?id=org.iamredemption.app" target="_blank" rel="noopener"><img src="images/google-play-badge.svg" alt="Get it on Google Play"></a>
+    </div>
+  </div>
+
   <div class="events-grid">
 
     <!-- Monday Men's Meeting -->
@@ -336,10 +359,7 @@ nav#top-nav{
       <div class="event-tag">Peer Support</div>
       <div class="event-name">Monday Men's Meeting</div>
       <div class="event-details">
-        <strong>1st Monday of Each Month • 6–8 PM CST</strong><br>
-	Squatch Frontier Fitness<br>
-        701 Tillery St Suite C Austin, TX 78702<br><br>
-	A weekly men's meeting around the bonfire where you can talk, listen, connect with others who get it, and enjoy food and drinks. During warmer months, meetings are held indoors with A/C.
+        A men's meeting where you can talk, listen, connect with others who get it, and enjoy food and drinks.
       </div>
     </div>
 
@@ -348,39 +368,25 @@ nav#top-nav{
       <div class="event-tag">Community Runs</div>
       <div class="event-name">Redemption Crew Runs</div>
       <div class="event-details">
-        <strong>Saturdays • 7:30 AM CST</strong><br>
-	<strong>Tuesdays &amp; Thursdays • 6 AM CST</strong><br>
-        515 S Pleasant Valley Rd<br>
-        Austin, TX 78741<br>
-        Short route: ~2 miles (walk/jog friendly)<br>
-        Long route: ~6 miles<br><br>
-        Open to all paces. Just show up.
+        Group runs with shorter and longer routes, walk/jog friendly. Open to all paces. Just show up.
       </div>
     </div>
 
-    <!-- Thursday Check-Ins (Zoom) -->
+    <!-- Virtual Support Meeting -->
     <div class="event-card fade-in fade-in-d2">
       <div class="event-tag">Virtual Support</div>
-      <div class="event-name">Thursday Call</div>
+      <div class="event-name">Virtual Support Meeting</div>
       <div class="event-details">
-        <strong>1st Thursday of Each Month • 6–7 PM CST</strong><br>
-        Zoom<br><br>
-        Meeting ID: 861 8811 5130<br>
-        Passcode: REDEMPTION<br><br>
-        A weekly call to check in. Talk if you want to, or just listen. Open to everyone.
+        A call to check in from wherever you are. Talk if you want to, or just listen. Open to everyone.
       </div>
     </div>
 
    <!-- Faith Based Group -->
     <div class="event-card fade-in fade-in-d3">
       <div class="event-tag">FAITH-BASED PEER SUPPORT</div>
-      <div class="event-name">House of Redemption</div>
+      <div class="event-name">Built for Redemption</div>
       <div class="event-details">
-        <strong>3rd Saturday of Each Month • 10:30 - 11:30 AM CST</strong><br>
-        House of Gainz<br>
-        235 Canyon Ridge Dr Austin, TX 78753<br><br>
-        A welcoming space to grow in faith, build meaningful relationships, and encourage one another through honest        conversations.<br><br>
-        Open to everyone.
+        A welcoming space to grow in faith, build meaningful relationships, and encourage one another through honest conversations. Open to everyone.
       </div>
     </div>
 
