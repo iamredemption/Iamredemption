@@ -239,6 +239,10 @@ nav#top-nav{
       html body .hero { margin-top: 60px; }
     }
 
+    /* ── Documentary buttons: keep side by side (phones still stack) ── */
+    .video-text .btn-row { flex-wrap: nowrap; }
+    .video-text .btn-row a { white-space: nowrap; }
+
     /* ── Mobile nav: hide logo when menu is open so links are never covered ── */
     @media (max-width: 768px) {
       #top-nav.nav-open .nav-logo-group { display: none !important; }
@@ -513,11 +517,10 @@ nav#top-nav{
     <div class="video-text fade-in">
       <div class="section-label">The Documentary</div>
       <h2 class="section-title">100 Miles<br>to Redemption</h2>
-      <p style="color:#e0e0e0;font-weight:300;line-height:1.8;margin-bottom:1.5rem;">A raw, unfiltered look at what it means to fall completely and choose to rise anyway. Army veteran Shawn Livingston confronts heroin addiction, PTSD, and everything behind him, with a 100-mile trail race forcing the question of who he's going to be.</p>
-      <p style="color:#e0e0e0;font-weight:300;line-height:1.8;margin-bottom:2rem;">Available on Prime Video and Tubi.</p>
+      <p style="color:#e0e0e0;font-weight:300;line-height:1.8;margin-bottom:2rem;">A raw, unfiltered look at what it means to fall completely and choose to rise anyway. Army veteran Shawn Livingston confronts heroin addiction, PTSD, and everything behind him, with a 100-mile trail race forcing the question of who he's going to be.</p>
       <div class="btn-row">
-        <a href="https://www.amazon.com/100-Miles-Redemption-Shawn-Livingston/dp/B0B18DPRZ1" target="_blank" class="btn-primary">Watch Free on Prime Video</a>
-        <a href="https://tubitv.com/movies/675760/100-miles-to-redemption" target="_blank" class="btn-outline">Watch Free on Tubi</a>
+        <a href="https://www.amazon.com/100-Miles-Redemption-Shawn-Livingston/dp/B0B18DPRZ1" target="_blank" class="btn-primary">Watch on Prime Video</a>
+        <a href="https://tubitv.com/movies/675760/100-miles-to-redemption" target="_blank" class="btn-outline">Watch on Tubi</a>
       </div>
     </div>
     <div class="video-embed fade-in fade-in-d1">
