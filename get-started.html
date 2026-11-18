@@ -158,10 +158,14 @@ nav#top-nav{
     @media (max-width: 768px) {
       .app-banner { padding:1.25rem; flex-direction:column; align-items:flex-start; }
     }
-    /* ── Podcast intro: title left, text + links right ── */
-    #podcast .podcast-intro { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:end; }
+    /* ── Podcast intro: heading left, platform buttons right, description below ── */
+    #podcast .podcast-intro { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr auto; grid-template-areas:"head links" "sub sub"; column-gap:3rem; row-gap:1.25rem; align-items:end; }
+    #podcast .podcast-head { grid-area:head; }
+    #podcast .podcast-links { grid-area:links; justify-content:flex-end; }
+    #podcast .podcast-sub { grid-area:sub; }
     @media (max-width: 960px) {
-      #podcast .podcast-intro { grid-template-columns:1fr; gap:1.25rem; }
+      #podcast .podcast-intro { grid-template-columns:1fr; grid-template-areas:"head" "sub" "links"; }
+      #podcast .podcast-links { justify-content:flex-start; }
     }
   </style>
 <!-- ── GOOGLE ANALYTICS 4 — Replace G-Q7S7B337Q8 with your Measurement ID ── -->
@@ -402,21 +406,19 @@ nav#top-nav{
 <!-- PODCAST SECTION -->
 <section class="content-section alt" id="podcast" style="padding:3rem 2.5rem;">
   <div class="podcast-intro">
-    <div>
-      <div class="section-label fade-in" style="text-align:left;">Podcast</div>
-      <h2 class="section-title fade-in" style="text-align:left;margin-bottom:0;">Real Stories.<br>Real Recovery.</h2>
-    </div>
-    <div>
-      <p class="section-subtitle fade-in" style="margin-bottom:0;text-align:left;max-width:none;">Every episode is proof that redemption is real. New episodes every Tuesday on YouTube and all major platforms.</p>
+  <div class="podcast-head">
+    <div class="section-label fade-in" style="text-align:left;">Podcast</div>
+    <h2 class="section-title fade-in" style="text-align:left;margin-bottom:0;">Real Stories.<br>Real Recovery.</h2>
+  </div>
+  <p class="section-subtitle podcast-sub fade-in" style="margin-bottom:0;text-align:left;max-width:580px;">Every episode is proof that redemption is real. New episodes every Tuesday on YouTube and all major platforms.</p>
 
-      <!-- Platform Links -->
-      <div class="platform-links fade-in" style="margin-top:1.5rem;">
-        <a href="https://www.youtube.com/@IAm.Redemption/videos" target="_blank" class="platform-link">YouTube</a>
-        <a href="https://open.spotify.com/show/0Y1dkGgBbtHcCc6RVfHRoU" target="_blank" class="platform-link">Spotify</a>
-        <a href="https://podcasts.apple.com/us/podcast/i-am-redemption/id1895738531" target="_blank" class="platform-link">Apple Podcasts</a>
-        <a href="https://www.iheart.com/podcast/1323-i-am-redemption-331846972" target="_blank" class="platform-link">iHeart</a>
-      </div>
-    </div>
+  <!-- Platform Links -->
+  <div class="platform-links podcast-links fade-in" style="margin-top:0;">
+    <a href="https://www.youtube.com/@IAm.Redemption/videos" target="_blank" class="platform-link">YouTube</a>
+    <a href="https://open.spotify.com/show/0Y1dkGgBbtHcCc6RVfHRoU" target="_blank" class="platform-link">Spotify</a>
+    <a href="https://podcasts.apple.com/us/podcast/i-am-redemption/id1895738531" target="_blank" class="platform-link">Apple Podcasts</a>
+    <a href="https://www.iheart.com/podcast/1323-i-am-redemption-331846972" target="_blank" class="platform-link">iHeart</a>
+  </div>
   </div>
 
   <!-- Featured Episode -->
